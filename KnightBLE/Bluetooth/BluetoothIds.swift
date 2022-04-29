@@ -19,4 +19,6 @@ class BluetoothIds {
     public static let acceptedCharacteristics: [CBUUID] = [
         eyeLedCharacteristic
     ]
+    
+    public static let testUUID: UUID = UUID()
 }

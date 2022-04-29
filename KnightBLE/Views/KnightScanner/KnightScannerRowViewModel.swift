@@ -50,6 +50,6 @@ class KnightScannerRowViewModel : ObservableObject {
             return
         }
         bleManager.Disconnect(per)
-    }
+      }
     
 }

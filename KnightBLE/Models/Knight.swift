@@ -9,10 +9,8 @@ import Foundation
 import CoreBluetooth
 
 class Knight : ObservableObject, Identifiable {
-    let id = UUID();
     @Published var name: String = ""
-    @Published var connected: Bool = false
-    
+
     @Published var peripheralId: UUID
     @Published var abilities: [KnightAbility] = []
     

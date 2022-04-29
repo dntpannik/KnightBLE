@@ -8,35 +8,30 @@
 import SwiftUI
 
 struct ConnectedKnightsView: View {
-    @StateObject private var _viewModel: ConnectedKnightsViewModel = .init()
+    @EnvironmentObject var modelData: ModelData
     @State var selection: Int? = nil
 
     private var knights: [Knight] {
-        _viewModel.knights.sorted { left, right in
+        modelData.knights.sorted { left, right in
             return left.name < right.name
         }
     }
     
     var body: some View {
-            NavigationView {
-                VStack {
-                    NavigationLink(destination: KnightScannerView(), tag: 1, selection: $selection) {
-                        Button("Discover Knights") { self.selection = 1 }
-                             .buttonStyle(GrowingButton())
-                    }
-                    Spacer()
-                    VStack {
-                    List {
-                        ForEach(_viewModel.knights, id: \.id) {
-                            knight in ConnectedKnightRowView(viewModel: ConnectedKnightRowViewModel(knight: knight))
-                        }
-                    }
-                    }
+        NavigationView {
+            VStack {
+                NavigationLink(destination: KnightScannerView(), tag: 1, selection: $selection) {
+                    Button("Discover Knights") { self.selection = 1 }
+                            .buttonStyle(GrowingButton())
                 }
-                .navigationTitle("Active Knights")
+                List {
+                    ForEach(modelData.knights, id: \.id) {
+                        knight in ConnectedKnightRowView(peripheralId: knight.peripheralId)
+                    }
+                }.id(UUID())
+                Spacer()
             }
-        .onAppear {
-            _viewModel.Start()
+            .navigationTitle("Active Knights")
         }
     }
 }
@@ -44,5 +39,6 @@ struct ConnectedKnightsView: View {
 struct KnightList_Previews: PreviewProvider {
     static var previews: some View {
         ConnectedKnightsView()
+            .environmentObject(ModelData(knights: [Knight(name: "TestKnight", peripheralId: UUID(), abilities: [KnightAbility(characteristicId: BluetoothIds.eyeLedCharacteristic, value: false),KnightAbility(characteristicId: BluetoothIds.eyeLedCharacteristic, value: false)])]))
     }
 }

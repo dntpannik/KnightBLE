@@ -9,6 +9,17 @@ import CoreBluetooth
 
 struct KnightAbility : Identifiable {
     let id = UUID()
-    let characteristicId: CBUUID
+    var characteristicId: CBUUID
     var currentValue: Data
+    
+    init(characteristicId: CBUUID, value: Data) {
+        self.characteristicId = characteristicId
+        self.currentValue = value
+    }
+    
+    init(characteristicId: CBUUID, value: Bool) {
+        self.characteristicId = characteristicId
+        self.currentValue = EncodeBool(value: value)
+    }
+
 }

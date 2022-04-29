@@ -8,29 +8,31 @@
 import SwiftUI
 
 struct ConnectedKnightRowView: View {
-    @ObservedObject var viewModel: ConnectedKnightRowViewModel
+    @EnvironmentObject var modelData: ModelData
+    var peripheralId: UUID
+    //@State var knight: Knight
+    
+    private var knight: Knight {
+        return modelData.knights.first(where: {$0.peripheralId == peripheralId}) ?? Knight(name: "Uknown", peripheralId: UUID())
+    }
 
     var body: some View {
         VStack {
-            Text(viewModel.knight.name)
+            Text(knight.name)
                 .bold()
                 .underline()
-            ForEach(viewModel.knight.abilities, id: \.id) { ability in
-                if (ability.characteristicId == BluetoothIds.eyeLedCharacteristic) {
-                    
-                    EyesAbilityView(viewModel: EyesAbilityViewModel(peripheralId: viewModel.knight.peripheralId, ability: ability))
+            ForEach(knight.abilities, id: \.id) { ability in
+                if (ability.characteristicId == BluetoothIds.eyeLedCharacteristic){
+                    EyesAbilityView(knight: knight, characteristicId: ability.characteristicId)
                 }
             }
-        }
-        .onAppear {
-            viewModel.Start()
         }
     }
 }
 
 struct ConnectedKnightRowView_Previews: PreviewProvider {
     static var previews: some View {
-        ConnectedKnightRowView(viewModel: ConnectedKnightRowViewModel(knight: Knight(name: "TestKnight", peripheralId: UUID(), abilities: [KnightAbility(characteristicId: BluetoothIds.eyeLedCharacteristic, currentValue: Data([UInt8(false.intValue)]))])))
-            .previewLayout(.fixed(width: 300, height: 120))
+        ConnectedKnightRowView(peripheralId: BluetoothIds.testUUID)
+            .environmentObject(ModelData(knights: [Knight(name: "TestKnight", peripheralId: BluetoothIds.testUUID, abilities: [KnightAbility(characteristicId: BluetoothIds.eyeLedCharacteristic, value: false)])]))
     }
 }

@@ -7,11 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0E059FEB281A55DD003B9B81 /* ConnectedKnightsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E059FEA281A55DD003B9B81 /* ConnectedKnightsViewModel.swift */; };
 		0E059FEF281A5FF9003B9B81 /* GrowingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E059FEE281A5FF9003B9B81 /* GrowingButton.swift */; };
-		0E059FF1281A689D003B9B81 /* ConnectedKnightRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E059FF0281A689D003B9B81 /* ConnectedKnightRowViewModel.swift */; };
 		0E059FF3281B5C50003B9B81 /* KnightAbility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E059FF2281B5C50003B9B81 /* KnightAbility.swift */; };
-		0E059FF5281B6217003B9B81 /* EyesAbilityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E059FF4281B6217003B9B81 /* EyesAbilityViewModel.swift */; };
+		0E059FF8281B9CA1003B9B81 /* Encodings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E059FF7281B9CA1003B9B81 /* Encodings.swift */; };
 		0E0BAC6328177B8E00D35034 /* ConnectedKnightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC6228177B8E00D35034 /* ConnectedKnightsView.swift */; };
 		0E0BAC6528177C8F00D35034 /* Knight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC6428177C8F00D35034 /* Knight.swift */; };
 		0E0BAC6728177E1800D35034 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC6628177E1800D35034 /* ModelData.swift */; };
@@ -54,11 +52,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0E059FEA281A55DD003B9B81 /* ConnectedKnightsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedKnightsViewModel.swift; sourceTree = "<group>"; };
 		0E059FEE281A5FF9003B9B81 /* GrowingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowingButton.swift; sourceTree = "<group>"; };
-		0E059FF0281A689D003B9B81 /* ConnectedKnightRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedKnightRowViewModel.swift; sourceTree = "<group>"; };
 		0E059FF2281B5C50003B9B81 /* KnightAbility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightAbility.swift; sourceTree = "<group>"; };
-		0E059FF4281B6217003B9B81 /* EyesAbilityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyesAbilityViewModel.swift; sourceTree = "<group>"; };
+		0E059FF7281B9CA1003B9B81 /* Encodings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encodings.swift; sourceTree = "<group>"; };
 		0E0BAC6228177B8E00D35034 /* ConnectedKnightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedKnightsView.swift; sourceTree = "<group>"; };
 		0E0BAC6428177C8F00D35034 /* Knight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Knight.swift; sourceTree = "<group>"; };
 		0E0BAC6628177E1800D35034 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
@@ -115,7 +111,6 @@
 			isa = PBXGroup;
 			children = (
 				0E0BAC852819ADD200D35034 /* EyesAbilityView.swift */,
-				0E059FF4281B6217003B9B81 /* EyesAbilityViewModel.swift */,
 			);
 			path = Eyes;
 			sourceTree = "<group>";
@@ -165,9 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				0E0BAC6228177B8E00D35034 /* ConnectedKnightsView.swift */,
-				0E059FEA281A55DD003B9B81 /* ConnectedKnightsViewModel.swift */,
 				0E0BAC6F2817ABDE00D35034 /* ConnectedKnightRowView.swift */,
-				0E059FF0281A689D003B9B81 /* ConnectedKnightRowViewModel.swift */,
 				0E059FEE281A5FF9003B9B81 /* GrowingButton.swift */,
 			);
 			path = ConnectedKnights;
@@ -186,6 +179,7 @@
 			children = (
 				0E0BAC882819B16C00D35034 /* BoolExtensions.swift */,
 				0E0BAC8C2819FD6200D35034 /* CancellableExtensions.swift */,
+				0E059FF7281B9CA1003B9B81 /* Encodings.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -394,15 +388,13 @@
 				0E0BAC762818461500D35034 /* DotView.swift in Sources */,
 				0E0BAC6328177B8E00D35034 /* ConnectedKnightsView.swift in Sources */,
 				0E0BAC862819ADD300D35034 /* EyesAbilityView.swift in Sources */,
-				0E059FF5281B6217003B9B81 /* EyesAbilityViewModel.swift in Sources */,
+				0E059FF8281B9CA1003B9B81 /* Encodings.swift in Sources */,
 				0E059FEF281A5FF9003B9B81 /* GrowingButton.swift in Sources */,
-				0E059FEB281A55DD003B9B81 /* ConnectedKnightsViewModel.swift in Sources */,
 				0E0BAC892819B16C00D35034 /* BoolExtensions.swift in Sources */,
 				0E9287862816132000026ED1 /* BluetoothIds.swift in Sources */,
 				0E0BAC91281A2EA400D35034 /* KnightScannerRowView.swift in Sources */,
 				0E0BAC6528177C8F00D35034 /* Knight.swift in Sources */,
 				0E0BAC732817B84A00D35034 /* BluetoothManager.swift in Sources */,
-				0E059FF1281A689D003B9B81 /* ConnectedKnightRowViewModel.swift in Sources */,
 				0E0BAC6928177F0F00D35034 /* KnightScannerView.swift in Sources */,
 				0E9287582815FD8700026ED1 /* KnightBLEApp.swift in Sources */,
 				0E0BAC8D2819FD6200D35034 /* CancellableExtensions.swift in Sources */,

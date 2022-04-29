@@ -18,38 +18,37 @@ struct KnightScannerRowView: View {
     }
     
     var body: some View {
-            HStack {
-                if let peripheralName = _viewModel.peripheral?.name {
-                    Text(peripheralName)
-                } else {
-                    Text("Unknown")
-                        .opacity(0.2)
+        HStack {
+            if let peripheralName = _viewModel.peripheral?.name {
+                Text(peripheralName)
+            } else {
+                Text("Unknown")
+                    .opacity(0.2)
+            }
+            Spacer()
+            Image(  systemName: _viewModel.connected ? "link.icloud.fill" : "link.icloud")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 40, height: 40)
+                .foregroundColor(_viewModel.connected ? .blue : .gray)
+
+        }
+        .swipeActions {
+            if _viewModel.connected {
+                Button("Disconnect") {
+                    _viewModel.Disconnect()
                 }
-                Spacer()
-                Image(  systemName: _viewModel.connected ? "link.icloud.fill" : "link.icloud")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 40, height: 40)
-                    .foregroundColor(_viewModel.connected ? .blue : .gray)
-            
-            }
-            .swipeActions {
-                if _viewModel.connected {
-                    Button("Disconnect") {
-                        _viewModel.Disconnect()
-                    }
-                    .tint(.red)
-                } else {
-                    Button("Connect") {
-                        _viewModel.Connect()
-                    }
-                    .tint(.blue)
+                .tint(.red)
+            } else {
+                Button("Connect") {
+                    _viewModel.Connect()
                 }
+                .tint(.blue)
             }
-            .onAppear {
-                _viewModel.Start(peripheral: _peripheral)
-            }
-    
+        }
+        .onAppear {
+            _viewModel.Start(peripheral: _peripheral)
+        }
     }
 }
 

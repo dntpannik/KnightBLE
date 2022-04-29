@@ -24,9 +24,9 @@ class BluetoothManager : NSObject {
     var peripheralUpdatedSubject: PassthroughSubject<CBPeripheral, Never> = .init()
     var peripheralConnectedSubject: PassthroughSubject<CBPeripheral, Never> = .init()
     var peripheralDisconnectedSubject: PassthroughSubject<CBPeripheral, Never> = .init()
-    var characteristicDiscoveredSubject: PassthroughSubject<CBCharacteristic, Never> = .init()
-    var characteristicValueUpdatedSubject: PassthroughSubject<CBCharacteristic, Never> = .init()
-
+    var characteristicDiscoveredSubject: PassthroughSubject<(CBPeripheral, CBCharacteristic), Never> = .init()
+    var characteristicValueUpdatedSubject: PassthroughSubject<(CBPeripheral, CBCharacteristic), Never> = .init()
+    
     func Start() {
         if !_initialzied {
             _centralManager = .init(delegate: self, queue: .main)
@@ -222,26 +222,13 @@ extension BluetoothManager: CBPeripheralDelegate {
              for characteristic in characteristics {
                  if BluetoothIds.acceptedCharacteristics.contains(where: {$0 == characteristic.uuid}) {
                      print("Chracteristic found \(characteristic.uuid)")
-                     characteristicDiscoveredSubject.send(characteristic)
+                     characteristicDiscoveredSubject.send((peripheral, characteristic))
                  }
              }
          }
      }
     
-    func peripheral(_ peripheral: CBPeripheral, didWriteValueFor: CBCharacteristic, error: Error?) {
-        guard let updatedPeripheral = _discoveredPeripherals[peripheral.identifier] else {
-            print("Attempted to write data to a peripheral whose id doesn't exist")
-            return
-        }
-        guard let service = updatedPeripheral.services?.first(where: {$0.uuid == didWriteValueFor.service?.uuid}) else {
-            print("Attempted to write data to a service whose id doesn't exist")
-            return
-        }
-        guard let characteristic = service.characteristics?.first(where: {$0.uuid == didWriteValueFor.uuid}) else {
-            print("Attempted to write data to a characteristic whose id doesn't exist")
-            return
-        }
-        
-        characteristicValueUpdatedSubject.send(didWriteValueFor)
+    func peripheral(_ peripheral: CBPeripheral, characteristic: CBCharacteristic, error: Error?) {
+        characteristicValueUpdatedSubject.send((peripheral, characteristic))
     }
 }
