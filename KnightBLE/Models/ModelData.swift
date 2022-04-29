@@ -27,31 +27,31 @@ extension ModelData {
     
     func InitializeHandlers() {
         bleManager.peripheralConnectedSubject
-            .filter { [weak self] peripheral in
+            .filter { [weak self] (name, peripheral) in
                 self?.knights.contains { knight in
                     knight.peripheralId == peripheral.identifier
                 } == false
             }
-            .sink { [weak self] peripheral in
-                let knight = Knight(name: peripheral.name ?? "Unknown Knight", peripheralId: peripheral.identifier)
+            .sink { [weak self] (name, peripheral) in
+                let knight = Knight(name: name, peripheralId: peripheral.identifier)
                 self?.knights.append(knight)
             }
             .store(in: &_cancellables)
         
         bleManager.peripheralUpdatedSubject
-            .filter { [weak self] peripheral in
+            .filter { [weak self] (name, peripheral) in
                 self?.knights.contains { knight in
                     knight.peripheralId == peripheral.identifier
                 } == true
             }
-            .sink { [weak self] peripheral in
+            .sink { [weak self] (name, peripheral) in
                 guard let knightIndex = self?.knights.firstIndex(where: { knight in
                     return knight.peripheralId == peripheral.identifier
                 }) else {
                     return
                 }
                 
-                self?.knights[knightIndex].name = peripheral.name ?? "Unknown Knight"
+                self?.knights[knightIndex].name = name ?? "Unknown Knight"
             }
             .store(in: &_cancellables)
         
@@ -91,7 +91,16 @@ extension ModelData {
                     return
                 }
                 
-                let ability = KnightAbility(characteristicId: characteristic.uuid, value: characteristic.value ?? Data([]))
+                let data = characteristic.value ?? Data()
+                
+                //---   Parse Knight Ability   ---//
+                var ability: KnightAbility
+                if (characteristic.uuid == BluetoothIds.eyeLedCharacteristic) {
+                    ability = BoolKnightAbility(characteristicId: characteristic.uuid, value: data)
+                } else {
+                    return
+                }
+                
                 self?.knights[knightIndex].objectWillChange.send()
                 self?.knights[knightIndex].abilities.append(ability)
             }
@@ -122,7 +131,11 @@ extension ModelData {
                     return
                 }
                 
-                self?.knights[knightIndex].abilities[abilityIndex].currentValue = characteristic.value ?? Data()
+                guard let data = characteristic.value else {
+                    return
+                }
+                
+                self?.knights[knightIndex].abilities[abilityIndex].UpdateValue(data: data)
             }
             .store(in: &_cancellables)
     }

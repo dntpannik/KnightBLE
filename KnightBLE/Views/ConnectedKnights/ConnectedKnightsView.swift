@@ -39,6 +39,6 @@ struct ConnectedKnightsView: View {
 struct KnightList_Previews: PreviewProvider {
     static var previews: some View {
         ConnectedKnightsView()
-            .environmentObject(ModelData(knights: [Knight(name: "TestKnight", peripheralId: UUID(), abilities: [KnightAbility(characteristicId: BluetoothIds.eyeLedCharacteristic, value: false),KnightAbility(characteristicId: BluetoothIds.eyeLedCharacteristic, value: false)])]))
+            .environmentObject(ModelData(knights: [Knight(name: "TestKnight", peripheralId: UUID(), abilities: [BoolKnightAbility(characteristicId: BluetoothIds.eyeLedCharacteristic, value: false), BoolKnightAbility(characteristicId: BluetoothIds.eyeLedCharacteristic, value: false)])]))
     }
 }

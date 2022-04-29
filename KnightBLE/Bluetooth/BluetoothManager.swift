@@ -20,8 +20,8 @@ class BluetoothManager : NSObject {
     
     var stateSubject: PassthroughSubject<CBManagerState, Never> = .init()
     var scanningSubject: PassthroughSubject<Bool, Never> = .init()
-    var peripheralDiscoveredSubject: PassthroughSubject<CBPeripheral, Never> = .init()
-    var peripheralUpdatedSubject: PassthroughSubject<CBPeripheral, Never> = .init()
+    var peripheralDiscoveredSubject: PassthroughSubject<(String, CBPeripheral), Never> = .init()
+    var peripheralUpdatedSubject: PassthroughSubject<(String, CBPeripheral), Never> = .init()
     var peripheralConnectedSubject: PassthroughSubject<CBPeripheral, Never> = .init()
     var peripheralDisconnectedSubject: PassthroughSubject<CBPeripheral, Never> = .init()
     var characteristicDiscoveredSubject: PassthroughSubject<(CBPeripheral, CBCharacteristic), Never> = .init()
@@ -128,6 +128,7 @@ class BluetoothManager : NSObject {
             // Check if it has the write property
             if characteristic.properties.contains(.write) {
                 peripheral.writeValue(value, for: characteristic, type: .withResponse)
+               // peripheral.readValue(for: characteristic)
             } else {
                 print("Attempted to write data to a characteristic who doesnt support response")
                 return
@@ -168,11 +169,18 @@ extension BluetoothManager: CBCentralManagerDelegate {
         let peripheralUpdated = _discoveredPeripherals[peripheral.identifier] != nil
         _discoveredPeripherals[peripheral.identifier] = peripheral
         
+        var name: String = peripheral.name ?? "Unknown Device"
+        if advertisementData.contains(where: {(key, value) in
+            key == "kCBAdvDataLocalName"
+        }) {
+            name = String(describing: advertisementData["kCBAdvDataLocalName"])
+        }
+
         //Send correct message based on whether the peripheral is new or not
         if peripheralUpdated {
-            peripheralUpdatedSubject.send(peripheral)
+            peripheralUpdatedSubject.send((name, peripheral))
         } else {
-            peripheralDiscoveredSubject.send(peripheral)
+            peripheralDiscoveredSubject.send((name, peripheral))
         }
     }
     
@@ -192,7 +200,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
                         error: Error?) {
         if (_discoveredPeripherals[peripheral.identifier] != nil) {
             print("Disconnected from device \(peripheral.identifier)")
-            
+        
             if let index = _connectedPeripherals.firstIndex(where: { $0 == peripheral.identifier }) {
                 _connectedPeripherals.remove(at: index)
             }
@@ -222,13 +230,25 @@ extension BluetoothManager: CBPeripheralDelegate {
              for characteristic in characteristics {
                  if BluetoothIds.acceptedCharacteristics.contains(where: {$0 == characteristic.uuid}) {
                      print("Chracteristic found \(characteristic.uuid)")
+                     peripheral.setNotifyValue(true, for: characteristic)
+                     peripheral.readValue(for: characteristic)
                      characteristicDiscoveredSubject.send((peripheral, characteristic))
                  }
              }
          }
      }
     
-    func peripheral(_ peripheral: CBPeripheral, characteristic: CBCharacteristic, error: Error?) {
-        characteristicValueUpdatedSubject.send((peripheral, characteristic))
+//    func peripheral(_ peripheral: CBPeripheral, didWriteValueFor: CBCharacteristic, error: Error?) {
+//        if (error == nil) {
+//            peripheral.readValue(for: didWriteValueFor)
+//        }
+//
+//        characteristicValueUpdatedSubject.send((peripheral, didWriteValueFor))
+//    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+        if (error == nil) {
+            characteristicValueUpdatedSubject.send((peripheral, characteristic))
+        }
     }
 }

@@ -24,6 +24,7 @@
 		0E0BAC8D2819FD6200D35034 /* CancellableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC8C2819FD6200D35034 /* CancellableExtensions.swift */; };
 		0E0BAC91281A2EA400D35034 /* KnightScannerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC90281A2EA400D35034 /* KnightScannerRowView.swift */; };
 		0E0BAC93281A2EB200D35034 /* KnightScannerRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC92281A2EB200D35034 /* KnightScannerRowViewModel.swift */; };
+		0E8D3F0F281C43D1003FBB45 /* BoolKnightAbility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8D3F0E281C43D1003FBB45 /* BoolKnightAbility.swift */; };
 		0E9287582815FD8700026ED1 /* KnightBLEApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9287572815FD8700026ED1 /* KnightBLEApp.swift */; };
 		0E92875A2815FD8700026ED1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9287592815FD8700026ED1 /* ContentView.swift */; };
 		0E92875C2815FD8800026ED1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E92875B2815FD8800026ED1 /* Assets.xcassets */; };
@@ -69,6 +70,7 @@
 		0E0BAC8C2819FD6200D35034 /* CancellableExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancellableExtensions.swift; sourceTree = "<group>"; };
 		0E0BAC90281A2EA400D35034 /* KnightScannerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightScannerRowView.swift; sourceTree = "<group>"; };
 		0E0BAC92281A2EB200D35034 /* KnightScannerRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightScannerRowViewModel.swift; sourceTree = "<group>"; };
+		0E8D3F0E281C43D1003FBB45 /* BoolKnightAbility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolKnightAbility.swift; sourceTree = "<group>"; };
 		0E9287542815FD8700026ED1 /* KnightBLE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnightBLE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E9287572815FD8700026ED1 /* KnightBLEApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightBLEApp.swift; sourceTree = "<group>"; };
 		0E9287592815FD8700026ED1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -118,11 +120,10 @@
 		0E0BAC612817793800D35034 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0E0BAC792818F69400D35034 /* KnightScanner */,
+				0E0BAC8028190C7C00D35034 /* ConnectedKnights */,
 				0E0BAC842819ADBF00D35034 /* Characteristics */,
 				0E9287592815FD8700026ED1 /* ContentView.swift */,
-				0E0BAC792818F69400D35034 /* KnightScanner */,
-				0E0BAC742818460700D35034 /* Loading */,
-				0E0BAC8028190C7C00D35034 /* ConnectedKnights */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -152,6 +153,7 @@
 				0E0BAC8A2819FAE200D35034 /* KnightScannerViewModel.swift */,
 				0E0BAC90281A2EA400D35034 /* KnightScannerRowView.swift */,
 				0E0BAC92281A2EB200D35034 /* KnightScannerRowViewModel.swift */,
+				0E0BAC742818460700D35034 /* Loading */,
 			);
 			path = KnightScanner;
 			sourceTree = "<group>";
@@ -248,6 +250,7 @@
 			children = (
 				0E0BAC6428177C8F00D35034 /* Knight.swift */,
 				0E059FF2281B5C50003B9B81 /* KnightAbility.swift */,
+				0E8D3F0E281C43D1003FBB45 /* BoolKnightAbility.swift */,
 				0E0BAC6628177E1800D35034 /* ModelData.swift */,
 			);
 			path = Models;
@@ -388,6 +391,7 @@
 				0E0BAC762818461500D35034 /* DotView.swift in Sources */,
 				0E0BAC6328177B8E00D35034 /* ConnectedKnightsView.swift in Sources */,
 				0E0BAC862819ADD300D35034 /* EyesAbilityView.swift in Sources */,
+				0E8D3F0F281C43D1003FBB45 /* BoolKnightAbility.swift in Sources */,
 				0E059FF8281B9CA1003B9B81 /* Encodings.swift in Sources */,
 				0E059FEF281A5FF9003B9B81 /* GrowingButton.swift in Sources */,
 				0E0BAC892819B16C00D35034 /* BoolExtensions.swift in Sources */,
