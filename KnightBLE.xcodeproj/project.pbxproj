@@ -1,0 +1,740 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0E059FEB281A55DD003B9B81 /* ConnectedKnightsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E059FEA281A55DD003B9B81 /* ConnectedKnightsViewModel.swift */; };
+		0E059FEF281A5FF9003B9B81 /* GrowingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E059FEE281A5FF9003B9B81 /* GrowingButton.swift */; };
+		0E059FF1281A689D003B9B81 /* ConnectedKnightRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E059FF0281A689D003B9B81 /* ConnectedKnightRowViewModel.swift */; };
+		0E059FF3281B5C50003B9B81 /* KnightAbility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E059FF2281B5C50003B9B81 /* KnightAbility.swift */; };
+		0E059FF5281B6217003B9B81 /* EyesAbilityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E059FF4281B6217003B9B81 /* EyesAbilityViewModel.swift */; };
+		0E0BAC6328177B8E00D35034 /* ConnectedKnightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC6228177B8E00D35034 /* ConnectedKnightsView.swift */; };
+		0E0BAC6528177C8F00D35034 /* Knight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC6428177C8F00D35034 /* Knight.swift */; };
+		0E0BAC6728177E1800D35034 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC6628177E1800D35034 /* ModelData.swift */; };
+		0E0BAC6928177F0F00D35034 /* KnightScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC6828177F0F00D35034 /* KnightScannerView.swift */; };
+		0E0BAC702817ABDE00D35034 /* ConnectedKnightRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC6F2817ABDE00D35034 /* ConnectedKnightRowView.swift */; };
+		0E0BAC732817B84A00D35034 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC722817B84A00D35034 /* BluetoothManager.swift */; };
+		0E0BAC762818461500D35034 /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC752818461500D35034 /* DotView.swift */; };
+		0E0BAC782818463700D35034 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC772818463700D35034 /* LoadingView.swift */; };
+		0E0BAC862819ADD300D35034 /* EyesAbilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC852819ADD200D35034 /* EyesAbilityView.swift */; };
+		0E0BAC892819B16C00D35034 /* BoolExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC882819B16C00D35034 /* BoolExtensions.swift */; };
+		0E0BAC8B2819FAE200D35034 /* KnightScannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC8A2819FAE200D35034 /* KnightScannerViewModel.swift */; };
+		0E0BAC8D2819FD6200D35034 /* CancellableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC8C2819FD6200D35034 /* CancellableExtensions.swift */; };
+		0E0BAC91281A2EA400D35034 /* KnightScannerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC90281A2EA400D35034 /* KnightScannerRowView.swift */; };
+		0E0BAC93281A2EB200D35034 /* KnightScannerRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC92281A2EB200D35034 /* KnightScannerRowViewModel.swift */; };
+		0E9287582815FD8700026ED1 /* KnightBLEApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9287572815FD8700026ED1 /* KnightBLEApp.swift */; };
+		0E92875A2815FD8700026ED1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9287592815FD8700026ED1 /* ContentView.swift */; };
+		0E92875C2815FD8800026ED1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E92875B2815FD8800026ED1 /* Assets.xcassets */; };
+		0E92875F2815FD8800026ED1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E92875E2815FD8800026ED1 /* Preview Assets.xcassets */; };
+		0E9287692815FD8800026ED1 /* KnightBLETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9287682815FD8800026ED1 /* KnightBLETests.swift */; };
+		0E9287732815FD8800026ED1 /* KnightBLEUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9287722815FD8800026ED1 /* KnightBLEUITests.swift */; };
+		0E9287752815FD8800026ED1 /* KnightBLEUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9287742815FD8800026ED1 /* KnightBLEUITestsLaunchTests.swift */; };
+		0E9287862816132000026ED1 /* BluetoothIds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9287852816132000026ED1 /* BluetoothIds.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0E9287652815FD8800026ED1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0E92874C2815FD8700026ED1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0E9287532815FD8700026ED1;
+			remoteInfo = KnightBLE;
+		};
+		0E92876F2815FD8800026ED1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0E92874C2815FD8700026ED1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0E9287532815FD8700026ED1;
+			remoteInfo = KnightBLE;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0E059FEA281A55DD003B9B81 /* ConnectedKnightsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedKnightsViewModel.swift; sourceTree = "<group>"; };
+		0E059FEE281A5FF9003B9B81 /* GrowingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowingButton.swift; sourceTree = "<group>"; };
+		0E059FF0281A689D003B9B81 /* ConnectedKnightRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedKnightRowViewModel.swift; sourceTree = "<group>"; };
+		0E059FF2281B5C50003B9B81 /* KnightAbility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightAbility.swift; sourceTree = "<group>"; };
+		0E059FF4281B6217003B9B81 /* EyesAbilityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyesAbilityViewModel.swift; sourceTree = "<group>"; };
+		0E0BAC6228177B8E00D35034 /* ConnectedKnightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedKnightsView.swift; sourceTree = "<group>"; };
+		0E0BAC6428177C8F00D35034 /* Knight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Knight.swift; sourceTree = "<group>"; };
+		0E0BAC6628177E1800D35034 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
+		0E0BAC6828177F0F00D35034 /* KnightScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightScannerView.swift; sourceTree = "<group>"; };
+		0E0BAC6F2817ABDE00D35034 /* ConnectedKnightRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedKnightRowView.swift; sourceTree = "<group>"; };
+		0E0BAC722817B84A00D35034 /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
+		0E0BAC752818461500D35034 /* DotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
+		0E0BAC772818463700D35034 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		0E0BAC852819ADD200D35034 /* EyesAbilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyesAbilityView.swift; sourceTree = "<group>"; };
+		0E0BAC882819B16C00D35034 /* BoolExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolExtensions.swift; sourceTree = "<group>"; };
+		0E0BAC8A2819FAE200D35034 /* KnightScannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightScannerViewModel.swift; sourceTree = "<group>"; };
+		0E0BAC8C2819FD6200D35034 /* CancellableExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancellableExtensions.swift; sourceTree = "<group>"; };
+		0E0BAC90281A2EA400D35034 /* KnightScannerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightScannerRowView.swift; sourceTree = "<group>"; };
+		0E0BAC92281A2EB200D35034 /* KnightScannerRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightScannerRowViewModel.swift; sourceTree = "<group>"; };
+		0E9287542815FD8700026ED1 /* KnightBLE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnightBLE.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E9287572815FD8700026ED1 /* KnightBLEApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightBLEApp.swift; sourceTree = "<group>"; };
+		0E9287592815FD8700026ED1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0E92875B2815FD8800026ED1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0E92875E2815FD8800026ED1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0E9287642815FD8800026ED1 /* KnightBLETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KnightBLETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E9287682815FD8800026ED1 /* KnightBLETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightBLETests.swift; sourceTree = "<group>"; };
+		0E92876E2815FD8800026ED1 /* KnightBLEUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KnightBLEUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E9287722815FD8800026ED1 /* KnightBLEUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightBLEUITests.swift; sourceTree = "<group>"; };
+		0E9287742815FD8800026ED1 /* KnightBLEUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightBLEUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0E9287852816132000026ED1 /* BluetoothIds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothIds.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0E9287512815FD8700026ED1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0E9287612815FD8800026ED1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0E92876B2815FD8800026ED1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0E059FF6281B621B003B9B81 /* Eyes */ = {
+			isa = PBXGroup;
+			children = (
+				0E0BAC852819ADD200D35034 /* EyesAbilityView.swift */,
+				0E059FF4281B6217003B9B81 /* EyesAbilityViewModel.swift */,
+			);
+			path = Eyes;
+			sourceTree = "<group>";
+		};
+		0E0BAC612817793800D35034 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0E0BAC842819ADBF00D35034 /* Characteristics */,
+				0E9287592815FD8700026ED1 /* ContentView.swift */,
+				0E0BAC792818F69400D35034 /* KnightScanner */,
+				0E0BAC742818460700D35034 /* Loading */,
+				0E0BAC8028190C7C00D35034 /* ConnectedKnights */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0E0BAC712817B82F00D35034 /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				0E0BAC722817B84A00D35034 /* BluetoothManager.swift */,
+				0E9287852816132000026ED1 /* BluetoothIds.swift */,
+			);
+			path = Bluetooth;
+			sourceTree = "<group>";
+		};
+		0E0BAC742818460700D35034 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				0E0BAC752818461500D35034 /* DotView.swift */,
+				0E0BAC772818463700D35034 /* LoadingView.swift */,
+			);
+			path = Loading;
+			sourceTree = "<group>";
+		};
+		0E0BAC792818F69400D35034 /* KnightScanner */ = {
+			isa = PBXGroup;
+			children = (
+				0E0BAC6828177F0F00D35034 /* KnightScannerView.swift */,
+				0E0BAC8A2819FAE200D35034 /* KnightScannerViewModel.swift */,
+				0E0BAC90281A2EA400D35034 /* KnightScannerRowView.swift */,
+				0E0BAC92281A2EB200D35034 /* KnightScannerRowViewModel.swift */,
+			);
+			path = KnightScanner;
+			sourceTree = "<group>";
+		};
+		0E0BAC8028190C7C00D35034 /* ConnectedKnights */ = {
+			isa = PBXGroup;
+			children = (
+				0E0BAC6228177B8E00D35034 /* ConnectedKnightsView.swift */,
+				0E059FEA281A55DD003B9B81 /* ConnectedKnightsViewModel.swift */,
+				0E0BAC6F2817ABDE00D35034 /* ConnectedKnightRowView.swift */,
+				0E059FF0281A689D003B9B81 /* ConnectedKnightRowViewModel.swift */,
+				0E059FEE281A5FF9003B9B81 /* GrowingButton.swift */,
+			);
+			path = ConnectedKnights;
+			sourceTree = "<group>";
+		};
+		0E0BAC842819ADBF00D35034 /* Characteristics */ = {
+			isa = PBXGroup;
+			children = (
+				0E059FF6281B621B003B9B81 /* Eyes */,
+			);
+			path = Characteristics;
+			sourceTree = "<group>";
+		};
+		0E0BAC872819B15E00D35034 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0E0BAC882819B16C00D35034 /* BoolExtensions.swift */,
+				0E0BAC8C2819FD6200D35034 /* CancellableExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0E92874B2815FD8700026ED1 = {
+			isa = PBXGroup;
+			children = (
+				0E9287562815FD8700026ED1 /* KnightBLE */,
+				0E9287672815FD8800026ED1 /* KnightBLETests */,
+				0E9287712815FD8800026ED1 /* KnightBLEUITests */,
+				0E9287552815FD8700026ED1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0E9287552815FD8700026ED1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0E9287542815FD8700026ED1 /* KnightBLE.app */,
+				0E9287642815FD8800026ED1 /* KnightBLETests.xctest */,
+				0E92876E2815FD8800026ED1 /* KnightBLEUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0E9287562815FD8700026ED1 /* KnightBLE */ = {
+			isa = PBXGroup;
+			children = (
+				0E9287572815FD8700026ED1 /* KnightBLEApp.swift */,
+				0E9287842816130E00026ED1 /* Models */,
+				0E0BAC612817793800D35034 /* Views */,
+				0E0BAC712817B82F00D35034 /* Bluetooth */,
+				0E0BAC872819B15E00D35034 /* Extensions */,
+				0E92875B2815FD8800026ED1 /* Assets.xcassets */,
+				0E92875D2815FD8800026ED1 /* Preview Content */,
+			);
+			path = KnightBLE;
+			sourceTree = "<group>";
+		};
+		0E92875D2815FD8800026ED1 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				0E92875E2815FD8800026ED1 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0E9287672815FD8800026ED1 /* KnightBLETests */ = {
+			isa = PBXGroup;
+			children = (
+				0E9287682815FD8800026ED1 /* KnightBLETests.swift */,
+			);
+			path = KnightBLETests;
+			sourceTree = "<group>";
+		};
+		0E9287712815FD8800026ED1 /* KnightBLEUITests */ = {
+			isa = PBXGroup;
+			children = (
+				0E9287722815FD8800026ED1 /* KnightBLEUITests.swift */,
+				0E9287742815FD8800026ED1 /* KnightBLEUITestsLaunchTests.swift */,
+			);
+			path = KnightBLEUITests;
+			sourceTree = "<group>";
+		};
+		0E9287842816130E00026ED1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0E0BAC6428177C8F00D35034 /* Knight.swift */,
+				0E059FF2281B5C50003B9B81 /* KnightAbility.swift */,
+				0E0BAC6628177E1800D35034 /* ModelData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0E9287532815FD8700026ED1 /* KnightBLE */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0E9287782815FD8800026ED1 /* Build configuration list for PBXNativeTarget "KnightBLE" */;
+			buildPhases = (
+				0E9287502815FD8700026ED1 /* Sources */,
+				0E9287512815FD8700026ED1 /* Frameworks */,
+				0E9287522815FD8700026ED1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KnightBLE;
+			productName = KnightBLE;
+			productReference = 0E9287542815FD8700026ED1 /* KnightBLE.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0E9287632815FD8800026ED1 /* KnightBLETests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0E92877B2815FD8800026ED1 /* Build configuration list for PBXNativeTarget "KnightBLETests" */;
+			buildPhases = (
+				0E9287602815FD8800026ED1 /* Sources */,
+				0E9287612815FD8800026ED1 /* Frameworks */,
+				0E9287622815FD8800026ED1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0E9287662815FD8800026ED1 /* PBXTargetDependency */,
+			);
+			name = KnightBLETests;
+			productName = KnightBLETests;
+			productReference = 0E9287642815FD8800026ED1 /* KnightBLETests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		0E92876D2815FD8800026ED1 /* KnightBLEUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0E92877E2815FD8800026ED1 /* Build configuration list for PBXNativeTarget "KnightBLEUITests" */;
+			buildPhases = (
+				0E92876A2815FD8800026ED1 /* Sources */,
+				0E92876B2815FD8800026ED1 /* Frameworks */,
+				0E92876C2815FD8800026ED1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0E9287702815FD8800026ED1 /* PBXTargetDependency */,
+			);
+			name = KnightBLEUITests;
+			productName = KnightBLEUITests;
+			productReference = 0E92876E2815FD8800026ED1 /* KnightBLEUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0E92874C2815FD8700026ED1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1330;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					0E9287532815FD8700026ED1 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
+					0E9287632815FD8800026ED1 = {
+						CreatedOnToolsVersion = 13.3.1;
+						TestTargetID = 0E9287532815FD8700026ED1;
+					};
+					0E92876D2815FD8800026ED1 = {
+						CreatedOnToolsVersion = 13.3.1;
+						TestTargetID = 0E9287532815FD8700026ED1;
+					};
+				};
+			};
+			buildConfigurationList = 0E92874F2815FD8700026ED1 /* Build configuration list for PBXProject "KnightBLE" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0E92874B2815FD8700026ED1;
+			productRefGroup = 0E9287552815FD8700026ED1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0E9287532815FD8700026ED1 /* KnightBLE */,
+				0E9287632815FD8800026ED1 /* KnightBLETests */,
+				0E92876D2815FD8800026ED1 /* KnightBLEUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0E9287522815FD8700026ED1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E92875F2815FD8800026ED1 /* Preview Assets.xcassets in Resources */,
+				0E92875C2815FD8800026ED1 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0E9287622815FD8800026ED1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0E92876C2815FD8800026ED1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0E9287502815FD8700026ED1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E92875A2815FD8700026ED1 /* ContentView.swift in Sources */,
+				0E0BAC8B2819FAE200D35034 /* KnightScannerViewModel.swift in Sources */,
+				0E0BAC762818461500D35034 /* DotView.swift in Sources */,
+				0E0BAC6328177B8E00D35034 /* ConnectedKnightsView.swift in Sources */,
+				0E0BAC862819ADD300D35034 /* EyesAbilityView.swift in Sources */,
+				0E059FF5281B6217003B9B81 /* EyesAbilityViewModel.swift in Sources */,
+				0E059FEF281A5FF9003B9B81 /* GrowingButton.swift in Sources */,
+				0E059FEB281A55DD003B9B81 /* ConnectedKnightsViewModel.swift in Sources */,
+				0E0BAC892819B16C00D35034 /* BoolExtensions.swift in Sources */,
+				0E9287862816132000026ED1 /* BluetoothIds.swift in Sources */,
+				0E0BAC91281A2EA400D35034 /* KnightScannerRowView.swift in Sources */,
+				0E0BAC6528177C8F00D35034 /* Knight.swift in Sources */,
+				0E0BAC732817B84A00D35034 /* BluetoothManager.swift in Sources */,
+				0E059FF1281A689D003B9B81 /* ConnectedKnightRowViewModel.swift in Sources */,
+				0E0BAC6928177F0F00D35034 /* KnightScannerView.swift in Sources */,
+				0E9287582815FD8700026ED1 /* KnightBLEApp.swift in Sources */,
+				0E0BAC8D2819FD6200D35034 /* CancellableExtensions.swift in Sources */,
+				0E0BAC93281A2EB200D35034 /* KnightScannerRowViewModel.swift in Sources */,
+				0E059FF3281B5C50003B9B81 /* KnightAbility.swift in Sources */,
+				0E0BAC702817ABDE00D35034 /* ConnectedKnightRowView.swift in Sources */,
+				0E0BAC782818463700D35034 /* LoadingView.swift in Sources */,
+				0E0BAC6728177E1800D35034 /* ModelData.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0E9287602815FD8800026ED1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E9287692815FD8800026ED1 /* KnightBLETests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0E92876A2815FD8800026ED1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E9287732815FD8800026ED1 /* KnightBLEUITests.swift in Sources */,
+				0E9287752815FD8800026ED1 /* KnightBLEUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0E9287662815FD8800026ED1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0E9287532815FD8700026ED1 /* KnightBLE */;
+			targetProxy = 0E9287652815FD8800026ED1 /* PBXContainerItemProxy */;
+		};
+		0E9287702815FD8800026ED1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0E9287532815FD8700026ED1 /* KnightBLE */;
+			targetProxy = 0E92876F2815FD8800026ED1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0E9287762815FD8800026ED1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		0E9287772815FD8800026ED1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0E9287792815FD8800026ED1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"KnightBLE/Preview Content\"";
+				DEVELOPMENT_TEAM = ZSVV52DC5U;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "We need bluetooth to connect to the knights";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "We need bluetooth to connect to the knights";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = CJ.KnightBLE;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0E92877A2815FD8800026ED1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"KnightBLE/Preview Content\"";
+				DEVELOPMENT_TEAM = ZSVV52DC5U;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "We need bluetooth to connect to the knights";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "We need bluetooth to connect to the knights";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = CJ.KnightBLE;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		0E92877C2815FD8800026ED1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = CJ.KnightBLETests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KnightBLE.app/KnightBLE";
+			};
+			name = Debug;
+		};
+		0E92877D2815FD8800026ED1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = CJ.KnightBLETests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KnightBLE.app/KnightBLE";
+			};
+			name = Release;
+		};
+		0E92877F2815FD8800026ED1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = CJ.KnightBLEUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = KnightBLE;
+			};
+			name = Debug;
+		};
+		0E9287802815FD8800026ED1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = CJ.KnightBLEUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = KnightBLE;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0E92874F2815FD8700026ED1 /* Build configuration list for PBXProject "KnightBLE" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0E9287762815FD8800026ED1 /* Debug */,
+				0E9287772815FD8800026ED1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0E9287782815FD8800026ED1 /* Build configuration list for PBXNativeTarget "KnightBLE" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0E9287792815FD8800026ED1 /* Debug */,
+				0E92877A2815FD8800026ED1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0E92877B2815FD8800026ED1 /* Build configuration list for PBXNativeTarget "KnightBLETests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0E92877C2815FD8800026ED1 /* Debug */,
+				0E92877D2815FD8800026ED1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0E92877E2815FD8800026ED1 /* Build configuration list for PBXNativeTarget "KnightBLEUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0E92877F2815FD8800026ED1 /* Debug */,
+				0E9287802815FD8800026ED1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0E92874C2815FD8700026ED1 /* Project object */;
+}
