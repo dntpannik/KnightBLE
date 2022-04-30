@@ -22,9 +22,7 @@ struct ConnectedKnightRowView: View {
                 .bold()
                 .underline()
             ForEach(knight.abilities, id: \.id) { ability in
-                if (ability.characteristicId == BluetoothIds.eyeLedCharacteristic){
-                    EyesAbilityView(knight: knight, ability: ability as! BoolKnightAbility)
-                }
+                AbilityView(ability, knight)
             }.id(UUID())
         }
     }

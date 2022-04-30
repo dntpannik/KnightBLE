@@ -126,14 +126,10 @@ extension ModelData {
                 let data = characteristic.value ?? Data()
                 
                 //---   Parse Knight Ability   ---//
-                var ability: KnightAbility
-                if (characteristic.uuid == BluetoothIds.eyeLedCharacteristic) {
-                    ability = BoolKnightAbility(characteristicId: characteristic.uuid, value: data)
-                } else {
+                guard let ability = Ability(characteristic, data) else {
                     return
                 }
                 
-                //self?.knights[knightIndex].objectWillChange.send()
                 self?.knights[knightIndex].abilities.append(ability)
             }
             .store(in: &_cancellables)

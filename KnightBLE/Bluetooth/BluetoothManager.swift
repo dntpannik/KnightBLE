@@ -51,7 +51,7 @@ class BluetoothManager : NSObject {
         _scanning = true
         scanningSubject.send(true)
         _timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.scanTic), userInfo: nil, repeats: true)
-        _centralManager.scanForPeripherals(withServices: [BluetoothIds.ledService],options: [CBCentralManagerScanOptionAllowDuplicatesKey : true])
+        _centralManager.scanForPeripherals(withServices: BluetoothIds.acceptedServies, options: [CBCentralManagerScanOptionAllowDuplicatesKey : true])
     }
         
     func Connect(_ peripheralId: UUID) {
@@ -200,7 +200,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
             print("Connected to device \(peripheral.identifier)")
             _connectedPeripherals.append(peripheral.identifier)
             peripheralConnectedSubject.send(peripheral)
-            peripheral.discoverServices([BluetoothIds.ledService])
+            peripheral.discoverServices(BluetoothIds.acceptedServies)
         }
     }
     

@@ -22,6 +22,9 @@
 		0E0BAC91281A2EA400D35034 /* KnightScannerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC90281A2EA400D35034 /* KnightScannerRowView.swift */; };
 		0E8D3F0F281C43D1003FBB45 /* BoolKnightAbility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8D3F0E281C43D1003FBB45 /* BoolKnightAbility.swift */; };
 		0E8D3F17281CBB25003FBB45 /* SwiftfulLoadingIndicators in Frameworks */ = {isa = PBXBuildFile; productRef = 0E8D3F16281CBB25003FBB45 /* SwiftfulLoadingIndicators */; };
+		0E8D3F19281CEB8A003FBB45 /* LeftGunAbilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8D3F18281CEB8A003FBB45 /* LeftGunAbilityView.swift */; };
+		0E8D3F1B281CEBBA003FBB45 /* SmokeStackAbilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8D3F1A281CEBBA003FBB45 /* SmokeStackAbilityView.swift */; };
+		0E8D3F1D281CED1B003FBB45 /* AbilityMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8D3F1C281CED1B003FBB45 /* AbilityMethods.swift */; };
 		0E9287582815FD8700026ED1 /* KnightBLEApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9287572815FD8700026ED1 /* KnightBLEApp.swift */; };
 		0E92875A2815FD8700026ED1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9287592815FD8700026ED1 /* ContentView.swift */; };
 		0E92875C2815FD8800026ED1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E92875B2815FD8800026ED1 /* Assets.xcassets */; };
@@ -64,6 +67,9 @@
 		0E0BAC8C2819FD6200D35034 /* CancellableExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancellableExtensions.swift; sourceTree = "<group>"; };
 		0E0BAC90281A2EA400D35034 /* KnightScannerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightScannerRowView.swift; sourceTree = "<group>"; };
 		0E8D3F0E281C43D1003FBB45 /* BoolKnightAbility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolKnightAbility.swift; sourceTree = "<group>"; };
+		0E8D3F18281CEB8A003FBB45 /* LeftGunAbilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftGunAbilityView.swift; sourceTree = "<group>"; };
+		0E8D3F1A281CEBBA003FBB45 /* SmokeStackAbilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeStackAbilityView.swift; sourceTree = "<group>"; };
+		0E8D3F1C281CED1B003FBB45 /* AbilityMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilityMethods.swift; sourceTree = "<group>"; };
 		0E9287542815FD8700026ED1 /* KnightBLE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnightBLE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E9287572815FD8700026ED1 /* KnightBLEApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightBLEApp.swift; sourceTree = "<group>"; };
 		0E9287592815FD8700026ED1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -107,6 +113,8 @@
 			isa = PBXGroup;
 			children = (
 				0E0BAC852819ADD200D35034 /* EyesAbilityView.swift */,
+				0E8D3F18281CEB8A003FBB45 /* LeftGunAbilityView.swift */,
+				0E8D3F1A281CEBBA003FBB45 /* SmokeStackAbilityView.swift */,
 			);
 			path = Eyes;
 			sourceTree = "<group>";
@@ -234,6 +242,7 @@
 				0E059FF2281B5C50003B9B81 /* KnightAbility.swift */,
 				0E8D3F0E281C43D1003FBB45 /* BoolKnightAbility.swift */,
 				0E0BAC6628177E1800D35034 /* ModelData.swift */,
+				0E8D3F1C281CED1B003FBB45 /* AbilityMethods.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -383,9 +392,12 @@
 				0E0BAC892819B16C00D35034 /* BoolExtensions.swift in Sources */,
 				0E9287862816132000026ED1 /* BluetoothIds.swift in Sources */,
 				0E0BAC91281A2EA400D35034 /* KnightScannerRowView.swift in Sources */,
+				0E8D3F1D281CED1B003FBB45 /* AbilityMethods.swift in Sources */,
 				0E0BAC6528177C8F00D35034 /* Knight.swift in Sources */,
 				0E0BAC732817B84A00D35034 /* BluetoothManager.swift in Sources */,
+				0E8D3F19281CEB8A003FBB45 /* LeftGunAbilityView.swift in Sources */,
 				0E0BAC6928177F0F00D35034 /* KnightScannerView.swift in Sources */,
+				0E8D3F1B281CEBBA003FBB45 /* SmokeStackAbilityView.swift in Sources */,
 				0E9287582815FD8700026ED1 /* KnightBLEApp.swift in Sources */,
 				0E0BAC8D2819FD6200D35034 /* CancellableExtensions.swift in Sources */,
 				0E059FF3281B5C50003B9B81 /* KnightAbility.swift in Sources */,

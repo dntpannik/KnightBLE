@@ -10,9 +10,9 @@ import SwiftUI
 struct ConnectedKnightsView: View {
     @EnvironmentObject var modelData: ModelData
     @State var selection: Int? = nil
-
+    
     private var knights: [Knight] {
-        modelData.knights.sorted { left, right in
+        modelData.knights.filter({$0.connected}).sorted { left, right in
             return left.name < right.name
         }
     }
@@ -25,7 +25,7 @@ struct ConnectedKnightsView: View {
                             .buttonStyle(GrowingButton())
                 }
                 List {
-                    ForEach(modelData.knights, id: \.id) {
+                    ForEach(knights, id: \.id) {
                         knight in ConnectedKnightRowView(peripheralId: knight.peripheralId)
                     }
                 }.id(UUID())
