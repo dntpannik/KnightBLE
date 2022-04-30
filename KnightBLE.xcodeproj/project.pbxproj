@@ -32,6 +32,13 @@
 		0E8D3F2B281D0835003FBB45 /* KnightBluetoothControl.ino in Resources */ = {isa = PBXBuildFile; fileRef = 0E8D3F26281D0835003FBB45 /* KnightBluetoothControl.ino */; };
 		0E8D3F2F281D0854003FBB45 /* HandOfFury.ino in Resources */ = {isa = PBXBuildFile; fileRef = 0E8D3F2D281D0854003FBB45 /* HandOfFury.ino */; };
 		0E8D3F30281D0854003FBB45 /* KnightBluetoothControl.ino in Resources */ = {isa = PBXBuildFile; fileRef = 0E8D3F2E281D0854003FBB45 /* KnightBluetoothControl.ino */; };
+		0E8D3F34281D0970003FBB45 /* Nano33Ble Pin Usage.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 0E8D3F33281D0970003FBB45 /* Nano33Ble Pin Usage.rtf */; };
+		0E8D3F3D281DEC60003FBB45 /* HornCerastus.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0E8D3F37281DEC60003FBB45 /* HornCerastus.wav */; };
+		0E8D3F3E281DEC60003FBB45 /* AllHorns.band in Resources */ = {isa = PBXBuildFile; fileRef = 0E8D3F38281DEC60003FBB45 /* AllHorns.band */; };
+		0E8D3F3F281DEC60003FBB45 /* HornAcastus.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0E8D3F39281DEC60003FBB45 /* HornAcastus.wav */; };
+		0E8D3F40281DEC60003FBB45 /* HornDominus.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0E8D3F3A281DEC60003FBB45 /* HornDominus.wav */; };
+		0E8D3F41281DEC60003FBB45 /* HornQuestoris.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0E8D3F3B281DEC60003FBB45 /* HornQuestoris.wav */; };
+		0E8D3F42281DEC60003FBB45 /* HornArmiger.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0E8D3F3C281DEC60003FBB45 /* HornArmiger.wav */; };
 		0E9287582815FD8700026ED1 /* KnightBLEApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9287572815FD8700026ED1 /* KnightBLEApp.swift */; };
 		0E92875A2815FD8700026ED1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9287592815FD8700026ED1 /* ContentView.swift */; };
 		0E92875C2815FD8800026ED1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E92875B2815FD8800026ED1 /* Assets.xcassets */; };
@@ -84,6 +91,13 @@
 		0E8D3F26281D0835003FBB45 /* KnightBluetoothControl.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KnightBluetoothControl.ino; sourceTree = "<group>"; };
 		0E8D3F2D281D0854003FBB45 /* HandOfFury.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HandOfFury.ino; sourceTree = "<group>"; };
 		0E8D3F2E281D0854003FBB45 /* KnightBluetoothControl.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KnightBluetoothControl.ino; sourceTree = "<group>"; };
+		0E8D3F33281D0970003FBB45 /* Nano33Ble Pin Usage.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "Nano33Ble Pin Usage.rtf"; sourceTree = "<group>"; };
+		0E8D3F37281DEC60003FBB45 /* HornCerastus.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = HornCerastus.wav; sourceTree = "<group>"; };
+		0E8D3F38281DEC60003FBB45 /* AllHorns.band */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AllHorns.band; sourceTree = "<group>"; };
+		0E8D3F39281DEC60003FBB45 /* HornAcastus.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = HornAcastus.wav; sourceTree = "<group>"; };
+		0E8D3F3A281DEC60003FBB45 /* HornDominus.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = HornDominus.wav; sourceTree = "<group>"; };
+		0E8D3F3B281DEC60003FBB45 /* HornQuestoris.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = HornQuestoris.wav; sourceTree = "<group>"; };
+		0E8D3F3C281DEC60003FBB45 /* HornArmiger.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = HornArmiger.wav; sourceTree = "<group>"; };
 		0E9287542815FD8700026ED1 /* KnightBLE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnightBLE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E9287572815FD8700026ED1 /* KnightBLEApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightBLEApp.swift; sourceTree = "<group>"; };
 		0E9287592815FD8700026ED1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -236,9 +250,40 @@
 			name = HandOfFury;
 			sourceTree = "<group>";
 		};
+		0E8D3F32281D094F003FBB45 /* docs */ = {
+			isa = PBXGroup;
+			children = (
+				0E8D3F33281D0970003FBB45 /* Nano33Ble Pin Usage.rtf */,
+			);
+			path = docs;
+			sourceTree = "<group>";
+		};
+		0E8D3F35281DEC60003FBB45 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				0E8D3F36281DEC60003FBB45 /* Horns */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		0E8D3F36281DEC60003FBB45 /* Horns */ = {
+			isa = PBXGroup;
+			children = (
+				0E8D3F37281DEC60003FBB45 /* HornCerastus.wav */,
+				0E8D3F38281DEC60003FBB45 /* AllHorns.band */,
+				0E8D3F39281DEC60003FBB45 /* HornAcastus.wav */,
+				0E8D3F3A281DEC60003FBB45 /* HornDominus.wav */,
+				0E8D3F3B281DEC60003FBB45 /* HornQuestoris.wav */,
+				0E8D3F3C281DEC60003FBB45 /* HornArmiger.wav */,
+			);
+			path = Horns;
+			sourceTree = "<group>";
+		};
 		0E92874B2815FD8700026ED1 = {
 			isa = PBXGroup;
 			children = (
+				0E8D3F35281DEC60003FBB45 /* Audio */,
+				0E8D3F32281D094F003FBB45 /* docs */,
 				0E8D3F1E281D0835003FBB45 /* Arduino */,
 				0E9287562815FD8700026ED1 /* KnightBLE */,
 				0E9287672815FD8800026ED1 /* KnightBLETests */,
@@ -418,13 +463,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E8D3F34281D0970003FBB45 /* Nano33Ble Pin Usage.rtf in Resources */,
+				0E8D3F40281DEC60003FBB45 /* HornDominus.wav in Resources */,
+				0E8D3F41281DEC60003FBB45 /* HornQuestoris.wav in Resources */,
 				0E8D3F2F281D0854003FBB45 /* HandOfFury.ino in Resources */,
 				0E8D3F30281D0854003FBB45 /* KnightBluetoothControl.ino in Resources */,
 				0E92875F2815FD8800026ED1 /* Preview Assets.xcassets in Resources */,
 				0E8D3F2A281D0835003FBB45 /* IncarnateDefender.ino in Resources */,
+				0E8D3F3F281DEC60003FBB45 /* HornAcastus.wav in Resources */,
 				0E8D3F2B281D0835003FBB45 /* KnightBluetoothControl.ino in Resources */,
+				0E8D3F42281DEC60003FBB45 /* HornArmiger.wav in Resources */,
 				0E8D3F29281D0835003FBB45 /* KnightBluetoothControl.ino in Resources */,
+				0E8D3F3E281DEC60003FBB45 /* AllHorns.band in Resources */,
 				0E92875C2815FD8800026ED1 /* Assets.xcassets in Resources */,
+				0E8D3F3D281DEC60003FBB45 /* HornCerastus.wav in Resources */,
 				0E8D3F28281D0835003FBB45 /* KnightBluetoothControl.ino in Resources */,
 				0E8D3F27281D0835003FBB45 /* HandOfFury.ino in Resources */,
 			);
