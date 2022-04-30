@@ -183,7 +183,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
         if advertisementData.contains(where: {(key, value) in
             key == "kCBAdvDataLocalName"
         }) {
-            name = String(describing: advertisementData["kCBAdvDataLocalName"])
+            name = advertisementData["kCBAdvDataLocalName"] as! String
         }
 
         //Send correct message based on whether the peripheral is new or not

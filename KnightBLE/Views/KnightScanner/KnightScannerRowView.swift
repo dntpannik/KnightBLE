@@ -38,10 +38,8 @@ struct KnightScannerRowView: View {
     }
 }
 
-//struct KnightScannerRowView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        KnightScannerRowView(knight: Knight(name: "TestKnight", peripheralId: BluetoothIds.testUUID, abilities: [BoolKnightAbility(characteristicId: BluetoothIds.eyeLedCharacteristic, value: false)]))
-////        KnightScannerRowView(peripheralId: BluetoothIds.testUUID)
-////            .environmentObject(ModelData(knights: [Knight(name: "TestKnight", peripheralId: BluetoothIds.testUUID, abilities: [BoolKnightAbility(characteristicId: BluetoothIds.eyeLedCharacteristic, value: false)])]))
-//    }
-//}
+struct KnightScannerRowView_Previews: PreviewProvider {
+    static var previews: some View {
+        KnightScannerRowView(knight: Knight(name: "TestKnight", peripheralId: BluetoothIds.testUUID, abilities: [BoolKnightAbility(characteristicId: BluetoothIds.eyeLedCharacteristic, value: false)]))
+    }
+}
