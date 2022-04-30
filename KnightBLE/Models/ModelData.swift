@@ -11,10 +11,13 @@ import Combine
 
 final class ModelData : ObservableObject {
     @Published var knights: [Knight] = []
-
+    @Published var scanning: Bool = false
+    @Published var state: CBManagerState = .unknown
+    
     private lazy var _cancellables: Set<AnyCancellable> = .init()
     
     init() {
+        bleManager.Start()
         InitializeHandlers()
     }
     
@@ -26,7 +29,19 @@ final class ModelData : ObservableObject {
 extension ModelData {
     
     func InitializeHandlers() {
-        bleManager.peripheralConnectedSubject
+        bleManager.stateSubject
+            .sink { [weak self] state in
+                self?.state = state
+            }
+            .store(in: &_cancellables)
+        
+        bleManager.scanningSubject
+            .sink { [weak self] scanning in
+                self?.scanning = scanning
+            }
+            .store(in: &_cancellables)
+        
+        bleManager.peripheralDiscoveredSubject
             .filter { [weak self] (name, peripheral) in
                 self?.knights.contains { knight in
                     knight.peripheralId == peripheral.identifier
@@ -35,6 +50,23 @@ extension ModelData {
             .sink { [weak self] (name, peripheral) in
                 let knight = Knight(name: name, peripheralId: peripheral.identifier)
                 self?.knights.append(knight)
+            }
+            .store(in: &_cancellables)
+        
+        bleManager.peripheralConnectedSubject
+            .filter { [weak self] peripheral in
+                self?.knights.contains { knight in
+                    knight.peripheralId == peripheral.identifier
+                } == true
+            }
+            .sink { [weak self] peripheral in
+                guard let knightIndex = self?.knights.firstIndex(where: { knight in
+                    return knight.peripheralId == peripheral.identifier
+                }) else {
+                    return
+                }
+                
+                self?.knights[knightIndex].connected = true
             }
             .store(in: &_cancellables)
         
@@ -51,7 +83,7 @@ extension ModelData {
                     return
                 }
                 
-                self?.knights[knightIndex].name = name ?? "Unknown Knight"
+                self?.knights[knightIndex].name = name
             }
             .store(in: &_cancellables)
         
@@ -68,7 +100,7 @@ extension ModelData {
                     return
                 }
                 
-                self?.knights.remove(at: knightIndex)
+                self?.knights[knightIndex].connected = false
             }
             .store(in: &_cancellables)
         
@@ -101,7 +133,7 @@ extension ModelData {
                     return
                 }
                 
-                self?.knights[knightIndex].objectWillChange.send()
+                //self?.knights[knightIndex].objectWillChange.send()
                 self?.knights[knightIndex].abilities.append(ability)
             }
             .store(in: &_cancellables)

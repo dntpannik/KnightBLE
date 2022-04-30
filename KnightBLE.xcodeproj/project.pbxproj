@@ -16,15 +16,12 @@
 		0E0BAC6928177F0F00D35034 /* KnightScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC6828177F0F00D35034 /* KnightScannerView.swift */; };
 		0E0BAC702817ABDE00D35034 /* ConnectedKnightRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC6F2817ABDE00D35034 /* ConnectedKnightRowView.swift */; };
 		0E0BAC732817B84A00D35034 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC722817B84A00D35034 /* BluetoothManager.swift */; };
-		0E0BAC762818461500D35034 /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC752818461500D35034 /* DotView.swift */; };
-		0E0BAC782818463700D35034 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC772818463700D35034 /* LoadingView.swift */; };
 		0E0BAC862819ADD300D35034 /* EyesAbilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC852819ADD200D35034 /* EyesAbilityView.swift */; };
 		0E0BAC892819B16C00D35034 /* BoolExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC882819B16C00D35034 /* BoolExtensions.swift */; };
-		0E0BAC8B2819FAE200D35034 /* KnightScannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC8A2819FAE200D35034 /* KnightScannerViewModel.swift */; };
 		0E0BAC8D2819FD6200D35034 /* CancellableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC8C2819FD6200D35034 /* CancellableExtensions.swift */; };
 		0E0BAC91281A2EA400D35034 /* KnightScannerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC90281A2EA400D35034 /* KnightScannerRowView.swift */; };
-		0E0BAC93281A2EB200D35034 /* KnightScannerRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC92281A2EB200D35034 /* KnightScannerRowViewModel.swift */; };
 		0E8D3F0F281C43D1003FBB45 /* BoolKnightAbility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8D3F0E281C43D1003FBB45 /* BoolKnightAbility.swift */; };
+		0E8D3F17281CBB25003FBB45 /* SwiftfulLoadingIndicators in Frameworks */ = {isa = PBXBuildFile; productRef = 0E8D3F16281CBB25003FBB45 /* SwiftfulLoadingIndicators */; };
 		0E9287582815FD8700026ED1 /* KnightBLEApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9287572815FD8700026ED1 /* KnightBLEApp.swift */; };
 		0E92875A2815FD8700026ED1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9287592815FD8700026ED1 /* ContentView.swift */; };
 		0E92875C2815FD8800026ED1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E92875B2815FD8800026ED1 /* Assets.xcassets */; };
@@ -62,14 +59,10 @@
 		0E0BAC6828177F0F00D35034 /* KnightScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightScannerView.swift; sourceTree = "<group>"; };
 		0E0BAC6F2817ABDE00D35034 /* ConnectedKnightRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedKnightRowView.swift; sourceTree = "<group>"; };
 		0E0BAC722817B84A00D35034 /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
-		0E0BAC752818461500D35034 /* DotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
-		0E0BAC772818463700D35034 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		0E0BAC852819ADD200D35034 /* EyesAbilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyesAbilityView.swift; sourceTree = "<group>"; };
 		0E0BAC882819B16C00D35034 /* BoolExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolExtensions.swift; sourceTree = "<group>"; };
-		0E0BAC8A2819FAE200D35034 /* KnightScannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightScannerViewModel.swift; sourceTree = "<group>"; };
 		0E0BAC8C2819FD6200D35034 /* CancellableExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancellableExtensions.swift; sourceTree = "<group>"; };
 		0E0BAC90281A2EA400D35034 /* KnightScannerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightScannerRowView.swift; sourceTree = "<group>"; };
-		0E0BAC92281A2EB200D35034 /* KnightScannerRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightScannerRowViewModel.swift; sourceTree = "<group>"; };
 		0E8D3F0E281C43D1003FBB45 /* BoolKnightAbility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolKnightAbility.swift; sourceTree = "<group>"; };
 		0E9287542815FD8700026ED1 /* KnightBLE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnightBLE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E9287572815FD8700026ED1 /* KnightBLEApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightBLEApp.swift; sourceTree = "<group>"; };
@@ -89,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E8D3F17281CBB25003FBB45 /* SwiftfulLoadingIndicators in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,23 +131,11 @@
 			path = Bluetooth;
 			sourceTree = "<group>";
 		};
-		0E0BAC742818460700D35034 /* Loading */ = {
-			isa = PBXGroup;
-			children = (
-				0E0BAC752818461500D35034 /* DotView.swift */,
-				0E0BAC772818463700D35034 /* LoadingView.swift */,
-			);
-			path = Loading;
-			sourceTree = "<group>";
-		};
 		0E0BAC792818F69400D35034 /* KnightScanner */ = {
 			isa = PBXGroup;
 			children = (
 				0E0BAC6828177F0F00D35034 /* KnightScannerView.swift */,
-				0E0BAC8A2819FAE200D35034 /* KnightScannerViewModel.swift */,
 				0E0BAC90281A2EA400D35034 /* KnightScannerRowView.swift */,
-				0E0BAC92281A2EB200D35034 /* KnightScannerRowViewModel.swift */,
-				0E0BAC742818460700D35034 /* Loading */,
 			);
 			path = KnightScanner;
 			sourceTree = "<group>";
@@ -272,6 +254,9 @@
 			dependencies = (
 			);
 			name = KnightBLE;
+			packageProductDependencies = (
+				0E8D3F16281CBB25003FBB45 /* SwiftfulLoadingIndicators */,
+			);
 			productName = KnightBLE;
 			productReference = 0E9287542815FD8700026ED1 /* KnightBLE.app */;
 			productType = "com.apple.product-type.application";
@@ -344,6 +329,9 @@
 				Base,
 			);
 			mainGroup = 0E92874B2815FD8700026ED1;
+			packageReferences = (
+				0E8D3F15281CBB25003FBB45 /* XCRemoteSwiftPackageReference "SwiftfulLoadingIndicators" */,
+			);
 			productRefGroup = 0E9287552815FD8700026ED1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -387,8 +375,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E92875A2815FD8700026ED1 /* ContentView.swift in Sources */,
-				0E0BAC8B2819FAE200D35034 /* KnightScannerViewModel.swift in Sources */,
-				0E0BAC762818461500D35034 /* DotView.swift in Sources */,
 				0E0BAC6328177B8E00D35034 /* ConnectedKnightsView.swift in Sources */,
 				0E0BAC862819ADD300D35034 /* EyesAbilityView.swift in Sources */,
 				0E8D3F0F281C43D1003FBB45 /* BoolKnightAbility.swift in Sources */,
@@ -402,10 +388,8 @@
 				0E0BAC6928177F0F00D35034 /* KnightScannerView.swift in Sources */,
 				0E9287582815FD8700026ED1 /* KnightBLEApp.swift in Sources */,
 				0E0BAC8D2819FD6200D35034 /* CancellableExtensions.swift in Sources */,
-				0E0BAC93281A2EB200D35034 /* KnightScannerRowViewModel.swift in Sources */,
 				0E059FF3281B5C50003B9B81 /* KnightAbility.swift in Sources */,
 				0E0BAC702817ABDE00D35034 /* ConnectedKnightRowView.swift in Sources */,
-				0E0BAC782818463700D35034 /* LoadingView.swift in Sources */,
 				0E0BAC6728177E1800D35034 /* ModelData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -731,6 +715,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0E8D3F15281CBB25003FBB45 /* XCRemoteSwiftPackageReference "SwiftfulLoadingIndicators" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftfulThinking/SwiftfulLoadingIndicators.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0E8D3F16281CBB25003FBB45 /* SwiftfulLoadingIndicators */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E8D3F15281CBB25003FBB45 /* XCRemoteSwiftPackageReference "SwiftfulLoadingIndicators" */;
+			productName = SwiftfulLoadingIndicators;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0E92874C2815FD8700026ED1 /* Project object */;
 }

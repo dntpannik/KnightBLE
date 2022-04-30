@@ -7,20 +7,14 @@
 
 import SwiftUI
 import CoreBluetooth
+import SwiftfulLoadingIndicators
 
 struct KnightScannerView: View {
-    @StateObject private var _viewModel: KnightScannerViewModel = .init()
-    @State private var _didAppear = false
-    
-    private var peripherals: [CBPeripheral] {
-        _viewModel.peripherals.sorted { left, right in
-            guard let leftName = left.name else {
-                return false
-            }
-            guard let rightName = right.name else {
-                return true
-            }
-            return leftName < rightName
+    @EnvironmentObject var modelData: ModelData
+
+    private var knights: [Knight] {
+        modelData.knights.sorted { left, right in
+            return left.name < right.name
         }
     }
     
@@ -28,41 +22,31 @@ struct KnightScannerView: View {
         VStack {
             Text("Discovered Knights")
                 .font(.title)
-            if (_viewModel.scanning) {
-                HStack {
-                    Spacer()
-                    LoadingView()
-                    Spacer()
-                }
+            
+            if (modelData.scanning) {
+                LoadingIndicator(animation: .threeBalls)
             }
-            contentView
-                .refreshable {
-                    _viewModel.Scan()
-                }
-                .onAppear {
-                    if !_didAppear {
-                        _viewModel.Start()
+            
+            if (modelData.state == .poweredOn) {
+                List {
+                    ForEach(knights, id: \.id) {
+                        knight in KnightScannerRowView(knight: knight)
                     }
-                    _didAppear = true
                 }
-        }
-    }
-        
-    @ViewBuilder
-    private var contentView: some View {
-        if (_viewModel.state == .poweredOn) {
-            List(peripherals, id: \.identifier) { peripheral in
-                KnightScannerRowView(peripheral: peripheral)
+                Spacer()
+            } else {
+                Text("Please enable bluetooth to search devices")
             }
-        } else {
-            Text("Please enable bluetooth to search devices")
+        }
+        .refreshable {
+            bleManager.Scan()
         }
     }
-        
 }
 
 struct KnightScannerView_Previews: PreviewProvider {
     static var previews: some View {
         KnightScannerView()
+            .environmentObject(ModelData(knights: [Knight(name: "TestKnight", peripheralId: BluetoothIds.testUUID, abilities: [BoolKnightAbility(characteristicId: BluetoothIds.eyeLedCharacteristic, value: false)])]))
     }
 }

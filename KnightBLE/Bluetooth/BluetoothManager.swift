@@ -54,7 +54,12 @@ class BluetoothManager : NSObject {
         _centralManager.scanForPeripherals(withServices: [BluetoothIds.ledService],options: [CBCentralManagerScanOptionAllowDuplicatesKey : true])
     }
         
-    func Connect(_ peripheral: CBPeripheral) {
+    func Connect(_ peripheralId: UUID) {
+        guard let peripheral = _discoveredPeripherals[peripheralId] else {
+            print("Unable to find peripheral with id (\(peripheralId)) when attempting to connect ")
+            return
+        }
+        
         if _scanning {
             StopScan()
         }
@@ -63,7 +68,12 @@ class BluetoothManager : NSObject {
         _centralManager.connect(peripheral)
     }
     
-    func Disconnect(_ peripheral: CBPeripheral) {
+    func Disconnect(_ peripheralId: UUID) {
+        guard let peripheral = _discoveredPeripherals[peripheralId] else {
+            print("Unable to find peripheral with id (\(peripheralId)) when attempting to connect ")
+            return
+        }
+        
         if _scanning {
             StopScan()
         }
@@ -237,14 +247,6 @@ extension BluetoothManager: CBPeripheralDelegate {
              }
          }
      }
-    
-//    func peripheral(_ peripheral: CBPeripheral, didWriteValueFor: CBCharacteristic, error: Error?) {
-//        if (error == nil) {
-//            peripheral.readValue(for: didWriteValueFor)
-//        }
-//
-//        characteristicValueUpdatedSubject.send((peripheral, didWriteValueFor))
-//    }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         if (error == nil) {
