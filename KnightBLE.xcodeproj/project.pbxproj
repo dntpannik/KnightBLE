@@ -25,6 +25,13 @@
 		0E8D3F19281CEB8A003FBB45 /* LeftGunAbilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8D3F18281CEB8A003FBB45 /* LeftGunAbilityView.swift */; };
 		0E8D3F1B281CEBBA003FBB45 /* SmokeStackAbilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8D3F1A281CEBBA003FBB45 /* SmokeStackAbilityView.swift */; };
 		0E8D3F1D281CED1B003FBB45 /* AbilityMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8D3F1C281CED1B003FBB45 /* AbilityMethods.swift */; };
+		0E8D3F27281D0835003FBB45 /* HandOfFury.ino in Resources */ = {isa = PBXBuildFile; fileRef = 0E8D3F20281D0835003FBB45 /* HandOfFury.ino */; };
+		0E8D3F28281D0835003FBB45 /* KnightBluetoothControl.ino in Resources */ = {isa = PBXBuildFile; fileRef = 0E8D3F21281D0835003FBB45 /* KnightBluetoothControl.ino */; };
+		0E8D3F29281D0835003FBB45 /* KnightBluetoothControl.ino in Resources */ = {isa = PBXBuildFile; fileRef = 0E8D3F23281D0835003FBB45 /* KnightBluetoothControl.ino */; };
+		0E8D3F2A281D0835003FBB45 /* IncarnateDefender.ino in Resources */ = {isa = PBXBuildFile; fileRef = 0E8D3F25281D0835003FBB45 /* IncarnateDefender.ino */; };
+		0E8D3F2B281D0835003FBB45 /* KnightBluetoothControl.ino in Resources */ = {isa = PBXBuildFile; fileRef = 0E8D3F26281D0835003FBB45 /* KnightBluetoothControl.ino */; };
+		0E8D3F2F281D0854003FBB45 /* HandOfFury.ino in Resources */ = {isa = PBXBuildFile; fileRef = 0E8D3F2D281D0854003FBB45 /* HandOfFury.ino */; };
+		0E8D3F30281D0854003FBB45 /* KnightBluetoothControl.ino in Resources */ = {isa = PBXBuildFile; fileRef = 0E8D3F2E281D0854003FBB45 /* KnightBluetoothControl.ino */; };
 		0E9287582815FD8700026ED1 /* KnightBLEApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9287572815FD8700026ED1 /* KnightBLEApp.swift */; };
 		0E92875A2815FD8700026ED1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9287592815FD8700026ED1 /* ContentView.swift */; };
 		0E92875C2815FD8800026ED1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E92875B2815FD8800026ED1 /* Assets.xcassets */; };
@@ -70,6 +77,13 @@
 		0E8D3F18281CEB8A003FBB45 /* LeftGunAbilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftGunAbilityView.swift; sourceTree = "<group>"; };
 		0E8D3F1A281CEBBA003FBB45 /* SmokeStackAbilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeStackAbilityView.swift; sourceTree = "<group>"; };
 		0E8D3F1C281CED1B003FBB45 /* AbilityMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilityMethods.swift; sourceTree = "<group>"; };
+		0E8D3F20281D0835003FBB45 /* HandOfFury.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HandOfFury.ino; sourceTree = "<group>"; };
+		0E8D3F21281D0835003FBB45 /* KnightBluetoothControl.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KnightBluetoothControl.ino; sourceTree = "<group>"; };
+		0E8D3F23281D0835003FBB45 /* KnightBluetoothControl.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KnightBluetoothControl.ino; sourceTree = "<group>"; };
+		0E8D3F25281D0835003FBB45 /* IncarnateDefender.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = IncarnateDefender.ino; sourceTree = "<group>"; };
+		0E8D3F26281D0835003FBB45 /* KnightBluetoothControl.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KnightBluetoothControl.ino; sourceTree = "<group>"; };
+		0E8D3F2D281D0854003FBB45 /* HandOfFury.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HandOfFury.ino; sourceTree = "<group>"; };
+		0E8D3F2E281D0854003FBB45 /* KnightBluetoothControl.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KnightBluetoothControl.ino; sourceTree = "<group>"; };
 		0E9287542815FD8700026ED1 /* KnightBLE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnightBLE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E9287572815FD8700026ED1 /* KnightBLEApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightBLEApp.swift; sourceTree = "<group>"; };
 		0E9287592815FD8700026ED1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -176,9 +190,56 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		0E8D3F1E281D0835003FBB45 /* Arduino */ = {
+			isa = PBXGroup;
+			children = (
+				0E8D3F1F281D0835003FBB45 /* HandOfFury */,
+				0E8D3F22281D0835003FBB45 /* KnightBluetoothControl */,
+				0E8D3F24281D0835003FBB45 /* IncarnateDefender */,
+			);
+			path = Arduino;
+			sourceTree = "<group>";
+		};
+		0E8D3F1F281D0835003FBB45 /* HandOfFury */ = {
+			isa = PBXGroup;
+			children = (
+				0E8D3F20281D0835003FBB45 /* HandOfFury.ino */,
+				0E8D3F21281D0835003FBB45 /* KnightBluetoothControl.ino */,
+				0E8D3F2C281D0854003FBB45 /* HandOfFury */,
+			);
+			path = HandOfFury;
+			sourceTree = "<group>";
+		};
+		0E8D3F22281D0835003FBB45 /* KnightBluetoothControl */ = {
+			isa = PBXGroup;
+			children = (
+				0E8D3F23281D0835003FBB45 /* KnightBluetoothControl.ino */,
+			);
+			path = KnightBluetoothControl;
+			sourceTree = "<group>";
+		};
+		0E8D3F24281D0835003FBB45 /* IncarnateDefender */ = {
+			isa = PBXGroup;
+			children = (
+				0E8D3F25281D0835003FBB45 /* IncarnateDefender.ino */,
+				0E8D3F26281D0835003FBB45 /* KnightBluetoothControl.ino */,
+			);
+			path = IncarnateDefender;
+			sourceTree = "<group>";
+		};
+		0E8D3F2C281D0854003FBB45 /* HandOfFury */ = {
+			isa = PBXGroup;
+			children = (
+				0E8D3F2D281D0854003FBB45 /* HandOfFury.ino */,
+				0E8D3F2E281D0854003FBB45 /* KnightBluetoothControl.ino */,
+			);
+			name = HandOfFury;
+			sourceTree = "<group>";
+		};
 		0E92874B2815FD8700026ED1 = {
 			isa = PBXGroup;
 			children = (
+				0E8D3F1E281D0835003FBB45 /* Arduino */,
 				0E9287562815FD8700026ED1 /* KnightBLE */,
 				0E9287672815FD8800026ED1 /* KnightBLETests */,
 				0E9287712815FD8800026ED1 /* KnightBLEUITests */,
@@ -357,8 +418,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E8D3F2F281D0854003FBB45 /* HandOfFury.ino in Resources */,
+				0E8D3F30281D0854003FBB45 /* KnightBluetoothControl.ino in Resources */,
 				0E92875F2815FD8800026ED1 /* Preview Assets.xcassets in Resources */,
+				0E8D3F2A281D0835003FBB45 /* IncarnateDefender.ino in Resources */,
+				0E8D3F2B281D0835003FBB45 /* KnightBluetoothControl.ino in Resources */,
+				0E8D3F29281D0835003FBB45 /* KnightBluetoothControl.ino in Resources */,
 				0E92875C2815FD8800026ED1 /* Assets.xcassets in Resources */,
+				0E8D3F28281D0835003FBB45 /* KnightBluetoothControl.ino in Resources */,
+				0E8D3F27281D0835003FBB45 /* HandOfFury.ino in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
