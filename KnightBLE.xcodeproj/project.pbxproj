@@ -123,16 +123,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0E059FF6281B621B003B9B81 /* Eyes */ = {
-			isa = PBXGroup;
-			children = (
-				0E0BAC852819ADD200D35034 /* EyesAbilityView.swift */,
-				0E8D3F18281CEB8A003FBB45 /* LeftGunAbilityView.swift */,
-				0E8D3F1A281CEBBA003FBB45 /* SmokeStackAbilityView.swift */,
-			);
-			path = Eyes;
-			sourceTree = "<group>";
-		};
 		0E0BAC612817793800D35034 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,7 +165,9 @@
 		0E0BAC842819ADBF00D35034 /* Characteristics */ = {
 			isa = PBXGroup;
 			children = (
-				0E059FF6281B621B003B9B81 /* Eyes */,
+				0E0BAC852819ADD200D35034 /* EyesAbilityView.swift */,
+				0E8D3F18281CEB8A003FBB45 /* LeftGunAbilityView.swift */,
+				0E8D3F1A281CEBBA003FBB45 /* SmokeStackAbilityView.swift */,
 			);
 			path = Characteristics;
 			sourceTree = "<group>";
