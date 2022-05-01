@@ -1,22 +1,34 @@
 #include <ArduinoBLE.h>
+//#include <SD.h>
+#include <DFRobotDFPlayerMini.h>
 
 //---   Service Flag Calculations   ---//
 bool shouldAddEyeService = supportsEyeLeds || supportsLeftGunLeds;
 bool shouldAddSmokeStackService = supportsSmokeStacks;
+bool shouldAddSpeakerService = hasSpeakers;
 
+//---   Misc Variables   ---//
+//TMRpcm tmrpcm;
+DFRobotDFPlayerMini myDFPlayer;
 //---   Pin Definitions   ---//
 int eyeLedPin = A0;
 int leftGunLedPin = A1;
 int smokeStackPin = D2;
+int sdModulePin = D10;
+int speakerPin = D9;
 
 //---   Service/Characteristic Definitions   ---//
 BLEService ledService("adb7bab2-df5c-4292-9f71-e2b6aa806c3b"); // BLE LED Service
     BLEByteCharacteristic eyeLedCharacteristic("d8eeaa08-db2f-48a0-99cd-aadd33194ffd", BLERead | BLEWrite | BLENotify);
     BLEByteCharacteristic leftGunLedCharacteristic("9aa13f92-1bd9-4e59-90f6-e41dfa9a81a2", BLERead | BLEWrite | BLENotify);
-    
-  
+     
 BLEService smokeStackService("9cd95a69-ee40-41be-a858-b0647c2fb955");
     BLEByteCharacteristic smokeStackCharacteristic("e9196461-d1ec-4b7d-a44a-fb76ad4b0795", BLERead | BLEWrite | BLENotify);
+
+BLEService speakerService("ab936fb8-e5f7-4c43-b592-aab50be3c7da");
+    BLEByteCharacteristic speakerCharacteristic("8ff278a1-a01e-4c46-87e7-751db82bfe24", BLERead | BLEWrite | BLENotify);
+
+
 
 //---   Setup   ---//
 void setup() {
@@ -35,9 +47,14 @@ void setup() {
   }
 
   if (supportsSmokeStacks) {
-       Serial.println("Smoke stacks enabled");
+      Serial.println("Smoke stacks enabled");
       pinMode(smokeStackPin, OUTPUT);
   }
+
+  if (hasSpeakers) {
+    Serial.println("Speaker enabled");
+  }
+  
 
   //Turn everything off
   TurnOffAllPins();
@@ -61,6 +78,10 @@ void setup() {
     Serial.println("Advertising smoke stack service");
     BLE.setAdvertisedService(smokeStackService);
   }
+  if (shouldAddSpeakerService) {
+    Serial.println("Advertising speaker service");
+    BLE.setAdvertisedService(speakerService);
+  }
 
   //---   Add Characteristics   ---//
   if (supportsEyeLeds) {
@@ -75,6 +96,10 @@ void setup() {
     Serial.println("Adding smoke stack characteristic");
     smokeStackService.addCharacteristic(smokeStackCharacteristic);
   }
+  if (hasSpeakers) {
+    Serial.println("Adding speaker characteristic");
+    speakerService.addCharacteristic(speakerCharacteristic);
+  }
 
   //---   Add Services   ---//
   if (shouldAddEyeService) {
@@ -84,6 +109,10 @@ void setup() {
   if (shouldAddSmokeStackService) {
     Serial.println("Adding smoke stack service");
     BLE.addService(smokeStackService);  
+  }
+  if (shouldAddSpeakerService) {
+    Serial.println("Adding speaker service");
+    BLE.addService(speakerService);
   }
 
   //---   Set Initial Values   ---//
@@ -98,6 +127,23 @@ void setup() {
   if (supportsSmokeStacks) {
     Serial.println("Setting smoke stack initial ble value");
     smokeStackCharacteristic.writeValue(0);
+  }
+  if (hasSpeakers) {
+    Serial.println("Setting speaker initial ble value");
+    speakerCharacteristic.writeValue(0);
+  }
+
+  //---   Misc Initialization   ---//
+  if (hasSpeakers) {
+    Serial.println("Initializing SD module");
+    //tmrpcm.speakerPin = speakerPin;
+    //if (!SD.begin(sdModulePin)) {
+     // Serial.println("SD fail");
+    //  return;
+   // }
+
+    //tmrpcm.setVolume(6);
+    //tmrpcm.play("horn.wav");
   }
   
   //---   Advertise   ---//
