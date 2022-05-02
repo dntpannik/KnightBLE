@@ -14,3 +14,4 @@ func ParseBool(value: Data) -> Bool {
 func EncodeBool(value: Bool) -> Data {
     return Data([UInt8(value.intValue)])
 }
+

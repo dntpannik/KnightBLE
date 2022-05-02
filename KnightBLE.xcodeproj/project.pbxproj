@@ -10,6 +10,9 @@
 		0E059FEF281A5FF9003B9B81 /* GrowingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E059FEE281A5FF9003B9B81 /* GrowingButton.swift */; };
 		0E059FF3281B5C50003B9B81 /* KnightAbility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E059FF2281B5C50003B9B81 /* KnightAbility.swift */; };
 		0E059FF8281B9CA1003B9B81 /* Encodings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E059FF7281B9CA1003B9B81 /* Encodings.swift */; };
+		0E06346D281EDA8E0098114C /* SoundAbilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E06346C281EDA8E0098114C /* SoundAbilityView.swift */; };
+		0E06346F281EDAA70098114C /* SoundKnightAbility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E06346E281EDAA70098114C /* SoundKnightAbility.swift */; };
+		0E063472281EDCC50098114C /* DataReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E063471281EDCC50098114C /* DataReader.swift */; };
 		0E0BAC6328177B8E00D35034 /* ConnectedKnightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC6228177B8E00D35034 /* ConnectedKnightsView.swift */; };
 		0E0BAC6528177C8F00D35034 /* Knight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC6428177C8F00D35034 /* Knight.swift */; };
 		0E0BAC6728177E1800D35034 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC6628177E1800D35034 /* ModelData.swift */; };
@@ -56,6 +59,10 @@
 		0E059FEE281A5FF9003B9B81 /* GrowingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowingButton.swift; sourceTree = "<group>"; };
 		0E059FF2281B5C50003B9B81 /* KnightAbility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightAbility.swift; sourceTree = "<group>"; };
 		0E059FF7281B9CA1003B9B81 /* Encodings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encodings.swift; sourceTree = "<group>"; };
+		0E06346C281EDA8E0098114C /* SoundAbilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundAbilityView.swift; sourceTree = "<group>"; };
+		0E06346E281EDAA70098114C /* SoundKnightAbility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundKnightAbility.swift; sourceTree = "<group>"; };
+		0E063471281EDCC50098114C /* DataReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataReader.swift; sourceTree = "<group>"; };
+		0E063475281F3DC80098114C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0E0BAC6228177B8E00D35034 /* ConnectedKnightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedKnightsView.swift; sourceTree = "<group>"; };
 		0E0BAC6428177C8F00D35034 /* Knight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Knight.swift; sourceTree = "<group>"; };
 		0E0BAC6628177E1800D35034 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
@@ -123,6 +130,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E063470281EDCA80098114C /* DataReader */ = {
+			isa = PBXGroup;
+			children = (
+				0E063471281EDCC50098114C /* DataReader.swift */,
+			);
+			path = DataReader;
+			sourceTree = "<group>";
+		};
 		0E0BAC612817793800D35034 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +183,7 @@
 				0E0BAC852819ADD200D35034 /* EyesAbilityView.swift */,
 				0E8D3F18281CEB8A003FBB45 /* LeftGunAbilityView.swift */,
 				0E8D3F1A281CEBBA003FBB45 /* SmokeStackAbilityView.swift */,
+				0E06346C281EDA8E0098114C /* SoundAbilityView.swift */,
 			);
 			path = Characteristics;
 			sourceTree = "<group>";
@@ -269,6 +285,7 @@
 				0E9287552815FD8700026ED1 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		0E9287552815FD8700026ED1 /* Products */ = {
 			isa = PBXGroup;
@@ -283,10 +300,12 @@
 		0E9287562815FD8700026ED1 /* KnightBLE */ = {
 			isa = PBXGroup;
 			children = (
+				0E063475281F3DC80098114C /* Info.plist */,
 				0E9287572815FD8700026ED1 /* KnightBLEApp.swift */,
 				0E9287842816130E00026ED1 /* Models */,
 				0E0BAC612817793800D35034 /* Views */,
 				0E0BAC712817B82F00D35034 /* Bluetooth */,
+				0E063470281EDCA80098114C /* DataReader */,
 				0E0BAC872819B15E00D35034 /* Extensions */,
 				0E92875B2815FD8800026ED1 /* Assets.xcassets */,
 				0E92875D2815FD8800026ED1 /* Preview Content */,
@@ -322,10 +341,11 @@
 		0E9287842816130E00026ED1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0E0BAC6628177E1800D35034 /* ModelData.swift */,
 				0E0BAC6428177C8F00D35034 /* Knight.swift */,
 				0E059FF2281B5C50003B9B81 /* KnightAbility.swift */,
 				0E8D3F0E281C43D1003FBB45 /* BoolKnightAbility.swift */,
-				0E0BAC6628177E1800D35034 /* ModelData.swift */,
+				0E06346E281EDAA70098114C /* SoundKnightAbility.swift */,
 				0E8D3F1C281CED1B003FBB45 /* AbilityMethods.swift */,
 			);
 			path = Models;
@@ -474,6 +494,8 @@
 				0E059FF8281B9CA1003B9B81 /* Encodings.swift in Sources */,
 				0E059FEF281A5FF9003B9B81 /* GrowingButton.swift in Sources */,
 				0E0BAC892819B16C00D35034 /* BoolExtensions.swift in Sources */,
+				0E06346F281EDAA70098114C /* SoundKnightAbility.swift in Sources */,
+				0E063472281EDCC50098114C /* DataReader.swift in Sources */,
 				0E9287862816132000026ED1 /* BluetoothIds.swift in Sources */,
 				0E0BAC91281A2EA400D35034 /* KnightScannerRowView.swift in Sources */,
 				0E8D3F1D281CED1B003FBB45 /* AbilityMethods.swift in Sources */,
@@ -481,6 +503,7 @@
 				0E0BAC732817B84A00D35034 /* BluetoothManager.swift in Sources */,
 				0E8D3F19281CEB8A003FBB45 /* LeftGunAbilityView.swift in Sources */,
 				0E0BAC6928177F0F00D35034 /* KnightScannerView.swift in Sources */,
+				0E06346D281EDA8E0098114C /* SoundAbilityView.swift in Sources */,
 				0E8D3F1B281CEBBA003FBB45 /* SmokeStackAbilityView.swift in Sources */,
 				0E9287582815FD8700026ED1 /* KnightBLEApp.swift in Sources */,
 				0E0BAC8D2819FD6200D35034 /* CancellableExtensions.swift in Sources */,
@@ -648,11 +671,11 @@
 				DEVELOPMENT_TEAM = ZSVV52DC5U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KnightBLE/Info.plist;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "We need bluetooth to connect to the knights";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "We need bluetooth to connect to the knights";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -679,11 +702,11 @@
 				DEVELOPMENT_TEAM = ZSVV52DC5U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KnightBLE/Info.plist;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "We need bluetooth to connect to the knights";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "We need bluetooth to connect to the knights";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
