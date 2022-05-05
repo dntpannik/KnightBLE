@@ -36,6 +36,9 @@
 		0E9287732815FD8800026ED1 /* KnightBLEUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9287722815FD8800026ED1 /* KnightBLEUITests.swift */; };
 		0E9287752815FD8800026ED1 /* KnightBLEUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9287742815FD8800026ED1 /* KnightBLEUITestsLaunchTests.swift */; };
 		0E9287862816132000026ED1 /* BluetoothIds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9287852816132000026ED1 /* BluetoothIds.swift */; };
+		0EEAF855282248A800D925D1 /* DataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEAF854282248A800D925D1 /* DataExtensions.swift */; };
+		0EEAF857282316C900D925D1 /* PreviewGenerators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEAF856282316C900D925D1 /* PreviewGenerators.swift */; };
+		0EFF326928219AEB0081118D /* NoiseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFF326828219AEB0081118D /* NoiseView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +105,9 @@
 		0E9287722815FD8800026ED1 /* KnightBLEUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightBLEUITests.swift; sourceTree = "<group>"; };
 		0E9287742815FD8800026ED1 /* KnightBLEUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightBLEUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		0E9287852816132000026ED1 /* BluetoothIds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothIds.swift; sourceTree = "<group>"; };
+		0EEAF854282248A800D925D1 /* DataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtensions.swift; sourceTree = "<group>"; };
+		0EEAF856282316C900D925D1 /* PreviewGenerators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewGenerators.swift; sourceTree = "<group>"; };
+		0EFF326828219AEB0081118D /* NoiseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,14 +136,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0E063470281EDCA80098114C /* DataReader */ = {
-			isa = PBXGroup;
-			children = (
-				0E063471281EDCC50098114C /* DataReader.swift */,
-			);
-			path = DataReader;
-			sourceTree = "<group>";
-		};
 		0E0BAC612817793800D35034 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +152,7 @@
 			children = (
 				0E0BAC722817B84A00D35034 /* BluetoothManager.swift */,
 				0E9287852816132000026ED1 /* BluetoothIds.swift */,
+				0E063471281EDCC50098114C /* DataReader.swift */,
 			);
 			path = Bluetooth;
 			sourceTree = "<group>";
@@ -184,6 +183,7 @@
 				0E8D3F18281CEB8A003FBB45 /* LeftGunAbilityView.swift */,
 				0E8D3F1A281CEBBA003FBB45 /* SmokeStackAbilityView.swift */,
 				0E06346C281EDA8E0098114C /* SoundAbilityView.swift */,
+				0EFF326828219AEB0081118D /* NoiseView.swift */,
 			);
 			path = Characteristics;
 			sourceTree = "<group>";
@@ -194,6 +194,7 @@
 				0E0BAC882819B16C00D35034 /* BoolExtensions.swift */,
 				0E0BAC8C2819FD6200D35034 /* CancellableExtensions.swift */,
 				0E059FF7281B9CA1003B9B81 /* Encodings.swift */,
+				0EEAF854282248A800D925D1 /* DataExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -305,7 +306,6 @@
 				0E9287842816130E00026ED1 /* Models */,
 				0E0BAC612817793800D35034 /* Views */,
 				0E0BAC712817B82F00D35034 /* Bluetooth */,
-				0E063470281EDCA80098114C /* DataReader */,
 				0E0BAC872819B15E00D35034 /* Extensions */,
 				0E92875B2815FD8800026ED1 /* Assets.xcassets */,
 				0E92875D2815FD8800026ED1 /* Preview Content */,
@@ -347,6 +347,7 @@
 				0E8D3F0E281C43D1003FBB45 /* BoolKnightAbility.swift */,
 				0E06346E281EDAA70098114C /* SoundKnightAbility.swift */,
 				0E8D3F1C281CED1B003FBB45 /* AbilityMethods.swift */,
+				0EEAF856282316C900D925D1 /* PreviewGenerators.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -490,6 +491,7 @@
 				0E92875A2815FD8700026ED1 /* ContentView.swift in Sources */,
 				0E0BAC6328177B8E00D35034 /* ConnectedKnightsView.swift in Sources */,
 				0E0BAC862819ADD300D35034 /* EyesAbilityView.swift in Sources */,
+				0EEAF855282248A800D925D1 /* DataExtensions.swift in Sources */,
 				0E8D3F0F281C43D1003FBB45 /* BoolKnightAbility.swift in Sources */,
 				0E059FF8281B9CA1003B9B81 /* Encodings.swift in Sources */,
 				0E059FEF281A5FF9003B9B81 /* GrowingButton.swift in Sources */,
@@ -498,6 +500,7 @@
 				0E063472281EDCC50098114C /* DataReader.swift in Sources */,
 				0E9287862816132000026ED1 /* BluetoothIds.swift in Sources */,
 				0E0BAC91281A2EA400D35034 /* KnightScannerRowView.swift in Sources */,
+				0EFF326928219AEB0081118D /* NoiseView.swift in Sources */,
 				0E8D3F1D281CED1B003FBB45 /* AbilityMethods.swift in Sources */,
 				0E0BAC6528177C8F00D35034 /* Knight.swift in Sources */,
 				0E0BAC732817B84A00D35034 /* BluetoothManager.swift in Sources */,
@@ -509,6 +512,7 @@
 				0E0BAC8D2819FD6200D35034 /* CancellableExtensions.swift in Sources */,
 				0E059FF3281B5C50003B9B81 /* KnightAbility.swift in Sources */,
 				0E0BAC702817ABDE00D35034 /* ConnectedKnightRowView.swift in Sources */,
+				0EEAF857282316C900D925D1 /* PreviewGenerators.swift in Sources */,
 				0E0BAC6728177E1800D35034 /* ModelData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

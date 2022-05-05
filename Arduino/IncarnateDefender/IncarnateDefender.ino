@@ -1,9 +1,10 @@
 //---------------------------//
 //---   Feature Control   ---//
 //---------------------------//
-bool supportsEyeLeds = false;
+bool supportsEyeLeds = true;
 bool supportsLeftGunLeds = true;
 bool supportsSmokeStacks = true;
-bool hasSpeakers = true;
+bool supportsAudio = true;
+int tracks[] = {0, 1};
 
-char name[] = "Incarnate Defender";
+char name[] = "Test Name";

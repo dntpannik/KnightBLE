@@ -17,6 +17,8 @@ func Ability(_ characteristic: CBCharacteristic, _ data: Data) -> KnightAbility?
             return BoolKnightAbility(characteristicId: characteristic.uuid, value: data)
         case BluetoothIds.smokeStackCharacteristic:
             return BoolKnightAbility(characteristicId: characteristic.uuid, value: data)
+        case BluetoothIds.soundInfoCharacteristic:
+            return SoundKnightAbility(characteristicId: characteristic.uuid, value: data)
         default:
             print("Unable to convert characteristic into a knight ability")
             return nil
@@ -31,6 +33,8 @@ func AbilityView(_ ability: KnightAbility, _ knight: Knight) -> AnyView {
             return AnyView(LeftGunAbilityView(knight: knight, ability: ability as! BoolKnightAbility))
         case BluetoothIds.smokeStackCharacteristic:
             return AnyView(SmokeStackAbilityView(knight: knight, ability: ability as! BoolKnightAbility))
+        case BluetoothIds.soundInfoCharacteristic:
+            return AnyView(SoundAbilityView(knight: knight, ability: ability as! SoundKnightAbility))
         default:
             print("Unable to convert characteristic into a knight ability")
             return AnyView(EmptyView())

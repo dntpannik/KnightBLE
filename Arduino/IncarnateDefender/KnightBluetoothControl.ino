@@ -1,21 +1,35 @@
 #include <ArduinoBLE.h>
-//#include <SD.h>
 #include <DFRobotDFPlayerMini.h>
 
 //---   Service Flag Calculations   ---//
 bool shouldAddEyeService = supportsEyeLeds || supportsLeftGunLeds;
 bool shouldAddSmokeStackService = supportsSmokeStacks;
-bool shouldAddSpeakerService = hasSpeakers;
+bool shouldAddSpeakerService = supportsAudio;
 
-//---   Misc Variables   ---//
-//TMRpcm tmrpcm;
-DFRobotDFPlayerMini myDFPlayer;
 //---   Pin Definitions   ---//
 int eyeLedPin = A0;
 int leftGunLedPin = A1;
 int smokeStackPin = D2;
-int sdModulePin = D10;
-int speakerPin = D9;
+int dfPlayerRxPin = 0;
+int dfPlayerTxPin = 1;
+
+//---   Misc Variables   ---//
+DFRobotDFPlayerMini myDFPlayer;
+
+#define AUDIO_DATA_SIZE 3
+typedef struct __attribute__( ( packed ) )
+{
+  uint8_t Track;
+  uint8_t Volume;
+  uint8_t Delay;
+} AudioData;
+
+typedef union
+{
+  AudioData values;
+  uint8_t bytes[ AUDIO_DATA_SIZE ];
+} AudioData_ut;
+
 
 //---   Service/Characteristic Definitions   ---//
 BLEService ledService("adb7bab2-df5c-4292-9f71-e2b6aa806c3b"); // BLE LED Service
@@ -26,13 +40,15 @@ BLEService smokeStackService("9cd95a69-ee40-41be-a858-b0647c2fb955");
     BLEByteCharacteristic smokeStackCharacteristic("e9196461-d1ec-4b7d-a44a-fb76ad4b0795", BLERead | BLEWrite | BLENotify);
 
 BLEService speakerService("ab936fb8-e5f7-4c43-b592-aab50be3c7da");
-    BLEByteCharacteristic speakerCharacteristic("8ff278a1-a01e-4c46-87e7-751db82bfe24", BLERead | BLEWrite | BLENotify);
+    BLECharacteristic audioInfoCharacteristic("607047f7-9dd2-477d-94fa-9a6333dba1d4", BLERead | BLEWrite | BLENotify, 40);
+    BLECharacteristic trackControlCharacteristic("8ff278a1-a01e-4c46-87e7-751db82bfe24", BLERead | BLEWrite | BLENotify, 12);
 
 
 
 //---   Setup   ---//
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
+  Serial1.begin(9600);
   //while (!Serial); // Enable this if you want it to only work when the serial monitor is open
 
   //---   Set Pin Modes   ---//
@@ -51,7 +67,7 @@ void setup() {
       pinMode(smokeStackPin, OUTPUT);
   }
 
-  if (hasSpeakers) {
+  if (supportsAudio) {
     Serial.println("Speaker enabled");
   }
   
@@ -96,9 +112,10 @@ void setup() {
     Serial.println("Adding smoke stack characteristic");
     smokeStackService.addCharacteristic(smokeStackCharacteristic);
   }
-  if (hasSpeakers) {
+  if (supportsAudio) {
     Serial.println("Adding speaker characteristic");
-    speakerService.addCharacteristic(speakerCharacteristic);
+    speakerService.addCharacteristic(audioInfoCharacteristic);
+    speakerService.addCharacteristic(trackControlCharacteristic);
   }
 
   //---   Add Services   ---//
@@ -128,22 +145,25 @@ void setup() {
     Serial.println("Setting smoke stack initial ble value");
     smokeStackCharacteristic.writeValue(0);
   }
-  if (hasSpeakers) {
-    Serial.println("Setting speaker initial ble value");
-    speakerCharacteristic.writeValue(0);
+  if (supportsAudio) {
+    Serial.println("Setting available track information");
+    audioInfoCharacteristic.writeValue(tracks, sizeof(tracks));
   }
 
   //---   Misc Initialization   ---//
-  if (hasSpeakers) {
-    Serial.println("Initializing SD module");
-    //tmrpcm.speakerPin = speakerPin;
-    //if (!SD.begin(sdModulePin)) {
-     // Serial.println("SD fail");
-    //  return;
-   // }
-
-    //tmrpcm.setVolume(6);
-    //tmrpcm.play("horn.wav");
+  if (supportsAudio) {
+    Serial.println("Initializing DF Player");
+    //myDFPlayer.begin(Serial1);
+    if (!myDFPlayer.begin(Serial1)) {
+      Serial.println(F("Unable to begin:"));
+      Serial.println(F("1.Please recheck the connection!"));
+      Serial.println(F("2.Please insert the SD card!"));
+      while(true);
+    }
+    Serial.println(F("DFPlayer Mini online."));
+    
+    myDFPlayer.volume(15);
+    myDFPlayer.play(1);
   }
   
   //---   Advertise   ---//
@@ -197,6 +217,20 @@ void loop() {
             digitalWrite(smokeStackPin, LOW);
             break;
         }
+      }
+      if (supportsAudio && trackControlCharacteristic.written()) {
+        Serial.println("Recevied Audio Data: ");
+
+        AudioData_ut audioData;
+        trackControlCharacteristic.readValue(audioData.bytes, sizeof audioData.bytes);
+
+        Serial.println((String)"Track: "+audioData.values.Track);
+        Serial.println((String)"Volume: "+audioData.values.Volume);
+        Serial.println((String)"Delay: "+audioData.values.Delay * 5);
+
+        delay(audioData.values.Delay * 5);
+        myDFPlayer.volume(audioData.values.Volume);
+        myDFPlayer.play(audioData.values.Track);
       }
     }
 

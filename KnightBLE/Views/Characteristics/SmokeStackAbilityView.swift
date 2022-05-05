@@ -10,8 +10,8 @@ import CoreBluetooth
 
 struct SmokeStackAbilityView: View {
     @EnvironmentObject var modelData: ModelData
-    @State var knight: Knight
-    @State var ability: BoolKnightAbility
+    var knight: Knight
+    var ability: BoolKnightAbility
     @State var enabled: Bool = false
 
     var body: some View {

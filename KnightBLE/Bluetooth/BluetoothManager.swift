@@ -238,7 +238,7 @@ extension BluetoothManager: CBPeripheralDelegate {
      func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
          if let characteristics = service.characteristics {
              for characteristic in characteristics {
-                 if BluetoothIds.acceptedCharacteristics.contains(where: {$0 == characteristic.uuid}) {
+                 if BluetoothIds.displayCharacteristics.contains(where: {$0 == characteristic.uuid}) {
                      print("Chracteristic found \(characteristic.uuid)")
                      peripheral.setNotifyValue(true, for: characteristic)
                      peripheral.readValue(for: characteristic)

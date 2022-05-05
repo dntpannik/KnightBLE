@@ -10,11 +10,7 @@ import CoreBluetooth
 class KnightAbility : ObservableObject, Identifiable {
     let id = UUID()
     var characteristicId: CBUUID
-    //var currentValue: Data
-    
-    @Published var boolValue: Bool?
-    @Published var intValue: Int?
-    
+
     init(characteristicId: CBUUID) {
         self.characteristicId = characteristicId
     }
