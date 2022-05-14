@@ -29,6 +29,6 @@ struct LeftGunAbilityView: View {
 
 struct LeftGunAbilityView_Previews: PreviewProvider {
     static var previews: some View {
-        LeftGunAbilityView(knight: Knight(name: "TestKnight", peripheralId: UUID()), ability: BoolKnightAbility(characteristicId: BluetoothIds.eyeLedCharacteristic, value: false))
+        LeftGunAbilityView(knight: Knight(name: "TestKnight", peripheralId: UUID()), ability: BoolKnightAbility(characteristicId: BluetoothIds.leftGunLedCharacteristic, value: false))
     }
 }

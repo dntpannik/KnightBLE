@@ -10,7 +10,7 @@ import Foundation
 func KnightWithAllAblities() -> Knight {
     let peripheralId = BluetoothIds.testUUID
     
-    var knight = Knight(name: "Test Knight 1", peripheralId: peripheralId)
+    var knight = Knight(name: "Incarnate Defender", peripheralId: peripheralId)
     
     //Eye LEDs
     knight.abilities.append(
@@ -24,6 +24,12 @@ func KnightWithAllAblities() -> Knight {
             characteristicId: BluetoothIds.leftGunLedCharacteristic,
             value: true))
     
+    //Right Gun LEDs
+    knight.abilities.append(
+        BoolKnightAbility(
+            characteristicId: BluetoothIds.rightGunLedCharacteristic,
+            value: true))
+    
     //Smoke Stacks
     knight.abilities.append(
         BoolKnightAbility(
@@ -35,7 +41,8 @@ func KnightWithAllAblities() -> Knight {
         SoundKnightAbility(
             characteristicId: BluetoothIds.soundInfoCharacteristic,
             volume: 22,
-            sounds: [0, 1]))
+            delay: 1345,
+            noises: [NoiseMap.Horn, NoiseMap.Test1]))
     
     return knight
 }

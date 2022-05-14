@@ -22,7 +22,7 @@ struct ConnectedKnightsView: View {
             VStack {
                 NavigationLink(destination: KnightScannerView(), tag: 1, selection: $selection) {
                     Button("Discover Knights") { self.selection = 1 }
-                            .buttonStyle(GrowingButton())
+                        .buttonStyle(GrowingButton())
                 }
                 List {
                     ForEach(knights, id: \.id) {

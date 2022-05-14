@@ -2,14 +2,15 @@
 #include <DFRobotDFPlayerMini.h>
 
 //---   Service Flag Calculations   ---//
-bool shouldAddEyeService = supportsEyeLeds || supportsLeftGunLeds;
+bool shouldAddLedService = supportsEyeLeds || supportsLeftGunLeds || supportsRightGunLeds;
 bool shouldAddSmokeStackService = supportsSmokeStacks;
 bool shouldAddSpeakerService = supportsAudio;
 
 //---   Pin Definitions   ---//
-int eyeLedPin = A0;
-int leftGunLedPin = A1;
-int smokeStackPin = D2;
+int eyeLedPin = D4;
+int leftGunLedPin = D3;
+int rightGunLedPin = D2;
+int smokeStackPin = D13;
 int dfPlayerRxPin = 0;
 int dfPlayerTxPin = 1;
 
@@ -21,7 +22,6 @@ typedef struct __attribute__( ( packed ) )
 {
   uint8_t Track;
   uint8_t Volume;
-  uint8_t Delay;
 } AudioData;
 
 typedef union
@@ -35,13 +35,14 @@ typedef union
 BLEService ledService("adb7bab2-df5c-4292-9f71-e2b6aa806c3b"); // BLE LED Service
     BLEByteCharacteristic eyeLedCharacteristic("d8eeaa08-db2f-48a0-99cd-aadd33194ffd", BLERead | BLEWrite | BLENotify);
     BLEByteCharacteristic leftGunLedCharacteristic("9aa13f92-1bd9-4e59-90f6-e41dfa9a81a2", BLERead | BLEWrite | BLENotify);
+    BLEByteCharacteristic rightGunLedCharacteristic("9e2b8f55-26e4-40f0-843d-27a80203685e", BLERead | BLEWrite | BLENotify);
      
 BLEService smokeStackService("9cd95a69-ee40-41be-a858-b0647c2fb955");
     BLEByteCharacteristic smokeStackCharacteristic("e9196461-d1ec-4b7d-a44a-fb76ad4b0795", BLERead | BLEWrite | BLENotify);
 
 BLEService speakerService("ab936fb8-e5f7-4c43-b592-aab50be3c7da");
     BLECharacteristic audioInfoCharacteristic("607047f7-9dd2-477d-94fa-9a6333dba1d4", BLERead | BLEWrite | BLENotify, 40);
-    BLECharacteristic trackControlCharacteristic("8ff278a1-a01e-4c46-87e7-751db82bfe24", BLERead | BLEWrite | BLENotify, 12);
+    BLECharacteristic trackControlCharacteristic("8ff278a1-a01e-4c46-87e7-751db82bfe24", BLERead | BLEWrite | BLENotify, 8);
 
 
 
@@ -60,6 +61,11 @@ void setup() {
   if (supportsLeftGunLeds) {
       Serial.println("Left gun leds enabled");
       pinMode(leftGunLedPin, OUTPUT);
+  }
+
+  if (supportsRightGunLeds) {
+      Serial.print("Right gun leds enabled");
+      pinMode(rightGunLedPin, OUTPUT);
   }
 
   if (supportsSmokeStacks) {
@@ -86,7 +92,7 @@ void setup() {
   BLE.setLocalName(name);
 
   //---   Add Advertised Services   ---//
-  if (shouldAddEyeService) {
+  if (shouldAddLedService) {
     Serial.println("Advertising led service");
     BLE.setAdvertisedService(ledService);
   }
@@ -108,6 +114,10 @@ void setup() {
     Serial.println("Adding left gun led characteristic");
     ledService.addCharacteristic(leftGunLedCharacteristic);
   }
+  if (supportsRightGunLeds) {
+    Serial.println("Adding right gun led characteristic");
+    ledService.addCharacteristic(rightGunLedCharacteristic);
+  }
   if (supportsSmokeStacks) {
     Serial.println("Adding smoke stack characteristic");
     smokeStackService.addCharacteristic(smokeStackCharacteristic);
@@ -119,7 +129,7 @@ void setup() {
   }
 
   //---   Add Services   ---//
-  if (shouldAddEyeService) {
+  if (shouldAddLedService) {
     Serial.println("Adding led service");
     BLE.addService(ledService);
   }
@@ -138,8 +148,12 @@ void setup() {
     eyeLedCharacteristic.writeValue(0);
   }
   if (supportsLeftGunLeds) {
-    Serial.println("Seting gun led initial ble value");
+    Serial.println("Setting left gun led initial ble value");
     leftGunLedCharacteristic.writeValue(0);
+  }
+  if (supportsRightGunLeds) {
+    Serial.println("Setting right gun led initial ble value");
+    rightGunLedCharacteristic.writeValue(0);
   }
   if (supportsSmokeStacks) {
     Serial.println("Setting smoke stack initial ble value");
@@ -161,9 +175,6 @@ void setup() {
       while(true);
     }
     Serial.println(F("DFPlayer Mini online."));
-    
-    myDFPlayer.volume(15);
-    myDFPlayer.play(1);
   }
   
   //---   Advertise   ---//
@@ -206,6 +217,18 @@ void loop() {
             break;
         }
       }
+      if (supportsRightGunLeds && rightGunLedCharacteristic.written()) {
+        switch (rightGunLedCharacteristic.value()) { 
+          case 01:
+            Serial.println("Right Gun LED on");
+            digitalWrite(rightGunLedPin, HIGH);
+            break;
+          default:
+            Serial.println(F("Right Gun LED off"));
+            digitalWrite(rightGunLedPin, LOW);
+            break;
+        }
+      }
       if (supportsSmokeStacks && smokeStackCharacteristic.written()) {
         switch (smokeStackCharacteristic.value()) { 
           case 01:
@@ -226,9 +249,7 @@ void loop() {
 
         Serial.println((String)"Track: "+audioData.values.Track);
         Serial.println((String)"Volume: "+audioData.values.Volume);
-        Serial.println((String)"Delay: "+audioData.values.Delay * 5);
 
-        delay(audioData.values.Delay * 5);
         myDFPlayer.volume(audioData.values.Volume);
         myDFPlayer.play(audioData.values.Track);
       }
@@ -248,6 +269,10 @@ void TurnOffAllPins() {
 
   if (supportsLeftGunLeds) {
       digitalWrite(leftGunLedPin, LOW);
+  }
+
+  if (supportsRightGunLeds) {
+      digitalWrite(rightGunLedPin, LOW);
   }
 
   if (supportsSmokeStacks) {

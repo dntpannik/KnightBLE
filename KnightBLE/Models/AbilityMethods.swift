@@ -15,6 +15,8 @@ func Ability(_ characteristic: CBCharacteristic, _ data: Data) -> KnightAbility?
             return BoolKnightAbility(characteristicId: characteristic.uuid, value: data)
         case BluetoothIds.leftGunLedCharacteristic:
             return BoolKnightAbility(characteristicId: characteristic.uuid, value: data)
+        case BluetoothIds.rightGunLedCharacteristic:
+            return BoolKnightAbility(characteristicId: characteristic.uuid, value: data)
         case BluetoothIds.smokeStackCharacteristic:
             return BoolKnightAbility(characteristicId: characteristic.uuid, value: data)
         case BluetoothIds.soundInfoCharacteristic:
@@ -31,6 +33,8 @@ func AbilityView(_ ability: KnightAbility, _ knight: Knight) -> AnyView {
             return AnyView(EyesAbilityView(knight: knight, ability: ability as! BoolKnightAbility))
         case BluetoothIds.leftGunLedCharacteristic:
             return AnyView(LeftGunAbilityView(knight: knight, ability: ability as! BoolKnightAbility))
+        case BluetoothIds.rightGunLedCharacteristic:
+            return AnyView(RightGunAbilityView(knight: knight, ability: ability as! BoolKnightAbility))
         case BluetoothIds.smokeStackCharacteristic:
             return AnyView(SmokeStackAbilityView(knight: knight, ability: ability as! BoolKnightAbility))
         case BluetoothIds.soundInfoCharacteristic:

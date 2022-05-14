@@ -3,8 +3,9 @@
 //---------------------------//
 bool supportsEyeLeds = true;
 bool supportsLeftGunLeds = true;
+bool supportsRightGunLeds = true;
 bool supportsSmokeStacks = true;
 bool supportsAudio = true;
-int tracks[] = {0, 1};
+int tracks[] = {1, 2};
 
-char name[] = "Test Name";
+char name[] = "Blockbuster";

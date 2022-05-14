@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "Artboard 140px-2.png",
+      "filename" : "Artboard 140px.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
@@ -25,7 +25,7 @@
       "size" : "29x29"
     },
     {
-      "filename" : "Artboard 180px-1.png",
+      "filename" : "Artboard 180px.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
@@ -73,13 +73,13 @@
       "size" : "29x29"
     },
     {
-      "filename" : "Artboard 140px.png",
+      "filename" : "Artboard 140px-2.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "40x40"
     },
     {
-      "filename" : "Artboard 180px.png",
+      "filename" : "Artboard 180px-1.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "40x40"
