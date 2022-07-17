@@ -8,17 +8,20 @@
 \f0\fs24 \cf0 \
 \
 			SCK D13 	[ ]			[ ]	~D12 MISO		\
-(DFPlayer)		+3.3V		[ ]			[ ]	D11 MOSI\
+(DFPlayer)		+3.3V		[X]			[ ]	D11 MOSI\
 			AREF		[ ]			[ ]	~D10 SS		\
 			A0		[ ]			[ ]	~D9 \
-			A1		[ ]			[X]	D8			(Smoke)\
-			A2		[ ]			[ ]	D7\
-			A3		[ ]			[X]	~D6			(Eye LEDs)\
-			A4		[ ]			[X]	~D5			(Left Gun LEDs)\
-			A5		[ ]			[ ]	D4\
-			A6		[ ]			[X]	~D3			(Right Gun LEDs\
-			A7		[ ]			[ ]	D2\
-(DFPlayer)		+5V		[ ]			[ ]	GND			(Ground Everywhere)\
+			A1		[ ]			[ ]	~D8\
+			A2		[ ]			[ ]	~D7\
+			A3		[ ]			[X]	~D6			J1 (Eye LEDs)\
+			A4		[ ]			[X]	~D5			J2 (Left Gun LEDs)\
+			A5		[ ]			[X]	~D4			J3 (Right Gun LEDs)\
+			A6		[ ]			[X]	~D3			J4 (Smoke Stacks)\
+			A7		[ ]			[X]	~D2			J5 (Unused)\
+(DFPlayer)		+5V		[ ]			[X]	GND			(Ground Everywhere)\
 			RESET	[ ]			[ ]	RESET\
-			GND		[ ]			[X]	RX			(DFPlayer)\
-			VIN		[ ]			[X]	TX			(DFPlayer)}
+			GND		[X]			[X]	RX			(DFPlayer)\
+			VIN		[X]			[X]	TX			(DFPlayer)\
+\
+\
+Eyes 20mA, 2-2.2V - Red/Red - 390 Ohm (12V - 2*2.2V)/(20E-3 A) = R => R = 380 Ohm (390 Ohm)}

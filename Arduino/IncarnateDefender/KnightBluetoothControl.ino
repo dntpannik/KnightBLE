@@ -7,10 +7,10 @@ bool shouldAddSmokeStackService = supportsSmokeStacks;
 bool shouldAddSpeakerService = supportsAudio;
 
 //---   Pin Definitions   ---//
-int eyeLedPin = D4;
-int leftGunLedPin = D3;
-int rightGunLedPin = D2;
-int smokeStackPin = D13;
+int eyeLedPin = D6;
+int leftGunLedPin = D5;
+int rightGunLedPin = D4;
+int smokeStackPin = D8;
 int dfPlayerRxPin = 0;
 int dfPlayerTxPin = 1;
 
