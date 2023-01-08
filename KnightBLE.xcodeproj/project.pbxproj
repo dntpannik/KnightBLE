@@ -23,12 +23,6 @@
 		0E0BAC892819B16C00D35034 /* BoolExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC882819B16C00D35034 /* BoolExtensions.swift */; };
 		0E0BAC8D2819FD6200D35034 /* CancellableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC8C2819FD6200D35034 /* CancellableExtensions.swift */; };
 		0E0BAC91281A2EA400D35034 /* KnightScannerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC90281A2EA400D35034 /* KnightScannerRowView.swift */; };
-		0E3C1FBD296A969C00B7956D /* TemperedFury.ino in Resources */ = {isa = PBXBuildFile; fileRef = 0E3C1FBB296A969C00B7956D /* TemperedFury.ino */; };
-		0E3C1FBE296A969C00B7956D /* KnightBluetoothControl.ino in Resources */ = {isa = PBXBuildFile; fileRef = 0E3C1FBC296A969C00B7956D /* KnightBluetoothControl.ino */; };
-		0E3C1FC2296A96A700B7956D /* SpearheadOfIron.ino in Resources */ = {isa = PBXBuildFile; fileRef = 0E3C1FC0296A96A700B7956D /* SpearheadOfIron.ino */; };
-		0E3C1FC3296A96A700B7956D /* KnightBluetoothControl.ino in Resources */ = {isa = PBXBuildFile; fileRef = 0E3C1FC1296A96A700B7956D /* KnightBluetoothControl.ino */; };
-		0E3C1FC7296A96AD00B7956D /* ScionOfTerra.ino in Resources */ = {isa = PBXBuildFile; fileRef = 0E3C1FC5296A96AD00B7956D /* ScionOfTerra.ino */; };
-		0E3C1FC8296A96AD00B7956D /* KnightBluetoothControl.ino in Resources */ = {isa = PBXBuildFile; fileRef = 0E3C1FC6296A96AD00B7956D /* KnightBluetoothControl.ino */; };
 		0E8D3F0F281C43D1003FBB45 /* BoolKnightAbility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8D3F0E281C43D1003FBB45 /* BoolKnightAbility.swift */; };
 		0E8D3F17281CBB25003FBB45 /* SwiftfulLoadingIndicators in Frameworks */ = {isa = PBXBuildFile; productRef = 0E8D3F16281CBB25003FBB45 /* SwiftfulLoadingIndicators */; };
 		0E8D3F19281CEB8A003FBB45 /* LeftGunAbilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8D3F18281CEB8A003FBB45 /* LeftGunAbilityView.swift */; };
@@ -497,12 +491,6 @@
 			files = (
 				0E92875F2815FD8800026ED1 /* Preview Assets.xcassets in Resources */,
 				0E92875C2815FD8800026ED1 /* Assets.xcassets in Resources */,
-				0E3C1FC8296A96AD00B7956D /* KnightBluetoothControl.ino in Resources */,
-				0E3C1FBE296A969C00B7956D /* KnightBluetoothControl.ino in Resources */,
-				0E3C1FC7296A96AD00B7956D /* ScionOfTerra.ino in Resources */,
-				0E3C1FC2296A96A700B7956D /* SpearheadOfIron.ino in Resources */,
-				0E3C1FC3296A96A700B7956D /* KnightBluetoothControl.ino in Resources */,
-				0E3C1FBD296A969C00B7956D /* TemperedFury.ino in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
