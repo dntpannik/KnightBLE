@@ -10,16 +10,16 @@ import CoreBluetooth
 
 enum NoiseMap : UInt8, CustomStringConvertible {
     case Horn = 1
-    case Test1 = 2
-    case Test2 = 3
+    case VolcanoLance = 2
+    case PlasmaDecimator = 3
     case Test3 = 4
     case Test4 = 5
 
     var description : String {
         switch self {
             case .Horn: return "Horn"
-            case .Test1: return "Vol. Lance"
-            case .Test2: return "Test2"
+            case .VolcanoLance: return "Vol. Lance"
+            case .PlasmaDecimator: return "Plas.Dec."
             case .Test3: return "Test3"
             case .Test4: return "Test4"
         }

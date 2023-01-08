@@ -42,7 +42,7 @@ func KnightWithAllAblities() -> Knight {
             characteristicId: BluetoothIds.soundInfoCharacteristic,
             volume: 22,
             delay: 1345,
-            noises: [NoiseMap.Horn, NoiseMap.Test1]))
+            noises: [NoiseMap.Horn, NoiseMap.Test3]))
     
     return knight
 }

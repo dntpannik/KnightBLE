@@ -100,7 +100,7 @@ struct SoundAbilityView_Previews: PreviewProvider {
                 characteristicId: BluetoothIds.eyeLedCharacteristic,
                 volume: 23,
                 delay: 2145,
-                noises: [NoiseMap.Horn, NoiseMap.Test1, NoiseMap.Test2, NoiseMap.Test3, NoiseMap.Test4]))
+                noises: [NoiseMap.Horn, NoiseMap.VolcanoLance, NoiseMap.PlasmaDecimator, NoiseMap.Test3, NoiseMap.Test4]))
         .environmentObject(ModelData())
     }
 }
