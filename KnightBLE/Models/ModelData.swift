@@ -19,6 +19,9 @@ final class ModelData : ObservableObject {
     init() {
         bleManager.Start()
         InitializeHandlers()
+        
+        //Uncomment to give default data while debugging
+        //knights = [KnightWithAllAblities(), KnightWithAudioSmokeEyeAblities()]
     }
     
     init(knights: [Knight]) {
@@ -27,6 +30,18 @@ final class ModelData : ObservableObject {
 }
 
 extension ModelData {
+    
+    func PlaySounds() {
+        for knight in knights {
+            if knight.connected == false { continue }
+            
+            for ability in knight.abilities {
+                if let soundAbility = ability as? SoundKnightAbility {
+                    soundAbility.Play(peripheralId: knight.peripheralId)
+                }
+            }
+        }
+    }
     
     func InitializeHandlers() {
         bleManager.stateSubject

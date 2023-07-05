@@ -10,6 +10,8 @@ import SwiftUI
 struct ConnectedKnightsView: View {
     @EnvironmentObject var modelData: ModelData
     @State var selection: Int? = nil
+    @State private var selected: Set<UUID> = []
+    @State private var isSideBarOpened = false
     
     private var knights: [Knight] {
         modelData.knights.filter({$0.connected}).sorted { left, right in
@@ -18,22 +20,35 @@ struct ConnectedKnightsView: View {
     }
     
     var body: some View {
-        NavigationView {
-            VStack {
-                NavigationLink(destination: KnightScannerView(), tag: 1, selection: $selection) {
-                    Button("Discover Knights") { self.selection = 1 }
-                        .buttonStyle(GrowingButton())
-                }
-                List {
-                    ForEach(knights, id: \.id) {
-                        knight in ConnectedKnightRowView(peripheralId: knight.peripheralId)
+        ZStack {
+            NavigationView {
+                VStack {
+                    NavigationLink(destination: KnightScannerView(), tag: 1, selection: $selection) {
+                        Button("Discover Knights") { self.selection = 1 }
+                            .buttonStyle(GrowingButton())
                     }
-                }.id(UUID())
-                Spacer()
+                    List {
+                        ForEach(knights, id: \.id) {
+                            knight in ConnectedKnightRowView(peripheralId: knight.peripheralId)
+                        }
+                    }.id(UUID())
+                    Spacer()
+                }
+                .navigationTitle("Active Knights")
+                .toolbar {
+                    Button {
+                            isSideBarOpened.toggle()
+                    } label: {
+                        Label("Toggle SideBar",
+                        systemImage: "line.3.horizontal.circle.fill")
+                    }
+                }
+                .navigationBarTitleDisplayMode(.inline)
             }
-            .navigationTitle("Active Knights")
+            SidebarView(isSidebarVisible: $isSideBarOpened)
         }
     }
+    
 }
 
 struct KnightList_Previews: PreviewProvider {
