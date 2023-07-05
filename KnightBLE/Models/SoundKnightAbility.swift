@@ -59,6 +59,11 @@ class SoundKnightAbility: KnightAbility {
                 }
             }
         }
+        
+        //If there is at least 1 noise then set as active
+        if noises.count > 0 {
+            activeNoise = noises[0]
+        }
     }
     
     override func GetData() -> Data {
@@ -67,5 +72,15 @@ class SoundKnightAbility: KnightAbility {
         }
 
         return Data([noise.rawValue, self.volume])
+    }
+    
+    func Play(peripheralId: UUID) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + Double(delay / 1000)) {
+            bleManager.WriteValue(
+                                peripheralId: peripheralId,
+                                serviceId: BluetoothIds.soundService,
+                                characteristicId: BluetoothIds.soundControlCharacteristic,
+                                withValue: self.GetData())
+        }
     }
 }

@@ -23,6 +23,7 @@
 		0E0BAC892819B16C00D35034 /* BoolExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC882819B16C00D35034 /* BoolExtensions.swift */; };
 		0E0BAC8D2819FD6200D35034 /* CancellableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC8C2819FD6200D35034 /* CancellableExtensions.swift */; };
 		0E0BAC91281A2EA400D35034 /* KnightScannerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC90281A2EA400D35034 /* KnightScannerRowView.swift */; };
+		0E3C1FCB296B245B00B7956D /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3C1FCA296B245B00B7956D /* SidebarView.swift */; };
 		0E8D3F0F281C43D1003FBB45 /* BoolKnightAbility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8D3F0E281C43D1003FBB45 /* BoolKnightAbility.swift */; };
 		0E8D3F17281CBB25003FBB45 /* SwiftfulLoadingIndicators in Frameworks */ = {isa = PBXBuildFile; productRef = 0E8D3F16281CBB25003FBB45 /* SwiftfulLoadingIndicators */; };
 		0E8D3F19281CEB8A003FBB45 /* LeftGunAbilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8D3F18281CEB8A003FBB45 /* LeftGunAbilityView.swift */; };
@@ -83,6 +84,7 @@
 		0E3C1FC1296A96A700B7956D /* KnightBluetoothControl.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KnightBluetoothControl.ino; sourceTree = "<group>"; };
 		0E3C1FC5296A96AD00B7956D /* ScionOfTerra.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ScionOfTerra.ino; sourceTree = "<group>"; };
 		0E3C1FC6296A96AD00B7956D /* KnightBluetoothControl.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KnightBluetoothControl.ino; sourceTree = "<group>"; };
+		0E3C1FCA296B245B00B7956D /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		0E8D3F0E281C43D1003FBB45 /* BoolKnightAbility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolKnightAbility.swift; sourceTree = "<group>"; };
 		0E8D3F18281CEB8A003FBB45 /* LeftGunAbilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftGunAbilityView.swift; sourceTree = "<group>"; };
 		0E8D3F1A281CEBBA003FBB45 /* SmokeStackAbilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeStackAbilityView.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 		0E0BAC612817793800D35034 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0E3C1FC9296B243700B7956D /* Sidebar */,
 				0E0BAC792818F69400D35034 /* KnightScanner */,
 				0E0BAC8028190C7C00D35034 /* ConnectedKnights */,
 				0E0BAC842819ADBF00D35034 /* Characteristics */,
@@ -231,6 +234,14 @@
 				0E3C1FC6296A96AD00B7956D /* KnightBluetoothControl.ino */,
 			);
 			path = ScionOfTerra;
+			sourceTree = "<group>";
+		};
+		0E3C1FC9296B243700B7956D /* Sidebar */ = {
+			isa = PBXGroup;
+			children = (
+				0E3C1FCA296B245B00B7956D /* SidebarView.swift */,
+			);
+			path = Sidebar;
 			sourceTree = "<group>";
 		};
 		0E8D3F1E281D0835003FBB45 /* Arduino */ = {
@@ -524,6 +535,7 @@
 				0E059FF8281B9CA1003B9B81 /* Encodings.swift in Sources */,
 				0E059FEF281A5FF9003B9B81 /* GrowingButton.swift in Sources */,
 				0E0BAC892819B16C00D35034 /* BoolExtensions.swift in Sources */,
+				0E3C1FCB296B245B00B7956D /* SidebarView.swift in Sources */,
 				0E06346F281EDAA70098114C /* SoundKnightAbility.swift in Sources */,
 				0E063472281EDCC50098114C /* DataReader.swift in Sources */,
 				0E9287862816132000026ED1 /* BluetoothIds.swift in Sources */,

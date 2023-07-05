@@ -9,6 +9,7 @@ import Foundation
 import CoreBluetooth
 
 struct Knight : Identifiable {
+    
     var id = UUID()
     var name: String = ""
     var connected: Bool = false

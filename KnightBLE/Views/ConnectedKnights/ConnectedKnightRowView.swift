@@ -10,7 +10,6 @@ import SwiftUI
 struct ConnectedKnightRowView: View {
     @EnvironmentObject var modelData: ModelData
     var peripheralId: UUID
-    //@State var knight: Knight
     
     private var knight: Knight {
         return modelData.knights.first(where: {$0.peripheralId == peripheralId}) ?? Knight(name: "Uknown", peripheralId: UUID())
@@ -18,9 +17,16 @@ struct ConnectedKnightRowView: View {
 
     var body: some View {
         VStack {
-            Text(knight.name)
-                .bold()
-                .underline()
+            HStack {
+                Text(knight.name)
+                    .bold()
+                    .underline()
+                Spacer()
+            }
+            .contentShape(Rectangle())
+            .padding()
+            .font(.title)
+            
             ForEach(knight.abilities, id: \.id) { ability in
                 AbilityView(ability, knight)
             }.id(UUID())

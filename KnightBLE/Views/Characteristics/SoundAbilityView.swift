@@ -20,15 +20,8 @@ struct SoundAbilityView: View {
     
     var body: some View {
         VStack {
-            Button("Play Sound")
-            {
-                DispatchQueue.main.asyncAfter(deadline: .now() + Double(ability.delay / 1000)) {
-                    bleManager.WriteValue(
-                                        peripheralId: knight.peripheralId,
-                                        serviceId: BluetoothIds.soundService,
-                                        characteristicId: BluetoothIds.soundControlCharacteristic,
-                                        withValue: ability.GetData())
-                }
+            Button("Play Sound") {
+                ability.Play(peripheralId: knight.peripheralId)
             }
             .disabled(activeNoise == nil)
             .buttonStyle(GrowingButton())
