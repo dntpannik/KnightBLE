@@ -1,0 +1,7 @@
+Armiger
+-------
+
+
+Arduino - 3.3v or 5v 
+2x Eyes (Series) - 2.2v @ 20mA - 4.4v @ 20mA
+DFPlayer Mini - 3.3-5v @ 15mA Standby - 20-150mA Playing
