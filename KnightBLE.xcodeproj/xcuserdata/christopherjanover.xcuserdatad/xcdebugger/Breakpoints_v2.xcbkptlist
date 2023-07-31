@@ -36,5 +36,69 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F5FD44D0-E452-48D4-B121-E320EAA1A591"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KnightBLE/Extensions/Encodings.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "ParseUInt16(value:)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "F5FD44D0-E452-48D4-B121-E320EAA1A591 - 69a4e840d8b5462c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KnightBLE.EncodeUInt16(value: Swift.UInt16) -&gt; Foundation.Data"
+                  moduleName = "KnightBLE"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/christopherjanover/Desktop/KnightBLE/KnightBLE/KnightBLE/Extensions/Encodings.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  uuid = "F5FD44D0-E452-48D4-B121-E320EAA1A591 - da71d50d82c545f9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KnightBLE.ParseUInt16(value: Foundation.Data) -&gt; Swift.UInt16"
+                  moduleName = "KnightBLE"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/christopherjanover/Desktop/KnightBLE/KnightBLE/KnightBLE/Extensions/Encodings.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "120">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5E4E774D-7D52-47A5-8B5E-AED3650D9F22"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KnightBLE/Extensions/Encodings.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "ParseUInt16(value:)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

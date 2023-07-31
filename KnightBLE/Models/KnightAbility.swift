@@ -9,17 +9,25 @@ import CoreBluetooth
 
 class KnightAbility : ObservableObject, Identifiable {
     let id = UUID()
-    var characteristicId: CBUUID
+    var serviceId: CBUUID
+    @Published var name: String
 
-    init(characteristicId: CBUUID) {
-        self.characteristicId = characteristicId
+    var settings: [CBUUID:AbilitySetting] = [:]
+    
+    init(serviceId: CBUUID) {
+        self.serviceId = serviceId
+        self.name = ""
     }
     
-    func UpdateValue(data: Data) {
-        fatalError("Must Override")
+    init(serviceId: CBUUID, name: String) {
+        self.serviceId = serviceId
+        self.name = name
     }
     
-    func GetData() -> Data {
-        fatalError("Must Override")
+    init(serviceId: CBUUID, name: String, settings: [CBUUID:AbilitySetting])
+    {
+        self.serviceId = serviceId
+        self.name = name
+        self.settings = settings
     }
 }

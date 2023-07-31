@@ -6,3 +6,41 @@
 //
 
 import Foundation
+import CoreBluetooth
+
+class ToggleSetting: AbilitySetting {
+    @Published var value: Bool
+    @Published var settingName: String
+    
+    init(characteristicId: CBUUID, value: Bool, settingName: String) {
+        self.value = value
+        self.settingName = settingName
+        super.init(characteristicId: characteristicId)
+    }
+    
+    init(characteristicId: CBUUID, value: Data) {
+        self.value = ParseBool(value: value)
+        self.settingName = "Enabled"
+        super.init(characteristicId: characteristicId)
+    }
+    
+    override func UpdateValue(data: Data) {
+        guard data.count == 1 else {
+            print("Unexpected number of bytes when updating value for ToggleSetting")
+            return //unexpected number of bytes
+        }
+        
+        self.value = data[0] != 0
+        print("Value updated to \(self.value)")
+    }
+    
+    override func GetData() -> Data {
+        return Data([UInt8(self.value.intValue)])
+    }
+    
+    override func ProcessDescriptor(descriptorId: CBUUID, data: Data) {
+        if (descriptorId == BluetoothIds.nameDescriptor) {
+            self.settingName =  ParseString(value: data)
+        }
+    }
+}

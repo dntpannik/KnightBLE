@@ -10,14 +10,8 @@ import CoreBluetooth
 import SwiftfulLoadingIndicators
 
 struct KnightScannerView: View {
-    @EnvironmentObject var modelData: ModelData
+    @ObservedObject var modelData: ModelData
 
-    private var knights: [Knight] {
-        modelData.knights.sorted { left, right in
-            return left.name < right.name
-        }
-    }
-    
     var body: some View {
         VStack {
             Text("Discovered Knights")
@@ -29,24 +23,23 @@ struct KnightScannerView: View {
             
             if (modelData.state == .poweredOn) {
                 List {
-                    ForEach(knights, id: \.id) {
-                        knight in KnightScannerRowView(knight: knight)
+                    ForEach(Array(modelData.knights.keys), id: \.self) {
+                        key in KnightScannerRowView(knight: modelData.knights[key] ?? UnknownKnight())
                     }
+                }
+                .refreshable {
+                    bleManager.Scan()
                 }
                 Spacer()
             } else {
                 Text("Please enable bluetooth to search devices")
             }
         }
-        .refreshable {
-            bleManager.Scan()
-        }
     }
 }
 
 struct KnightScannerView_Previews: PreviewProvider {
     static var previews: some View {
-        KnightScannerView()
-            .environmentObject(ModelData(knights: [Knight(name: "TestKnight", peripheralId: BluetoothIds.testUUID, abilities: [BoolKnightAbility(characteristicId: BluetoothIds.eyeLedCharacteristic, value: false)])]))
+        KnightScannerView(modelData: ModelData(knights: KnightArray()))
     }
 }

@@ -1,6 +1,9 @@
 #include <ArduinoBLE.h>
 #include <DFRobotDFPlayerMini.h>
 
+//---   PWM LED Board   ---//
+#define NUM_TLC59711 1
+
 //---   Service Flag Calculations   ---//
 bool shouldAddLedService = supportsEyeLeds || supportsLeftGunLeds || supportsRightGunLeds;
 bool shouldAddSmokeStackService = supportsSmokeStacks;

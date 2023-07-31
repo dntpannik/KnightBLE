@@ -6,18 +6,15 @@
 //
 
 import SwiftUI
+import CoreBluetooth
 
 struct KnightDetailsView: View {
-    @EnvironmentObject var modelData: ModelData
-    var peripheralId: UUID
-    
-    private var knight: Knight {
-        return modelData.knights.first(where: {$0.peripheralId == peripheralId}) ?? Knight(name: "Uknown", peripheralId: UUID())
-    }
+    @ObservedObject var knight: Knight
+    @Environment(\.presentationMode) var presentationMode
+
     
     var body: some View {
         VStack {
-            ScrollView {
                 HStack {
                     Text(knight.name)
                         .bold()
@@ -31,21 +28,29 @@ struct KnightDetailsView: View {
                 Image(knight.name.replacingOccurrences(of: " ", with: ""))
                     .renderingMode(.original)
                     .resizable()
-                    .scaledToFill()
+                    .frame(width: 250, height: 250)
                     .padding([.leading, .trailing], 20)
                 
-                ForEach(knight.abilities, id: \.id) { ability in
-                    AbilityView(ability, knight)
-                }.id(UUID())
-                    .padding([.leading, .trailing], 20)
+                List {
+                    ForEach(Array(knight.abilities.keys), id: \.self) { key in
+                        Section(header: Text(knight.abilities[key]?.name ?? "Unknown")
+                                .font(.subheadline)
+                                .foregroundColor(.blue)) {
+                                    KnightAbilityView(peripheralId: knight.peripheralId, ability: knight.abilities[key] ?? KnightAbility(serviceId: CBUUID()))
+                            }
+                        }.id(UUID())
+                            .padding([.leading, .trailing], 20)
+                }
+                .listStyle(.insetGrouped)
             }
+        .onChange(of: knight.connected) {
+            self.presentationMode.wrappedValue.dismiss()
         }
     }
 }
 
 struct KnightDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        KnightDetailsView(peripheralId: BluetoothIds.testUUID)
-            .environmentObject(ModelData(knights: [KnightWithAllAblities()]))
+        KnightDetailsView(knight: KnightWithAllAblities())
     }
 }

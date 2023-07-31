@@ -9,38 +9,34 @@ import Foundation
 import SwiftUI
 import CoreBluetooth
 
-func Setting(_ characteristic: CBCharacteristic, _ data: Data, _ name: String) -> AbilitySetting? {
+func Setting(_ characteristic: CBCharacteristic, _ data: Data) -> AbilitySetting? {
     switch characteristic.uuid {
     case BluetoothIds.toggleCharacteristic:
-            return ToggleSetting(characteristicId: characteristic.uuid, value: data, name: name)
-       // case BluetoothIds.leftGunLedCharacteristic:
-       //     return BoolKnightAbility(characteristicId: characteristic.uuid, value: data, name: name)
-       // case BluetoothIds.rightGunLedCharacteristic:
-       //     return BoolKnightAbility(characteristicId: characteristic.uuid, value: data, name: name)
-       // case BluetoothIds.smokeStackCharacteristic:
-       //     return BoolKnightAbility(characteristicId: characteristic.uuid, value: data, name: name)
-       // case BluetoothIds.soundInfoCharacteristic:
-       //     return SoundKnightAbility(characteristicId: characteristic.uuid, value: data, name: name)
-        default:
-            print("Unable to convert characteristic into an ability setting")
-            return nil
+        return ToggleSetting(characteristicId: characteristic.uuid, value: data)
+    case BluetoothIds.rgbCharacteristic:
+        return ColorSetting(characteristicId: characteristic.uuid, value: data)
+    case BluetoothIds.sliderCharacteristic:
+        return SliderSetting(characteristicId: characteristic.uuid, value: data)
+    case BluetoothIds.actionCharacteristic:
+        return ActionSetting(characteristicId: characteristic.uuid)
+    default:
+        print("Unable to convert characteristic into an ability setting")
+        return nil
     }
 }
 
-func SettingView(_ setting: AbilitySetting, _ ability: KnightAbility, _ knight: Knight) -> AnyView {
+func SettingView(_ setting: AbilitySetting, _ serviceId: CBUUID, _ peripheralId: UUID) -> AnyView {
     switch setting.characteristicId {
     case BluetoothIds.toggleCharacteristic:
-        return AnyView(ToggleAbilityView(knight: knight, ability: ability, setting: setting as! ToggleSetting))
-    //    case BluetoothIds.leftGunLedCharacteristic:
-     //       return AnyView(LeftGunAbilityView(knight: knight, ability: ability as! BoolKnightAbility))
-    //    case BluetoothIds.rightGunLedCharacteristic:
-     //       return AnyView(RightGunAbilityView(knight: knight, ability: ability as! BoolKnightAbility))
-     //   case BluetoothIds.smokeStackCharacteristic:
-     //       return AnyView(SmokeStackAbilityView(knight: knight, ability: ability as! BoolKnightAbility))
-     //   case BluetoothIds.soundInfoCharacteristic:
-     //       return AnyView(SoundAbilityView(knight: knight, ability: ability as! SoundKnightAbility))
-        default:
-            print("Unable to convert characteristic into an ability setting view")
-            return AnyView(EmptyView())
+        return AnyView(ToggleSettingView(peripheralId: peripheralId, serviceId: serviceId, setting: setting as! ToggleSetting))
+    case BluetoothIds.rgbCharacteristic:
+        return AnyView(ColorSettingView(peripheralId: peripheralId, serviceId: serviceId,  setting: setting as! ColorSetting))
+    case BluetoothIds.sliderCharacteristic:
+        return AnyView(SliderSettingView(peripheralId: peripheralId, serviceId: serviceId,  setting: setting as! SliderSetting))
+    case BluetoothIds.actionCharacteristic:
+        return AnyView(ActionSettingView(peripheralId: peripheralId, serviceId: serviceId,  setting: setting as! ActionSetting))
+    default:
+        print("Unable to convert characteristic into an ability setting view")
+        return AnyView(EmptyView())
     }
 }

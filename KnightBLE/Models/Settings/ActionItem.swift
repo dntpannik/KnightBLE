@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+class ActionItem: ObservableObject, Identifiable {
+    let id = UUID()
+    @Published var name: String
+    @Published var index: UInt16
+    
+    init(name: String, index: UInt16) {
+        self.name = name
+        self.index = index
+    }
+}

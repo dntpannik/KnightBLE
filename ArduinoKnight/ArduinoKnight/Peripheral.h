@@ -6,7 +6,9 @@
 class Peripheral {
     public:
         virtual void Initialize();
-        virtual void Update();
+        virtual bool Update();
+        virtual void Cleanup();
+        virtual void DebugOut();
 };
 
 #endif

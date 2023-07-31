@@ -6,13 +6,34 @@
 //
 
 import SwiftUI
+import CoreBluetooth
 
 struct SliderSettingView: View {
+    var peripheralId: UUID
+    var serviceId: CBUUID
+    @ObservedObject var setting: SliderSetting
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Text(setting.settingName)
+            Slider(
+                value: $setting.value,
+                in: setting.minValue...setting.maxValue,
+                step: setting.stepValue) { editing in
+                    if (!editing) {
+                        setting.value = setting.value
+                        bleManager.WriteValue(
+                            peripheralId: peripheralId,
+                            serviceId: serviceId,
+                            characteristicId: setting.characteristicId,
+                            withValue: EncodeUInt16(value: UInt16(setting.value)))
+                    }
+                }
+            Text("\(setting.value, specifier: "%.0f")")
+            }
     }
 }
 
 #Preview {
-    SliderSettingView()
+    SliderSettingView(peripheralId: UUID(), serviceId: CBUUID(), setting: SliderSetting(characteristicId: CBUUID(), name: "Test Slider", value: 34, minValue: 0, maxValue: 112, stepValue: 5))
 }

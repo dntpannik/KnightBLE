@@ -9,8 +9,7 @@ import SwiftUI
 import CoreBluetooth
 
 struct KnightScannerRowView: View {
-    @EnvironmentObject var modelData: ModelData
-    var knight: Knight
+    @ObservedObject var knight: Knight
   
     var body: some View {
         HStack {
@@ -40,6 +39,6 @@ struct KnightScannerRowView: View {
 
 struct KnightScannerRowView_Previews: PreviewProvider {
     static var previews: some View {
-        KnightScannerRowView(knight: Knight(name: "TestKnight", peripheralId: BluetoothIds.testUUID, abilities: [BoolKnightAbility(characteristicId: BluetoothIds.eyeLedCharacteristic, value: false)]))
+        KnightScannerRowView(knight: KnightWithAllAblities())
     }
 }

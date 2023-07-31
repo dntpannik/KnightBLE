@@ -6,56 +6,34 @@
 //
 
 import SwiftUI
+import CoreBluetooth
 
-struct ActionSettingsView: View {
-    @EnvironmentObject var modelData: ModelData
-    @State var knight: Knight
-    @State var ability: KnightAbility
-    @State var setting: ActionSetting
-
-    private let threeColumnGrid = [
-        GridItem(.flexible(minimum: 40)),
-        GridItem(.flexible(minimum: 40)),
-        GridItem(.flexible(minimum: 40))
+struct ActionSettingView: View {
+    var peripheralId: UUID
+    var serviceId: CBUUID
+    @ObservedObject var setting: ActionSetting
+    
+    private let twoColumnGrid = [
+        GridItem(.flexible(minimum: 100)),
+        GridItem(.flexible(minimum: 100))
     ]
     
     var body: some View {
-        LazyVGrid(columns: threeColumnGrid, alignment: .center) {
-            ForEach($setting.actionNames, id: \.id) { action in
-                Button(action: {
-                      print("Round Action")
-                    }) {
-                      Text( action)
-                    }
-                    .padding()
-                    .background(.green)
-                    .foregroundColor(.white)
-                    .cornerRadius(22)
-                
-                
-//                GeometryReader { gr in
-//                    NavigationLink(destination: KnightDetailsView(peripheralId: knight.peripheralId), label: {
-//                        VStack {
-//                            Text(knight.name)
-//                                .bold()
-//                                .underline()
-//                            Image(knight.name.replacingOccurrences(of: " ", with: ""))
-//                                .renderingMode(.original)
-//                                .resizable()
-//                                .scaledToFill()
-//                                .frame(height: gr.size.width)
-//                        }
-//                    })
-//                }
-//                .clipped()
-//                .aspectRatio(1, contentMode: .fit)
+        LazyVGrid(columns: twoColumnGrid, alignment: .center) {
+            ForEach($setting.actions, id: \.id) { $action in
+                ActionSettingRowView(peripheralId: peripheralId,
+                                     serviceId: serviceId,
+                                     setting: setting,
+                                     actionItem: action)
             }
+            .id(UUID())
         }
-        .onAppear {
-        }
+        
     }
 }
 
 #Preview {
-    ActionSettingView()
+    ActionSettingView(peripheralId: UUID(),
+                      serviceId: CBUUID(),
+                      setting: ActionSetting(characteristicId: CBUUID(), actionNames: ["Action 1 Long name", "Action 2", "Action 3", "Action 4"]))
 }

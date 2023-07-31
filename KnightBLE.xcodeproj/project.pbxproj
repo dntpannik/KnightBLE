@@ -10,25 +10,20 @@
 		0E059FEF281A5FF9003B9B81 /* GrowingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E059FEE281A5FF9003B9B81 /* GrowingButton.swift */; };
 		0E059FF3281B5C50003B9B81 /* KnightAbility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E059FF2281B5C50003B9B81 /* KnightAbility.swift */; };
 		0E059FF8281B9CA1003B9B81 /* Encodings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E059FF7281B9CA1003B9B81 /* Encodings.swift */; };
-		0E06346D281EDA8E0098114C /* SoundAbilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E06346C281EDA8E0098114C /* SoundAbilityView.swift */; };
-		0E06346F281EDAA70098114C /* SoundKnightAbility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E06346E281EDAA70098114C /* SoundKnightAbility.swift */; };
 		0E063472281EDCC50098114C /* DataReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E063471281EDCC50098114C /* DataReader.swift */; };
 		0E0BAC6328177B8E00D35034 /* ConnectedKnightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC6228177B8E00D35034 /* ConnectedKnightsView.swift */; };
 		0E0BAC6528177C8F00D35034 /* Knight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC6428177C8F00D35034 /* Knight.swift */; };
 		0E0BAC6728177E1800D35034 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC6628177E1800D35034 /* ModelData.swift */; };
 		0E0BAC6928177F0F00D35034 /* KnightScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC6828177F0F00D35034 /* KnightScannerView.swift */; };
-		0E0BAC702817ABDE00D35034 /* ConnectedKnightRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC6F2817ABDE00D35034 /* ConnectedKnightRowView.swift */; };
 		0E0BAC732817B84A00D35034 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC722817B84A00D35034 /* BluetoothManager.swift */; };
-		0E0BAC862819ADD300D35034 /* EyesAbilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC852819ADD200D35034 /* EyesAbilityView.swift */; };
 		0E0BAC892819B16C00D35034 /* BoolExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC882819B16C00D35034 /* BoolExtensions.swift */; };
 		0E0BAC8D2819FD6200D35034 /* CancellableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC8C2819FD6200D35034 /* CancellableExtensions.swift */; };
 		0E0BAC91281A2EA400D35034 /* KnightScannerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC90281A2EA400D35034 /* KnightScannerRowView.swift */; };
-		0E3C1FCB296B245B00B7956D /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3C1FCA296B245B00B7956D /* SidebarView.swift */; };
-		0E8D3F0F281C43D1003FBB45 /* BoolKnightAbility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8D3F0E281C43D1003FBB45 /* BoolKnightAbility.swift */; };
+		0E3956CD2A6DE104003B6738 /* AbilitySetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3956CC2A6DE104003B6738 /* AbilitySetting.swift */; };
+		0E3956D02A6DE1B4003B6738 /* ToggleSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3956CF2A6DE1B4003B6738 /* ToggleSetting.swift */; };
+		0E3956D42A6DEB62003B6738 /* KnightAbilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3956D32A6DEB62003B6738 /* KnightAbilityView.swift */; };
 		0E8D3F17281CBB25003FBB45 /* SwiftfulLoadingIndicators in Frameworks */ = {isa = PBXBuildFile; productRef = 0E8D3F16281CBB25003FBB45 /* SwiftfulLoadingIndicators */; };
-		0E8D3F19281CEB8A003FBB45 /* LeftGunAbilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8D3F18281CEB8A003FBB45 /* LeftGunAbilityView.swift */; };
-		0E8D3F1B281CEBBA003FBB45 /* SmokeStackAbilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8D3F1A281CEBBA003FBB45 /* SmokeStackAbilityView.swift */; };
-		0E8D3F1D281CED1B003FBB45 /* AbilityMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8D3F1C281CED1B003FBB45 /* AbilityMethods.swift */; };
+		0E8D3F1D281CED1B003FBB45 /* AbilitySettingFactories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8D3F1C281CED1B003FBB45 /* AbilitySettingFactories.swift */; };
 		0E9287582815FD8700026ED1 /* KnightBLEApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9287572815FD8700026ED1 /* KnightBLEApp.swift */; };
 		0E92875A2815FD8700026ED1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9287592815FD8700026ED1 /* ContentView.swift */; };
 		0E92875C2815FD8800026ED1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E92875B2815FD8800026ED1 /* Assets.xcassets */; };
@@ -37,10 +32,21 @@
 		0E9287732815FD8800026ED1 /* KnightBLEUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9287722815FD8800026ED1 /* KnightBLEUITests.swift */; };
 		0E9287752815FD8800026ED1 /* KnightBLEUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9287742815FD8800026ED1 /* KnightBLEUITestsLaunchTests.swift */; };
 		0E9287862816132000026ED1 /* BluetoothIds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9287852816132000026ED1 /* BluetoothIds.swift */; };
-		0EE8120028278464001D9A2B /* RightGunAbilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE811FF28278464001D9A2B /* RightGunAbilityView.swift */; };
-		0EEAF855282248A800D925D1 /* DataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEAF854282248A800D925D1 /* DataExtensions.swift */; };
+		0ED75FA42A6E0846004CD6B8 /* ColorSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED75FA32A6E0846004CD6B8 /* ColorSetting.swift */; };
+		0ED75FA62A6E090B004CD6B8 /* ColorSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED75FA52A6E090B004CD6B8 /* ColorSettingView.swift */; };
+		0ED75FA82A6E0BF4004CD6B8 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED75FA72A6E0BF4004CD6B8 /* ColorExtensions.swift */; };
+		0ED8ABCA2A69040D00CAE76E /* KnightImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED8ABC92A69040D00CAE76E /* KnightImageView.swift */; };
+		0ED8ABCD2A6A5E0A00CAE76E /* KnightDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED8ABCC2A6A5E0A00CAE76E /* KnightDetailsView.swift */; };
+		0ED8ABCF2A6B7AC500CAE76E /* ToggleSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED8ABCE2A6B7AC500CAE76E /* ToggleSettingView.swift */; };
+		0EEAF855282248A800D925D1 /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEAF854282248A800D925D1 /* IntExtensions.swift */; };
 		0EEAF857282316C900D925D1 /* PreviewGenerators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEAF856282316C900D925D1 /* PreviewGenerators.swift */; };
-		0EFF326928219AEB0081118D /* NoiseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFF326828219AEB0081118D /* NoiseView.swift */; };
+		0EF6A76C2A6F42A600A81EBF /* SliderSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF6A76B2A6F42A500A81EBF /* SliderSetting.swift */; };
+		0EF6A76E2A6F44D600A81EBF /* DataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF6A76D2A6F44D600A81EBF /* DataExtensions.swift */; };
+		0EF6A7702A6F4A7E00A81EBF /* SliderSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF6A76F2A6F4A7E00A81EBF /* SliderSettingView.swift */; };
+		0EF6A7722A703D4800A81EBF /* ActionSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF6A7712A703D4800A81EBF /* ActionSetting.swift */; };
+		0EF6A7762A704AA700A81EBF /* ActionSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF6A7752A704AA700A81EBF /* ActionSettingView.swift */; };
+		0EF6A7782A7083E100A81EBF /* ActionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF6A7772A7083E100A81EBF /* ActionItem.swift */; };
+		0EF6A77A2A709D8E00A81EBF /* ActionSettingRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF6A7792A709D8E00A81EBF /* ActionSettingRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,31 +70,26 @@
 		0E059FEE281A5FF9003B9B81 /* GrowingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowingButton.swift; sourceTree = "<group>"; };
 		0E059FF2281B5C50003B9B81 /* KnightAbility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightAbility.swift; sourceTree = "<group>"; };
 		0E059FF7281B9CA1003B9B81 /* Encodings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encodings.swift; sourceTree = "<group>"; };
-		0E06346C281EDA8E0098114C /* SoundAbilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundAbilityView.swift; sourceTree = "<group>"; };
-		0E06346E281EDAA70098114C /* SoundKnightAbility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundKnightAbility.swift; sourceTree = "<group>"; };
 		0E063471281EDCC50098114C /* DataReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataReader.swift; sourceTree = "<group>"; };
 		0E063475281F3DC80098114C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0E0BAC6228177B8E00D35034 /* ConnectedKnightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedKnightsView.swift; sourceTree = "<group>"; };
 		0E0BAC6428177C8F00D35034 /* Knight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Knight.swift; sourceTree = "<group>"; };
 		0E0BAC6628177E1800D35034 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		0E0BAC6828177F0F00D35034 /* KnightScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightScannerView.swift; sourceTree = "<group>"; };
-		0E0BAC6F2817ABDE00D35034 /* ConnectedKnightRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedKnightRowView.swift; sourceTree = "<group>"; };
 		0E0BAC722817B84A00D35034 /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
-		0E0BAC852819ADD200D35034 /* EyesAbilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyesAbilityView.swift; sourceTree = "<group>"; };
 		0E0BAC882819B16C00D35034 /* BoolExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolExtensions.swift; sourceTree = "<group>"; };
 		0E0BAC8C2819FD6200D35034 /* CancellableExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancellableExtensions.swift; sourceTree = "<group>"; };
 		0E0BAC90281A2EA400D35034 /* KnightScannerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightScannerRowView.swift; sourceTree = "<group>"; };
+		0E3956CC2A6DE104003B6738 /* AbilitySetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilitySetting.swift; sourceTree = "<group>"; };
+		0E3956CF2A6DE1B4003B6738 /* ToggleSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleSetting.swift; sourceTree = "<group>"; };
+		0E3956D32A6DEB62003B6738 /* KnightAbilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightAbilityView.swift; sourceTree = "<group>"; };
 		0E3C1FBB296A969C00B7956D /* TemperedFury.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TemperedFury.ino; sourceTree = "<group>"; };
 		0E3C1FBC296A969C00B7956D /* KnightBluetoothControl.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KnightBluetoothControl.ino; sourceTree = "<group>"; };
 		0E3C1FC0296A96A700B7956D /* SpearheadOfIron.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SpearheadOfIron.ino; sourceTree = "<group>"; };
 		0E3C1FC1296A96A700B7956D /* KnightBluetoothControl.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KnightBluetoothControl.ino; sourceTree = "<group>"; };
 		0E3C1FC5296A96AD00B7956D /* ScionOfTerra.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ScionOfTerra.ino; sourceTree = "<group>"; };
 		0E3C1FC6296A96AD00B7956D /* KnightBluetoothControl.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KnightBluetoothControl.ino; sourceTree = "<group>"; };
-		0E3C1FCA296B245B00B7956D /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
-		0E8D3F0E281C43D1003FBB45 /* BoolKnightAbility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolKnightAbility.swift; sourceTree = "<group>"; };
-		0E8D3F18281CEB8A003FBB45 /* LeftGunAbilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftGunAbilityView.swift; sourceTree = "<group>"; };
-		0E8D3F1A281CEBBA003FBB45 /* SmokeStackAbilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeStackAbilityView.swift; sourceTree = "<group>"; };
-		0E8D3F1C281CED1B003FBB45 /* AbilityMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilityMethods.swift; sourceTree = "<group>"; };
+		0E8D3F1C281CED1B003FBB45 /* AbilitySettingFactories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilitySettingFactories.swift; sourceTree = "<group>"; };
 		0E8D3F20281D0835003FBB45 /* HandOfFury.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HandOfFury.ino; sourceTree = "<group>"; };
 		0E8D3F21281D0835003FBB45 /* KnightBluetoothControl.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KnightBluetoothControl.ino; sourceTree = "<group>"; };
 		0E8D3F23281D0835003FBB45 /* KnightBluetoothControl.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KnightBluetoothControl.ino; sourceTree = "<group>"; };
@@ -112,10 +113,22 @@
 		0E9287722815FD8800026ED1 /* KnightBLEUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightBLEUITests.swift; sourceTree = "<group>"; };
 		0E9287742815FD8800026ED1 /* KnightBLEUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightBLEUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		0E9287852816132000026ED1 /* BluetoothIds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothIds.swift; sourceTree = "<group>"; };
-		0EE811FF28278464001D9A2B /* RightGunAbilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightGunAbilityView.swift; sourceTree = "<group>"; };
-		0EEAF854282248A800D925D1 /* DataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtensions.swift; sourceTree = "<group>"; };
+		0ED75FA32A6E0846004CD6B8 /* ColorSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSetting.swift; sourceTree = "<group>"; };
+		0ED75FA52A6E090B004CD6B8 /* ColorSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSettingView.swift; sourceTree = "<group>"; };
+		0ED75FA72A6E0BF4004CD6B8 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
+		0ED8ABC92A69040D00CAE76E /* KnightImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightImageView.swift; sourceTree = "<group>"; };
+		0ED8ABCC2A6A5E0A00CAE76E /* KnightDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightDetailsView.swift; sourceTree = "<group>"; };
+		0ED8ABCE2A6B7AC500CAE76E /* ToggleSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleSettingView.swift; sourceTree = "<group>"; };
+		0EEAF854282248A800D925D1 /* IntExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
 		0EEAF856282316C900D925D1 /* PreviewGenerators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewGenerators.swift; sourceTree = "<group>"; };
-		0EFF326828219AEB0081118D /* NoiseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseView.swift; sourceTree = "<group>"; };
+		0EF3818F2A75E97300DF018A /* QuestorisLayout.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = QuestorisLayout.rtf; sourceTree = "<group>"; };
+		0EF6A76B2A6F42A500A81EBF /* SliderSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderSetting.swift; sourceTree = "<group>"; };
+		0EF6A76D2A6F44D600A81EBF /* DataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtensions.swift; sourceTree = "<group>"; };
+		0EF6A76F2A6F4A7E00A81EBF /* SliderSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderSettingView.swift; sourceTree = "<group>"; };
+		0EF6A7712A703D4800A81EBF /* ActionSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSetting.swift; sourceTree = "<group>"; };
+		0EF6A7752A704AA700A81EBF /* ActionSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSettingView.swift; sourceTree = "<group>"; };
+		0EF6A7772A7083E100A81EBF /* ActionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionItem.swift; sourceTree = "<group>"; };
+		0EF6A7792A709D8E00A81EBF /* ActionSettingRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSettingRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,10 +160,9 @@
 		0E0BAC612817793800D35034 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0E3C1FC9296B243700B7956D /* Sidebar */,
+				0E3956D22A6DEA3C003B6738 /* Settings */,
 				0E0BAC792818F69400D35034 /* KnightScanner */,
 				0E0BAC8028190C7C00D35034 /* ConnectedKnights */,
-				0E0BAC842819ADBF00D35034 /* Characteristics */,
 				0E9287592815FD8700026ED1 /* ContentView.swift */,
 			);
 			path = Views;
@@ -178,24 +190,13 @@
 		0E0BAC8028190C7C00D35034 /* ConnectedKnights */ = {
 			isa = PBXGroup;
 			children = (
+				0ED8ABCC2A6A5E0A00CAE76E /* KnightDetailsView.swift */,
 				0E0BAC6228177B8E00D35034 /* ConnectedKnightsView.swift */,
-				0E0BAC6F2817ABDE00D35034 /* ConnectedKnightRowView.swift */,
 				0E059FEE281A5FF9003B9B81 /* GrowingButton.swift */,
+				0ED8ABC92A69040D00CAE76E /* KnightImageView.swift */,
+				0E3956D32A6DEB62003B6738 /* KnightAbilityView.swift */,
 			);
 			path = ConnectedKnights;
-			sourceTree = "<group>";
-		};
-		0E0BAC842819ADBF00D35034 /* Characteristics */ = {
-			isa = PBXGroup;
-			children = (
-				0E0BAC852819ADD200D35034 /* EyesAbilityView.swift */,
-				0E8D3F18281CEB8A003FBB45 /* LeftGunAbilityView.swift */,
-				0EE811FF28278464001D9A2B /* RightGunAbilityView.swift */,
-				0E8D3F1A281CEBBA003FBB45 /* SmokeStackAbilityView.swift */,
-				0E06346C281EDA8E0098114C /* SoundAbilityView.swift */,
-				0EFF326828219AEB0081118D /* NoiseView.swift */,
-			);
-			path = Characteristics;
 			sourceTree = "<group>";
 		};
 		0E0BAC872819B15E00D35034 /* Extensions */ = {
@@ -204,9 +205,36 @@
 				0E0BAC882819B16C00D35034 /* BoolExtensions.swift */,
 				0E0BAC8C2819FD6200D35034 /* CancellableExtensions.swift */,
 				0E059FF7281B9CA1003B9B81 /* Encodings.swift */,
-				0EEAF854282248A800D925D1 /* DataExtensions.swift */,
+				0EEAF854282248A800D925D1 /* IntExtensions.swift */,
+				0ED75FA72A6E0BF4004CD6B8 /* ColorExtensions.swift */,
+				0EF6A76D2A6F44D600A81EBF /* DataExtensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0E3956CE2A6DE1A5003B6738 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				0E3956CC2A6DE104003B6738 /* AbilitySetting.swift */,
+				0E3956CF2A6DE1B4003B6738 /* ToggleSetting.swift */,
+				0ED75FA32A6E0846004CD6B8 /* ColorSetting.swift */,
+				0EF6A76B2A6F42A500A81EBF /* SliderSetting.swift */,
+				0EF6A7712A703D4800A81EBF /* ActionSetting.swift */,
+				0EF6A7772A7083E100A81EBF /* ActionItem.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		0E3956D22A6DEA3C003B6738 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				0ED8ABCE2A6B7AC500CAE76E /* ToggleSettingView.swift */,
+				0ED75FA52A6E090B004CD6B8 /* ColorSettingView.swift */,
+				0EF6A76F2A6F4A7E00A81EBF /* SliderSettingView.swift */,
+				0EF6A7752A704AA700A81EBF /* ActionSettingView.swift */,
+				0EF6A7792A709D8E00A81EBF /* ActionSettingRowView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		0E3C1FBA296A969C00B7956D /* TemperedFury */ = {
@@ -234,14 +262,6 @@
 				0E3C1FC6296A96AD00B7956D /* KnightBluetoothControl.ino */,
 			);
 			path = ScionOfTerra;
-			sourceTree = "<group>";
-		};
-		0E3C1FC9296B243700B7956D /* Sidebar */ = {
-			isa = PBXGroup;
-			children = (
-				0E3C1FCA296B245B00B7956D /* SidebarView.swift */,
-			);
-			path = Sidebar;
 			sourceTree = "<group>";
 		};
 		0E8D3F1E281D0835003FBB45 /* Arduino */ = {
@@ -287,6 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				0E8D3F33281D0970003FBB45 /* Nano33Ble Pin Usage.rtf */,
+				0EF3818F2A75E97300DF018A /* QuestorisLayout.rtf */,
 			);
 			path = docs;
 			sourceTree = "<group>";
@@ -379,12 +400,11 @@
 		0E9287842816130E00026ED1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0E3956CE2A6DE1A5003B6738 /* Settings */,
 				0E0BAC6628177E1800D35034 /* ModelData.swift */,
 				0E0BAC6428177C8F00D35034 /* Knight.swift */,
 				0E059FF2281B5C50003B9B81 /* KnightAbility.swift */,
-				0E8D3F0E281C43D1003FBB45 /* BoolKnightAbility.swift */,
-				0E06346E281EDAA70098114C /* SoundKnightAbility.swift */,
-				0E8D3F1C281CED1B003FBB45 /* AbilityMethods.swift */,
+				0E8D3F1C281CED1B003FBB45 /* AbilitySettingFactories.swift */,
 				0EEAF856282316C900D925D1 /* PreviewGenerators.swift */,
 			);
 			path = Models;
@@ -457,7 +477,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1330;
-				LastUpgradeCheck = 1330;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					0E9287532815FD8700026ED1 = {
 						CreatedOnToolsVersion = 13.3.1;
@@ -527,33 +547,39 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E92875A2815FD8700026ED1 /* ContentView.swift in Sources */,
-				0EE8120028278464001D9A2B /* RightGunAbilityView.swift in Sources */,
+				0E3956CD2A6DE104003B6738 /* AbilitySetting.swift in Sources */,
 				0E0BAC6328177B8E00D35034 /* ConnectedKnightsView.swift in Sources */,
-				0E0BAC862819ADD300D35034 /* EyesAbilityView.swift in Sources */,
-				0EEAF855282248A800D925D1 /* DataExtensions.swift in Sources */,
-				0E8D3F0F281C43D1003FBB45 /* BoolKnightAbility.swift in Sources */,
+				0E3956D42A6DEB62003B6738 /* KnightAbilityView.swift in Sources */,
+				0EEAF855282248A800D925D1 /* IntExtensions.swift in Sources */,
+				0EF6A76E2A6F44D600A81EBF /* DataExtensions.swift in Sources */,
 				0E059FF8281B9CA1003B9B81 /* Encodings.swift in Sources */,
 				0E059FEF281A5FF9003B9B81 /* GrowingButton.swift in Sources */,
 				0E0BAC892819B16C00D35034 /* BoolExtensions.swift in Sources */,
-				0E3C1FCB296B245B00B7956D /* SidebarView.swift in Sources */,
-				0E06346F281EDAA70098114C /* SoundKnightAbility.swift in Sources */,
+				0ED75FA42A6E0846004CD6B8 /* ColorSetting.swift in Sources */,
+				0EF6A77A2A709D8E00A81EBF /* ActionSettingRowView.swift in Sources */,
 				0E063472281EDCC50098114C /* DataReader.swift in Sources */,
 				0E9287862816132000026ED1 /* BluetoothIds.swift in Sources */,
 				0E0BAC91281A2EA400D35034 /* KnightScannerRowView.swift in Sources */,
-				0EFF326928219AEB0081118D /* NoiseView.swift in Sources */,
-				0E8D3F1D281CED1B003FBB45 /* AbilityMethods.swift in Sources */,
+				0E3956D02A6DE1B4003B6738 /* ToggleSetting.swift in Sources */,
+				0ED8ABCA2A69040D00CAE76E /* KnightImageView.swift in Sources */,
+				0E8D3F1D281CED1B003FBB45 /* AbilitySettingFactories.swift in Sources */,
+				0EF6A76C2A6F42A600A81EBF /* SliderSetting.swift in Sources */,
+				0EF6A7702A6F4A7E00A81EBF /* SliderSettingView.swift in Sources */,
 				0E0BAC6528177C8F00D35034 /* Knight.swift in Sources */,
 				0E0BAC732817B84A00D35034 /* BluetoothManager.swift in Sources */,
-				0E8D3F19281CEB8A003FBB45 /* LeftGunAbilityView.swift in Sources */,
+				0ED75FA62A6E090B004CD6B8 /* ColorSettingView.swift in Sources */,
 				0E0BAC6928177F0F00D35034 /* KnightScannerView.swift in Sources */,
-				0E06346D281EDA8E0098114C /* SoundAbilityView.swift in Sources */,
-				0E8D3F1B281CEBBA003FBB45 /* SmokeStackAbilityView.swift in Sources */,
+				0ED8ABCD2A6A5E0A00CAE76E /* KnightDetailsView.swift in Sources */,
 				0E9287582815FD8700026ED1 /* KnightBLEApp.swift in Sources */,
 				0E0BAC8D2819FD6200D35034 /* CancellableExtensions.swift in Sources */,
+				0EF6A7762A704AA700A81EBF /* ActionSettingView.swift in Sources */,
 				0E059FF3281B5C50003B9B81 /* KnightAbility.swift in Sources */,
-				0E0BAC702817ABDE00D35034 /* ConnectedKnightRowView.swift in Sources */,
+				0EF6A7722A703D4800A81EBF /* ActionSetting.swift in Sources */,
+				0ED8ABCF2A6B7AC500CAE76E /* ToggleSettingView.swift in Sources */,
+				0EF6A7782A7083E100A81EBF /* ActionItem.swift in Sources */,
 				0EEAF857282316C900D925D1 /* PreviewGenerators.swift in Sources */,
 				0E0BAC6728177E1800D35034 /* ModelData.swift in Sources */,
+				0ED75FA82A6E0BF4004CD6B8 /* ColorExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,6 +652,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -640,7 +667,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -686,6 +713,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -694,7 +722,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -720,8 +748,8 @@
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "We need bluetooth to connect to the knights";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -751,8 +779,8 @@
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "We need bluetooth to connect to the knights";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

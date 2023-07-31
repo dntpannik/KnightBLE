@@ -6,13 +6,36 @@
 //
 
 import SwiftUI
+import CoreBluetooth
 
 struct ActionSettingRowView: View {
+    var peripheralId: UUID
+    var serviceId: CBUUID
+    @ObservedObject var setting: ActionSetting
+    @ObservedObject var actionItem: ActionItem
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button(action: {
+            bleManager.WriteValue(
+                peripheralId: peripheralId,
+                serviceId: serviceId,
+                characteristicId: setting.characteristicId,
+                withValue: EncodeUInt16(value: actionItem.index))
+            }) {
+                Text(actionItem.name)
+            }
+            .padding()
+            .background(.blue)
+            .foregroundColor(.white)
+            .cornerRadius(22)
+            .buttonStyle(BorderlessButtonStyle())
     }
 }
 
 #Preview {
-    ActionSettingRowView()
+    ActionSettingRowView(
+        peripheralId: UUID(),
+        serviceId: CBUUID(),
+        setting: ActionSetting(characteristicId: CBUUID()),
+        actionItem: ActionItem(name: "Action", index: 1))
 }

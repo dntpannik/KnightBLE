@@ -24,8 +24,11 @@ class BluetoothManager : NSObject {
     var peripheralUpdatedSubject: PassthroughSubject<(String, CBPeripheral), Never> = .init()
     var peripheralConnectedSubject: PassthroughSubject<CBPeripheral, Never> = .init()
     var peripheralDisconnectedSubject: PassthroughSubject<CBPeripheral, Never> = .init()
+    var serviceDiscoveredSubject: PassthroughSubject<(CBPeripheral, CBService), Never> = .init()
     var characteristicDiscoveredSubject: PassthroughSubject<(CBPeripheral, CBCharacteristic), Never> = .init()
     var characteristicValueUpdatedSubject: PassthroughSubject<(CBPeripheral, CBCharacteristic), Never> = .init()
+    var descriptorDiscoveredSubject: PassthroughSubject<(CBCharacteristic, CBDescriptor), Never> = .init()
+    var descriptorValueUpdatedSubject: PassthroughSubject<(CBPeripheral, CBDescriptor), Never> = .init()
     
     func Start() {
         if !_initialzied {
@@ -93,6 +96,29 @@ class BluetoothManager : NSObject {
         return _initialzied ? _centralManager.state : .unknown
     }
     
+    func GetServiceCharactieristics(peripheralId: UUID, serviceId: CBUUID) -> [CBUUID] {
+        guard let peripheral = _discoveredPeripherals[peripheralId] else {
+            print("Attempted to get characteristics for a peripheral that didnt exist")
+            return []
+        }
+        
+        guard let service = peripheral.services?.first(where: { $0.uuid == serviceId }) else {
+            print("Attempted to get characteristics for a service that didnt exist")
+            return []
+        }
+        
+        var characteristicIds: [CBUUID] = []
+        
+        //Loop over all characteristics in the service
+        if let characteristics = service.characteristics {
+            for characteristic in characteristics {
+                characteristicIds.append(characteristic.uuid)
+            }
+        }
+        
+        return characteristicIds;
+    }
+    
     func GetCharacteristics(peripheralId: UUID) -> [CBUUID] {
         guard let peripheral = _discoveredPeripherals[peripheralId] else {
             print("Attempted to write data to a peripheral whose id doesn't exist")
@@ -109,9 +135,7 @@ class BluetoothManager : NSObject {
                     //Loop over all characteristics in the service
                     if let characteristics = service.characteristics {
                         for characteristic in characteristics {
-                            if BluetoothIds.acceptedCharacteristics.contains(where: {$0 == characteristic.uuid}) {
-                                characteristicIds.append(characteristic.uuid)
-                            }
+                            characteristicIds.append(characteristic.uuid)
                         }
                     }
                 }
@@ -126,6 +150,9 @@ class BluetoothManager : NSObject {
                 print("Attempted to write data to a peripheral whose id doesn't exist")
                 return
             }
+        
+            print("ServiceId: \(serviceId)")
+        
             guard let service = peripheral.services?.first(where: {$0.uuid == serviceId}) else {
                 print("Attempted to write data to a service whose id doesn't exist")
                 return
@@ -186,6 +213,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
             name = advertisementData["kCBAdvDataLocalName"] as! String
         }
 
+        print("Peripheral Discovered \(peripheral.identifier)")
         //Send correct message based on whether the peripheral is new or not
         if peripheralUpdated {
             peripheralUpdatedSubject.send((name, peripheral))
@@ -200,7 +228,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
             print("Connected to device \(peripheral.identifier)")
             _connectedPeripherals.append(peripheral.identifier)
             peripheralConnectedSubject.send(peripheral)
-            peripheral.discoverServices(BluetoothIds.acceptedServies)
+            peripheral.discoverServices(nil)
         }
     }
     
@@ -210,7 +238,11 @@ extension BluetoothManager: CBCentralManagerDelegate {
                         error: Error?) {
         if (_discoveredPeripherals[peripheral.identifier] != nil) {
             print("Disconnected from device \(peripheral.identifier)")
-        
+            
+            if let errorString = error {
+                print("Disconnection Error: \(errorString)")
+            }
+            
             if let index = _connectedPeripherals.firstIndex(where: { $0 == peripheral.identifier }) {
                 _connectedPeripherals.remove(at: index)
             }
@@ -226,10 +258,10 @@ extension BluetoothManager: CBPeripheralDelegate {
      func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
          if let services = peripheral.services {
              for service in services {
-                 if BluetoothIds.acceptedServies.contains(where: {$0 == service.uuid}) {
-                     print("Service found \(service.uuid)")
-                     peripheral.discoverCharacteristics(BluetoothIds.acceptedCharacteristics, for: service)
-                 }
+                 print("Service found \(service.uuid)")
+                 serviceDiscoveredSubject.send((peripheral, service))
+                 
+                 peripheral.discoverCharacteristics(BluetoothIds.acceptedCharacteristics, for: service)
              }
          }
      }
@@ -238,19 +270,42 @@ extension BluetoothManager: CBPeripheralDelegate {
      func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
          if let characteristics = service.characteristics {
              for characteristic in characteristics {
-                 if BluetoothIds.displayCharacteristics.contains(where: {$0 == characteristic.uuid}) {
+                 if BluetoothIds.acceptedCharacteristics.contains(where: {$0 == characteristic.uuid}) {
                      print("Chracteristic found \(characteristic.uuid)")
                      peripheral.setNotifyValue(true, for: characteristic)
                      peripheral.readValue(for: characteristic)
                      characteristicDiscoveredSubject.send((peripheral, characteristic))
+                     peripheral.discoverDescriptors(for: characteristic)
                  }
              }
          }
      }
     
+    // Handling discovery of descriptors
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverDescriptorsFor characteristic: CBCharacteristic, error: Error?) {
+        if let descriptors = characteristic.descriptors {
+            for descriptor in descriptors {
+                if BluetoothIds.acceptedDescriptors.contains(where: {$0 == descriptor.uuid}) {
+                    print("Descriptor found \(descriptor.uuid)")
+                    //peripheral.setNotifyValue(true, for: descriptor)
+                    peripheral.readValue(for: descriptor)
+                    //characteristic.readValue(for: descriptor)
+                    //characteristicDiscoveredSubject.send((peripheral, characteristic))
+                    //peripheral.discoverDescriptors(for: characteristic)
+                }
+            }
+        }
+    }
+    
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         if (error == nil) {
             characteristicValueUpdatedSubject.send((peripheral, characteristic))
+        }
+    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor descriptor: CBDescriptor, error: Error?) {
+        if (error == nil) {
+            descriptorValueUpdatedSubject.send((peripheral, descriptor))
         }
     }
 }

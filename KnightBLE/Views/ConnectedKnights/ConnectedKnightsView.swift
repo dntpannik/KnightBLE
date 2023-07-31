@@ -8,44 +8,41 @@
 import SwiftUI
 
 struct ConnectedKnightsView: View {
-    @EnvironmentObject var modelData: ModelData
-    @State var selection: Int? = nil
-    @State private var selected: Set<UUID> = []
-    @State private var isSideBarOpened = false
+    @ObservedObject var modelData: ModelData
     
-    private var knights: [Knight] {
-        modelData.knights.filter({$0.connected}).sorted { left, right in
-            return left.name < right.name
-        }
-    }
+    private let twoColumnGrid = [
+        GridItem(.flexible(minimum: 40)),
+        GridItem(.flexible(minimum: 40))
+    ]
     
     var body: some View {
         ZStack {
             NavigationView {
-                VStack {
-                    NavigationLink(destination: KnightScannerView(), tag: 1, selection: $selection) {
-                        Button("Discover Knights") { self.selection = 1 }
-                            .buttonStyle(GrowingButton())
-                    }
-                    List {
-                        ForEach(knights, id: \.id) {
-                            knight in ConnectedKnightRowView(peripheralId: knight.peripheralId)
+                ScrollView {
+                    LazyVGrid(columns: twoColumnGrid, alignment: .center) {
+                        ForEach(Array(modelData.knights.keys.filter {modelData.knights[$0]?.connected == true}), id: \.self) { key in
+                            GeometryReader { gr in
+                                NavigationLink(destination: KnightDetailsView(knight: modelData.knights[key] ?? UnknownKnight()), label: {
+                                    VStack {
+                                        Text(modelData.knights[key]?.name ?? "Unknown")
+                                            .bold()
+                                            .underline()
+                                        Image(modelData.knights[key]?.name.replacingOccurrences(of: " ", with: "") ?? "Unknown")
+                                            .renderingMode(.original)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(height: gr.size.width)
+                                    }
+                                })
+                            }
+                            .clipped()
+                            .aspectRatio(1, contentMode: .fit)
                         }
-                    }.id(UUID())
-                    Spacer()
-                }
-                .navigationTitle("Active Knights")
-                .toolbar {
-                    Button {
-                            isSideBarOpened.toggle()
-                    } label: {
-                        Label("Toggle SideBar",
-                        systemImage: "line.3.horizontal.circle.fill")
                     }
+                    .navigationTitle("Connected Knights")
+                    .navigationBarTitleDisplayMode(.inline)
                 }
-                .navigationBarTitleDisplayMode(.inline)
             }
-            SidebarView(isSidebarVisible: $isSideBarOpened)
         }
     }
     
@@ -53,7 +50,6 @@ struct ConnectedKnightsView: View {
 
 struct KnightList_Previews: PreviewProvider {
     static var previews: some View {
-        ConnectedKnightsView()
-            .environmentObject(ModelData(knights: [KnightWithAllAblities()]))
+        ConnectedKnightsView(modelData: ModelData(knights: KnightArray()))
     }
 }

@@ -8,13 +8,24 @@
 import SwiftUI
 
 struct KnightImageView: View {
+    @ObservedObject var knight: Knight
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text(knight.name)
+                .bold()
+                .underline()
+                .font(.system(size: 15))
+            Image(knight.name.replacingOccurrences(of: " ", with: ""))
+                .resizable()
+                .scaledToFit()
+                .frame(width: 150, height: 150)
+        }
     }
 }
 
 struct KnightImageView_Previews: PreviewProvider {
     static var previews: some View {
-        KnightImageView()
+        KnightImageView(knight: KnightWithAllAblities())
     }
 }

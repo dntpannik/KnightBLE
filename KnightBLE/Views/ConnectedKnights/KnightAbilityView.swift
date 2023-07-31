@@ -6,13 +6,21 @@
 //
 
 import SwiftUI
+import CoreBluetooth
 
 struct KnightAbilityView: View {
+    var peripheralId: UUID
+    @ObservedObject var ability: KnightAbility
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            ForEach(Array(ability.settings.values), id: \.id) { setting in
+                SettingView(setting, ability.serviceId, peripheralId)}.id(UUID())
+                .padding([.leading, .trailing], 20)
+        }
     }
 }
 
 #Preview {
-    KnightAbilityView()
+    KnightAbilityView(peripheralId: UUID(), ability: KnightWithAllAblities().abilities.values.first!)
 }

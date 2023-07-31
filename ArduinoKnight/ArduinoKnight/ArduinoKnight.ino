@@ -1,32 +1,64 @@
 #include <DFRobotDFPlayerMini.h>
 #include <ArduinoBLE.h>
 
-#include "LedPeripheral.h"
+#include "ToggleLedPeripheral.h"
+#include "TogglePwmLedPeripheral.h"
+#include "RgbLedPeripheral.h"
+#include "SliderPeripheral.h"
+#include "ActionPeripheral.h"
+#include "PropertyCharacteristics.h"
+#include "LedBoardManager.h"
+#include "AudioManager.h"
+#include "Questoris.h"
 
-char name[]= "BLEName";
+//---   Device Specific   ---//
+char name[]= "Death Storm";
 
-LedPeripheral led("585ff59a-3e23-4405-ad70-1d6d87f7ae6d", 4);
-Peripheral* peripherals[1] = {
-  &led
-};
+bool VerboseDebuggingEnabled = false;
+
+int numPeripherals = QuestorisPeripheralsCount;
+Peripheral** peripherals = QuestorisPeripherals;
+
+//--------------------------//
+BLEService modelService("585ff59a-3e23-4405-ad70-1d6d87f7ae6d");
+
 
 void setup() {
-  Serial.begin(9600);
-
+  Serial.begin(115200);
+  Serial1.begin(9600);
+  
+  // while the serial stream is not open, do nothing:
+  while (!Serial) ;
+   
+  Serial.println("Starting Up");
   //---   Initialize BLE   ---//
   if(!BLE.begin()) {
     Serial.println("starting Bluetooth® Low Energy failed!");
     while (1);
   }
 
-  BLE.setLocalName(name);
+  //---   Intialize LED Board   ---//
+  LedBoardManager* manager = LedBoardManager::getInstance();
+  manager->Initialize();
 
+  //---   Initialize Audio   ---//
+  AudioManager* audioManager = AudioManager::getInstance();
+  audioManager->Initialize();
+  
   //---   Initialize Peripherals   ---//
   // put your setup code here, to run once:
-  for (Peripheral* peripheral : peripherals) {
-    peripheral->Initialize();
+  for (int i = 0; i < numPeripherals; i++) {
+    peripherals[i]->Initialize();
   }
 
+
+  //---   Initialize Model Service   ---//  
+  BLE.setLocalName(name);
+  BLE.setAdvertisedService(modelService);
+
+  //---   Add Service   ---
+   BLE.addService(modelService);
+    
   //---   Advertise   ---//
   BLE.advertise();
   Serial.println("BLE Peripheral Engaged");
@@ -43,9 +75,29 @@ void loop() {
 
     //While the central is still connected to peripheral:
     while (central.connected()) {
-      for (Peripheral* peripheral : peripherals) {
-        peripheral->Update();
+      bool updated = false;
+      
+      //for (Peripheral* peripheral : peripherals) {
+      for (int i = 0; i < numPeripherals; i++) {
+        bool peripheralUpdated = peripherals[i]->Update();
+        
+        if (peripheralUpdated) {
+          updated = true;
+        }
       }
+
+      if (updated && VerboseDebuggingEnabled) {
+        for (int i = 0; i < numPeripherals; i++) {
+          peripherals[i]->DebugOut();
+        }
+      }
+    }
+
+    // when the central disconnects, print it out:
+    Serial.print(F("Disconnected from central: "));
+    Serial.println(central.address());
+    for (int i = 0; i < numPeripherals; i++) {
+      peripherals[i]->Cleanup();
     }
   }
 }

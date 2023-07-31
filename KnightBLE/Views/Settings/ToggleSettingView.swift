@@ -6,28 +6,25 @@
 //
 
 import SwiftUI
+import CoreBluetooth
 
-struct ToggleAbilityView: View {
-    @EnvironmentObject var modelData: ModelData
-    @State var knight: Knight
-    @State var setting: ToggleSetting
-    @State var enabled: Bool = false
-
+struct ToggleSettingView: View {
+    var peripheralId: UUID
+    var serviceId: CBUUID
+    @ObservedObject var setting: ToggleSetting
+    
     var body: some View {
         HStack {
-            Toggle("Enabled", isOn: $enabled)
-                .onChange(of: enabled ) { value in
-                    bleManager.WriteValue(peripheralId: knight.peripheralId, serviceId: BluetoothIds.modelService, characteristicId: BluetoothIds.toggleCharacteristic, withValue: EncodeBool(value: enabled))
+            Toggle(setting.settingName, isOn: $setting.value)
+                .onChange(of: setting.value ) { value in
+                    bleManager.WriteValue(peripheralId: peripheralId, serviceId: serviceId, characteristicId: setting.characteristicId, withValue: EncodeBool(value: setting.value))
             }
-        }
-        .onAppear {
-            enabled = setting.value
         }
     }
 }
 
-struct ToggleAbilityView_Previews: PreviewProvider {
+struct ToggleSettingView_Previews: PreviewProvider {
     static var previews: some View {
-        ToggleAbilityView(knight: Knight(name: "TestKnight", peripheralId: UUID()), setting: ToggleSetting(characteristicId: BluetoothIds.toggleCharacteristic, value: false))
+        ToggleSettingView(peripheralId: UUID(), serviceId: CBUUID(), setting: ToggleSetting(characteristicId: CBUUID(), value: false, settingName: "Test Name"))
     }
 }

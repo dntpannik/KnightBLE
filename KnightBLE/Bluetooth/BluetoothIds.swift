@@ -9,28 +9,33 @@ import UIKit
 import CoreBluetooth
 
 class BluetoothIds {
-    public static let ledService = CBUUID.init(string: "adb7bab2-df5c-4292-9f71-e2b6aa806c3b")
-    public static let eyeLedCharacteristic = CBUUID.init(string: "d8eeaa08-db2f-48a0-99cd-aadd33194ffd")
-    public static let leftGunLedCharacteristic = CBUUID.init(string: "9aa13f92-1bd9-4e59-90f6-e41dfa9a81a2")
-    public static let rightGunLedCharacteristic = CBUUID.init(string: "9e2b8f55-26e4-40f0-843d-27a80203685e")
+    public static let modelService = CBUUID.init(string: "585ff59a-3e23-4405-ad70-1d6d87f7ae6d")
     
-    public static let smokeStackService = CBUUID.init(string: "9cd95a69-ee40-41be-a858-b0647c2fb955")
-    public static let smokeStackCharacteristic = CBUUID.init(string: "e9196461-d1ec-4b7d-a44a-fb76ad4b0795")
-    
-    public static let soundService = CBUUID.init(string: "ab936fb8-e5f7-4c43-b592-aab50be3c7da")
-    public static let soundInfoCharacteristic = CBUUID.init(string: "607047f7-9dd2-477d-94fa-9a6333dba1d4")
-    public static let soundControlCharacteristic = CBUUID.init(string: "8ff278a1-a01e-4c46-87e7-751db82bfe24")
+    public static let nameCharacteristic = CBUUID.init(string: "5b7a52b5-af5b-4451-921b-4cf039193c58")
+    public static let toggleCharacteristic = CBUUID.init(string: "9929eb1f-c8c6-42d3-99a2-61d1d6e157bb")
+    public static let rgbCharacteristic = CBUUID.init(string: "44c5f429-9c6d-460a-a9ab-0fd36ca26cd7")
+    public static let sliderCharacteristic = CBUUID.init(string: "9a84a830-23c4-4685-b526-3e42fe867b6b")
+    public static let actionCharacteristic = CBUUID.init(string: "6955ecc8-f7be-4efa-b122-ed0fef08fc28")
+
+    public static let nameDescriptor = CBUUID.init(string: "b936f62f-6127-4463-9abd-8f965602c737")
+    public static let minValueDescriptor = CBUUID.init(string: "0e20fe55-86f5-400f-a95b-8d194416731b")
+    public static let maxValueDescriptor = CBUUID.init(string: "89db4977-95c5-42f8-8990-ede5ef227c6d")
+    public static let stepValueDescriptor = CBUUID.init(string: "ef7548a1-9942-4f00-a0cf-cf744b3d15da")
     
     public static let acceptedServies: [CBUUID] = [
-        ledService, smokeStackService, soundService
+        modelService
     ]
     
     public static let acceptedCharacteristics: [CBUUID] = [
-        eyeLedCharacteristic, leftGunLedCharacteristic, rightGunLedCharacteristic, smokeStackCharacteristic, soundInfoCharacteristic, soundControlCharacteristic
+        toggleCharacteristic, nameCharacteristic, rgbCharacteristic, sliderCharacteristic, actionCharacteristic
     ]
     
     public static let displayCharacteristics: [CBUUID] = [
-        eyeLedCharacteristic, leftGunLedCharacteristic, rightGunLedCharacteristic, smokeStackCharacteristic, soundInfoCharacteristic
+        toggleCharacteristic, rgbCharacteristic, sliderCharacteristic, actionCharacteristic
+    ]
+    
+    public static let acceptedDescriptors: [CBUUID] = [
+        nameDescriptor, minValueDescriptor, maxValueDescriptor, stepValueDescriptor
     ]
 
     public static let testUUID: UUID = UUID()

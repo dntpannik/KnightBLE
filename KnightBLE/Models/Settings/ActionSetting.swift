@@ -8,7 +8,7 @@
 import Foundation
 import CoreBluetooth
 
-class ActionSettings: AbilitySetting {
+class ActionSetting: AbilitySetting {
     @Published var actions: [ActionItem]
     
     override init(characteristicId: CBUUID) {
@@ -38,5 +38,19 @@ class ActionSettings: AbilitySetting {
     }
     
     override func ProcessDescriptor(descriptorId: CBUUID, data: Data) {
+        if (descriptorId == BluetoothIds.nameDescriptor) {
+            let actionNameString =  ParseString(value: data)
+            let actionNames = actionNameString.components(separatedBy: "|")
+            
+            var i = 0;
+            var actions: [ActionItem] = []
+            for actionName in actionNames {
+                let actionItem = ActionItem(name: actionName, index: UInt16(i))
+                actions.append(actionItem)
+                
+                i+=1;
+            }
+            self.actions = actions
+        }
     }
 }
