@@ -13,10 +13,16 @@ struct ToggleSettingView: View {
     var serviceId: CBUUID
     @ObservedObject var setting: ToggleSetting
     
+    init(peripheralId: UUID, serviceId: CBUUID, setting: ToggleSetting) {
+        self.peripheralId = peripheralId
+        self.serviceId = serviceId
+        self.setting = setting
+    }
+    
     var body: some View {
         HStack {
             Toggle(setting.settingName, isOn: $setting.value)
-                .onChange(of: setting.value ) { value in
+                .onChange(of: setting.value ) { oldValue, value in
                     bleManager.WriteValue(peripheralId: peripheralId, serviceId: serviceId, characteristicId: setting.characteristicId, withValue: EncodeBool(value: setting.value))
             }
         }

@@ -9,10 +9,14 @@ import CoreBluetooth
 
 class KnightAbility : ObservableObject, Identifiable {
     let id = UUID()
-    var serviceId: CBUUID
-    @Published var name: String
+     var serviceId: CBUUID
+    @Published var name: String {
+        willSet {
+                objectWillChange.send()
+            }
+    }
 
-    var settings: [CBUUID:AbilitySetting] = [:]
+    @Published var settings: [CBUUID:AbilitySetting] = [:]
     
     init(serviceId: CBUUID) {
         self.serviceId = serviceId

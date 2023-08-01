@@ -12,6 +12,11 @@ struct KnightAbilityView: View {
     var peripheralId: UUID
     @ObservedObject var ability: KnightAbility
     
+    init(peripheralId: UUID, ability: KnightAbility) {
+        self.peripheralId = peripheralId
+        self.ability = ability
+    }
+    
     var body: some View {
         VStack {
             ForEach(Array(ability.settings.values), id: \.id) { setting in

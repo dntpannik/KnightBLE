@@ -18,17 +18,54 @@ class BluetoothManager : NSObject {
     private var _scanning : Bool = false
     private var _initialzied: Bool = false
     
-    var stateSubject: PassthroughSubject<CBManagerState, Never> = .init()
-    var scanningSubject: PassthroughSubject<Bool, Never> = .init()
-    var peripheralDiscoveredSubject: PassthroughSubject<(String, CBPeripheral), Never> = .init()
-    var peripheralUpdatedSubject: PassthroughSubject<(String, CBPeripheral), Never> = .init()
-    var peripheralConnectedSubject: PassthroughSubject<CBPeripheral, Never> = .init()
-    var peripheralDisconnectedSubject: PassthroughSubject<CBPeripheral, Never> = .init()
-    var serviceDiscoveredSubject: PassthroughSubject<(CBPeripheral, CBService), Never> = .init()
-    var characteristicDiscoveredSubject: PassthroughSubject<(CBPeripheral, CBCharacteristic), Never> = .init()
-    var characteristicValueUpdatedSubject: PassthroughSubject<(CBPeripheral, CBCharacteristic), Never> = .init()
-    var descriptorDiscoveredSubject: PassthroughSubject<(CBCharacteristic, CBDescriptor), Never> = .init()
-    var descriptorValueUpdatedSubject: PassthroughSubject<(CBPeripheral, CBDescriptor), Never> = .init()
+    var stateCallback: (CBManagerState) -> Void
+    var scanningCallback: (Bool) -> Void
+    var peripheralDiscoveredCallback: (String, CBPeripheral) -> Void
+    var peripheralUpdatedCallback: (String, CBPeripheral) -> Void
+    var peripheralConnectedCallback: (CBPeripheral) -> Void
+    var peripheralDisconnectedCallback: (CBPeripheral) -> Void
+    var serviceDiscoveredCallback: (CBPeripheral, CBService) -> Void
+    var characteristicDiscoveredCallback: (CBPeripheral, CBCharacteristic) -> Void
+    var characteristicValueUpdatedCallback: (CBPeripheral, CBCharacteristic) -> Void
+    var descriptorDiscoveredCallback: (CBCharacteristic, CBDescriptor) -> Void
+    var descriptorValueUpdatedCallback: (CBPeripheral, CBDescriptor) -> Void
+    
+    override init () {
+        func stateInit(_:CBManagerState) {}
+        stateCallback = stateInit
+        
+        func scanningInit(_:Bool) {}
+        scanningCallback = scanningInit
+        
+        func peripheralDiscoveredInit(_:String, _:CBPeripheral) {}
+        peripheralDiscoveredCallback = peripheralDiscoveredInit
+        
+        func peripheralUpdatedInit(_:String, _:CBPeripheral) {}
+        peripheralUpdatedCallback = peripheralUpdatedInit
+        
+        func peripheralConnectedInit(_:CBPeripheral) {}
+        peripheralConnectedCallback = peripheralConnectedInit
+        
+        func peripheralDisconnectedInit(_:CBPeripheral) {}
+        peripheralDisconnectedCallback = peripheralDisconnectedInit
+        
+        func serviceDiscoveredInit(_:CBPeripheral, _:CBService) {}
+        serviceDiscoveredCallback = serviceDiscoveredInit
+        
+        func characteristicDiscoveredInit(_:CBPeripheral, _:CBCharacteristic) {}
+        characteristicDiscoveredCallback = characteristicDiscoveredInit
+        
+        func characteristicValueUpdatedInit(_:CBPeripheral, _:CBCharacteristic) {}
+        characteristicValueUpdatedCallback = characteristicValueUpdatedInit
+        
+        func descriptorDiscoveredInit(_:CBCharacteristic, _:CBDescriptor) {}
+        descriptorDiscoveredCallback = descriptorDiscoveredInit
+        
+        func descriptorValueUpdatedInit(_:CBPeripheral, _:CBDescriptor) {}
+        descriptorValueUpdatedCallback = descriptorValueUpdatedInit
+    
+        super.init()
+    }
     
     func Start() {
         if !_initialzied {
@@ -52,7 +89,7 @@ class BluetoothManager : NSObject {
         //Start timer and scanner
         print("Scanning...")
         _scanning = true
-        scanningSubject.send(true)
+        scanningCallback(true)
         _timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.scanTic), userInfo: nil, repeats: true)
         _centralManager.scanForPeripherals(withServices: BluetoothIds.acceptedServies, options: [CBCentralManagerScanOptionAllowDuplicatesKey : true])
     }
@@ -187,7 +224,7 @@ class BluetoothManager : NSObject {
         _timer = nil
         _countTime = 0
         print("Scan Complete")
-        scanningSubject.send(false)
+        scanningCallback(false)
     }
 }
 
@@ -196,7 +233,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
     
     //Fires when the state of the central manager is udpated
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        stateSubject.send(central.state)
+        stateCallback(central.state)
     }
     
     //Fires when a peripheral is discovered
@@ -216,9 +253,9 @@ extension BluetoothManager: CBCentralManagerDelegate {
         print("Peripheral Discovered \(peripheral.identifier)")
         //Send correct message based on whether the peripheral is new or not
         if peripheralUpdated {
-            peripheralUpdatedSubject.send((name, peripheral))
+            peripheralUpdatedCallback(name, peripheral)
         } else {
-            peripheralDiscoveredSubject.send((name, peripheral))
+            peripheralDiscoveredCallback(name, peripheral)
         }
     }
     
@@ -227,7 +264,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
         if (_discoveredPeripherals[peripheral.identifier] != nil) {
             print("Connected to device \(peripheral.identifier)")
             _connectedPeripherals.append(peripheral.identifier)
-            peripheralConnectedSubject.send(peripheral)
+            peripheralConnectedCallback(peripheral)
             peripheral.discoverServices(nil)
         }
     }
@@ -247,7 +284,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
                 _connectedPeripherals.remove(at: index)
             }
    
-            peripheralDisconnectedSubject.send(peripheral)
+            peripheralDisconnectedCallback(peripheral)
         }
     }
 }
@@ -259,7 +296,7 @@ extension BluetoothManager: CBPeripheralDelegate {
          if let services = peripheral.services {
              for service in services {
                  print("Service found \(service.uuid)")
-                 serviceDiscoveredSubject.send((peripheral, service))
+                 serviceDiscoveredCallback(peripheral, service)
                  
                  peripheral.discoverCharacteristics(BluetoothIds.acceptedCharacteristics, for: service)
              }
@@ -274,7 +311,7 @@ extension BluetoothManager: CBPeripheralDelegate {
                      print("Chracteristic found \(characteristic.uuid)")
                      peripheral.setNotifyValue(true, for: characteristic)
                      peripheral.readValue(for: characteristic)
-                     characteristicDiscoveredSubject.send((peripheral, characteristic))
+                     characteristicDiscoveredCallback(peripheral, characteristic)
                      peripheral.discoverDescriptors(for: characteristic)
                  }
              }
@@ -299,13 +336,13 @@ extension BluetoothManager: CBPeripheralDelegate {
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         if (error == nil) {
-            characteristicValueUpdatedSubject.send((peripheral, characteristic))
+            characteristicValueUpdatedCallback(peripheral, characteristic)
         }
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor descriptor: CBDescriptor, error: Error?) {
         if (error == nil) {
-            descriptorValueUpdatedSubject.send((peripheral, descriptor))
+            descriptorValueUpdatedCallback(peripheral, descriptor)
         }
     }
 }

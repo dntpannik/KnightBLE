@@ -13,10 +13,16 @@ struct ColorSettingView: View {
     var serviceId: CBUUID
     @ObservedObject var setting: ColorSetting
     
+    init(peripheralId: UUID, serviceId: CBUUID, setting: ColorSetting) {
+        self.peripheralId = peripheralId
+        self.serviceId = serviceId
+        self.setting = setting
+    }
+    
     var body: some View {
         HStack {
             ColorPicker(setting.settingName, selection: $setting.color)
-                .onChange(of: setting.color) { value in
+                .onChange(of: setting.color) { oldValue, value in
                     bleManager.WriteValue(peripheralId: peripheralId,
                                           serviceId: serviceId,
                                           characteristicId: setting.characteristicId,

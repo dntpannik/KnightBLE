@@ -13,6 +13,12 @@ struct ActionSettingView: View {
     var serviceId: CBUUID
     @ObservedObject var setting: ActionSetting
     
+    init(peripheralId: UUID, serviceId: CBUUID, setting: ActionSetting) {
+        self.peripheralId = peripheralId
+        self.serviceId = serviceId
+        self.setting = setting
+    }
+    
     private let twoColumnGrid = [
         GridItem(.flexible(minimum: 100)),
         GridItem(.flexible(minimum: 100))

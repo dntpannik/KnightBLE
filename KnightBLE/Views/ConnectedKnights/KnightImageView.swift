@@ -10,6 +10,10 @@ import SwiftUI
 struct KnightImageView: View {
     @ObservedObject var knight: Knight
     
+    init(knight: Knight) {
+        self.knight = knight
+    }
+    
     var body: some View {
         VStack {
             Text(knight.name)

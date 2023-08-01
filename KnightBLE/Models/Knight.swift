@@ -12,7 +12,7 @@ class Knight : ObservableObject, Identifiable {
     
     var id = UUID()
     @Published var name: String = ""
-    @Published var connected: Bool = false
+    @Published var connected: Bool = false 
 
     @Published var peripheralId: UUID
     @Published var abilities: [CBUUID : KnightAbility] = [:]

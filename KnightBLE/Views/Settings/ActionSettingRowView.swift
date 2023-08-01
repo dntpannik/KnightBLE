@@ -14,6 +14,13 @@ struct ActionSettingRowView: View {
     @ObservedObject var setting: ActionSetting
     @ObservedObject var actionItem: ActionItem
     
+    init(peripheralId: UUID, serviceId: CBUUID, setting: ActionSetting, actionItem: ActionItem) {
+        self.peripheralId = peripheralId
+        self.serviceId = serviceId
+        self.setting = setting
+        self.actionItem = actionItem
+    }
+    
     var body: some View {
         Button(action: {
             bleManager.WriteValue(

@@ -13,6 +13,12 @@ struct SliderSettingView: View {
     var serviceId: CBUUID
     @ObservedObject var setting: SliderSetting
 
+    init(peripheralId: UUID, serviceId: CBUUID, setting: SliderSetting) {
+        self.peripheralId = peripheralId
+        self.serviceId = serviceId
+        self.setting = setting
+    }
+    
     var body: some View {
         HStack {
             Text(setting.settingName)

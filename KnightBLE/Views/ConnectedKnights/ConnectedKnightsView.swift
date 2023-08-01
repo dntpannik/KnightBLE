@@ -16,36 +16,35 @@ struct ConnectedKnightsView: View {
     ]
     
     var body: some View {
-        ZStack {
-            NavigationView {
-                ScrollView {
-                    LazyVGrid(columns: twoColumnGrid, alignment: .center) {
-                        ForEach(Array(modelData.knights.keys.filter {modelData.knights[$0]?.connected == true}), id: \.self) { key in
-                            GeometryReader { gr in
-                                NavigationLink(destination: KnightDetailsView(knight: modelData.knights[key] ?? UnknownKnight()), label: {
-                                    VStack {
-                                        Text(modelData.knights[key]?.name ?? "Unknown")
-                                            .bold()
-                                            .underline()
-                                        Image(modelData.knights[key]?.name.replacingOccurrences(of: " ", with: "") ?? "Unknown")
-                                            .renderingMode(.original)
-                                            .resizable()
-                                            .scaledToFill()
-                                            .frame(height: gr.size.width)
-                                    }
-                                })
-                            }
-                            .clipped()
-                            .aspectRatio(1, contentMode: .fit)
+        
+        NavigationView {
+            VStack {
+                LazyVGrid(columns: twoColumnGrid, alignment: .center) {
+                    ForEach(Array(modelData.knights.keys).filter {modelData.knights[$0]?.connected == true}, id: \.self) { key in
+                        GeometryReader { gr in
+                            NavigationLink(destination: KnightDetailsView(knight: modelData.knights[key] ?? UnknownKnight()), label: {
+                                VStack {
+                                    Text(modelData.knights[key]?.name ?? "Unknown")
+                                        .bold()
+                                        .underline()
+                                    Image(modelData.knights[key]?.name.replacingOccurrences(of: " ", with: "") ?? "Unknown")
+                                        .renderingMode(.original)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(height: gr.size.width)
+                                }
+                            })
                         }
+                        .clipped()
+                        .aspectRatio(1, contentMode: .fit)
                     }
-                    .navigationTitle("Connected Knights")
-                    .navigationBarTitleDisplayMode(.inline)
                 }
+                Spacer()
             }
+            .navigationTitle("Connected Knights")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
-    
 }
 
 struct KnightList_Previews: PreviewProvider {

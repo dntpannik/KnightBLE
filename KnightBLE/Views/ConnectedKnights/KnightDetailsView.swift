@@ -12,6 +12,9 @@ struct KnightDetailsView: View {
     @ObservedObject var knight: Knight
     @Environment(\.presentationMode) var presentationMode
 
+    init(knight: Knight) {
+        self.knight = knight
+    }
     
     var body: some View {
         VStack {
