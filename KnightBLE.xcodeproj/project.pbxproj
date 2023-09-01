@@ -22,6 +22,8 @@
 		0E3956CD2A6DE104003B6738 /* AbilitySetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3956CC2A6DE104003B6738 /* AbilitySetting.swift */; };
 		0E3956D02A6DE1B4003B6738 /* ToggleSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3956CF2A6DE1B4003B6738 /* ToggleSetting.swift */; };
 		0E3956D42A6DEB62003B6738 /* KnightAbilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3956D32A6DEB62003B6738 /* KnightAbilityView.swift */; };
+		0E8A61322A9465A3006A86B6 /* BulkActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8A61312A9465A3006A86B6 /* BulkActionsView.swift */; };
+		0E8A61342A946656006A86B6 /* KnightType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8A61332A946656006A86B6 /* KnightType.swift */; };
 		0E8D3F17281CBB25003FBB45 /* SwiftfulLoadingIndicators in Frameworks */ = {isa = PBXBuildFile; productRef = 0E8D3F16281CBB25003FBB45 /* SwiftfulLoadingIndicators */; };
 		0E8D3F1D281CED1B003FBB45 /* AbilitySettingFactories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8D3F1C281CED1B003FBB45 /* AbilitySettingFactories.swift */; };
 		0E9287582815FD8700026ED1 /* KnightBLEApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9287572815FD8700026ED1 /* KnightBLEApp.swift */; };
@@ -89,6 +91,8 @@
 		0E3C1FC1296A96A700B7956D /* KnightBluetoothControl.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KnightBluetoothControl.ino; sourceTree = "<group>"; };
 		0E3C1FC5296A96AD00B7956D /* ScionOfTerra.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ScionOfTerra.ino; sourceTree = "<group>"; };
 		0E3C1FC6296A96AD00B7956D /* KnightBluetoothControl.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KnightBluetoothControl.ino; sourceTree = "<group>"; };
+		0E8A61312A9465A3006A86B6 /* BulkActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkActionsView.swift; sourceTree = "<group>"; };
+		0E8A61332A946656006A86B6 /* KnightType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightType.swift; sourceTree = "<group>"; };
 		0E8D3F1C281CED1B003FBB45 /* AbilitySettingFactories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilitySettingFactories.swift; sourceTree = "<group>"; };
 		0E8D3F20281D0835003FBB45 /* HandOfFury.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HandOfFury.ino; sourceTree = "<group>"; };
 		0E8D3F21281D0835003FBB45 /* KnightBluetoothControl.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KnightBluetoothControl.ino; sourceTree = "<group>"; };
@@ -160,6 +164,7 @@
 		0E0BAC612817793800D35034 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0E8A61302A946594006A86B6 /* BulkActions */,
 				0E3956D22A6DEA3C003B6738 /* Settings */,
 				0E0BAC792818F69400D35034 /* KnightScanner */,
 				0E0BAC8028190C7C00D35034 /* ConnectedKnights */,
@@ -262,6 +267,14 @@
 				0E3C1FC6296A96AD00B7956D /* KnightBluetoothControl.ino */,
 			);
 			path = ScionOfTerra;
+			sourceTree = "<group>";
+		};
+		0E8A61302A946594006A86B6 /* BulkActions */ = {
+			isa = PBXGroup;
+			children = (
+				0E8A61312A9465A3006A86B6 /* BulkActionsView.swift */,
+			);
+			path = BulkActions;
 			sourceTree = "<group>";
 		};
 		0E8D3F1E281D0835003FBB45 /* Arduino */ = {
@@ -406,6 +419,7 @@
 				0E059FF2281B5C50003B9B81 /* KnightAbility.swift */,
 				0E8D3F1C281CED1B003FBB45 /* AbilitySettingFactories.swift */,
 				0EEAF856282316C900D925D1 /* PreviewGenerators.swift */,
+				0E8A61332A946656006A86B6 /* KnightType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -548,6 +562,7 @@
 			files = (
 				0E92875A2815FD8700026ED1 /* ContentView.swift in Sources */,
 				0E3956CD2A6DE104003B6738 /* AbilitySetting.swift in Sources */,
+				0E8A61342A946656006A86B6 /* KnightType.swift in Sources */,
 				0E0BAC6328177B8E00D35034 /* ConnectedKnightsView.swift in Sources */,
 				0E3956D42A6DEB62003B6738 /* KnightAbilityView.swift in Sources */,
 				0EEAF855282248A800D925D1 /* IntExtensions.swift in Sources */,
@@ -558,6 +573,7 @@
 				0ED75FA42A6E0846004CD6B8 /* ColorSetting.swift in Sources */,
 				0EF6A77A2A709D8E00A81EBF /* ActionSettingRowView.swift in Sources */,
 				0E063472281EDCC50098114C /* DataReader.swift in Sources */,
+				0E8A61322A9465A3006A86B6 /* BulkActionsView.swift in Sources */,
 				0E9287862816132000026ED1 /* BluetoothIds.swift in Sources */,
 				0E0BAC91281A2EA400D35034 /* KnightScannerRowView.swift in Sources */,
 				0E3956D02A6DE1B4003B6738 /* ToggleSetting.swift in Sources */,

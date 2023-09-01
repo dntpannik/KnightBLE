@@ -4,10 +4,22 @@
 #include "PropertyCharacteristics.h"
 #include "LedBoardManager.h"
 
-TogglePwmLedPeripheral::TogglePwmLedPeripheral(char* peripheralName, int pin, int brightness, char* serviceId) :
+TogglePwmLedPeripheral::TogglePwmLedPeripheral(char* peripheralName, uint16_t order, int pin, int brightness, char* serviceId) :
     _name(peripheralName),
+    _order(order),
     _nameCharacteristic(NameCharacteristic, BLERead | BLENotify, 40),
-    _pin(pin),
+    _pins(1, pin),
+    _enabled(false),
+    _brightness(brightness),
+    _ledService(serviceId),
+    _toggleCharacteristic(ToggleCharacteristic, BLERead | BLEWrite | BLENotify){
+    }
+
+TogglePwmLedPeripheral::TogglePwmLedPeripheral(char* peripheralName, uint16_t order, std::vector<int> pins, int brightness, char* serviceId) :
+    _name(peripheralName),
+    _order(order),
+    _nameCharacteristic(NameCharacteristic, BLERead | BLENotify, 40),
+    _pins(pins),
     _enabled(false),
     _brightness(brightness),
     _ledService(serviceId),
@@ -17,16 +29,22 @@ TogglePwmLedPeripheral::TogglePwmLedPeripheral(char* peripheralName, int pin, in
 void TogglePwmLedPeripheral::Initialize() {
      BLE.setAdvertisedService(_ledService);
 
-    //Add characteristics to service
-    _ledService.addCharacteristic(_nameCharacteristic);
-    _ledService.addCharacteristic(_toggleCharacteristic);
+    //Order descriptor
+    BLEDescriptor orderDescriptor(OrderDescriptor, reinterpret_cast<uint8_t*>(&_order), sizeof(uint16_t));
+    _nameCharacteristic.addDescriptor(orderDescriptor);
 
     //Initialize PropertyCharacteristics
     _nameCharacteristic.writeValue(_name);
 
     LedBoardManager* manager = LedBoardManager::getInstance();
-    manager->setValue(_pin, 0);        
+    for (int i = 0; i < _pins.size(); i++) {
+      manager->setValue(_pins[i], 0);
+    } 
     _toggleCharacteristic.writeValue(0);
+
+    //Add characteristics to service
+    _ledService.addCharacteristic(_nameCharacteristic);
+    _ledService.addCharacteristic(_toggleCharacteristic);
 
     BLE.addService(_ledService);
  
@@ -48,7 +66,11 @@ bool TogglePwmLedPeripheral::Update() {
                 _enabled = true;
 
                 LedBoardManager* manager = LedBoardManager::getInstance();
-                manager->setValue(_pin, _brightness);
+                for (int i = 0; i < _pins.size(); i++) {
+                  Serial.println(_pins[i]);
+                  manager->setValue(_pins[i], _brightness);
+                } 
+    
                 break;
             }
             default:
@@ -58,7 +80,9 @@ bool TogglePwmLedPeripheral::Update() {
                 _enabled = false;
 
                 LedBoardManager* manager = LedBoardManager::getInstance();
-                manager->setValue(_pin, 0);
+                for (int i = 0; i < _pins.size(); i++) {
+                  manager->setValue(_pins[i], 0);
+                }
                 break;
             }
         }
@@ -71,7 +95,9 @@ void TogglePwmLedPeripheral::Cleanup() {
     //Set the pin to low
 
     LedBoardManager* manager = LedBoardManager::getInstance();
-    manager->setValue(_pin, 0);
+    for (int i = 0; i < _pins.size(); i++) {
+      manager->setValue(_pins[i], 0);
+    }
     _enabled = false;
 }
 

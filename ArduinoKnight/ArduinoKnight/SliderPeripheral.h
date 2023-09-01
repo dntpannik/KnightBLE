@@ -8,7 +8,7 @@ typedef void (*sfn)( unsigned long, uint16_t, uint16_t, uint16_t );
 
 class SliderPeripheral : public Peripheral {
     public:
-        SliderPeripheral(char* peripheralName, char* sliderName, uint16_t initialValue, uint16_t minValue, uint16_t maxValue, uint16_t stepValue, sfn action, char* serviceId);
+        SliderPeripheral(char* peripheralName, uint16_t order, char* sliderName, uint16_t initialValue, uint16_t minValue, uint16_t maxValue, uint16_t stepValue, sfn action, char* serviceId);
         void Initialize();
         bool Update();
         void Cleanup();
@@ -16,6 +16,7 @@ class SliderPeripheral : public Peripheral {
 
     private:
         char* _name;
+        uint16_t _order;
         BLEStringCharacteristic _nameCharacteristic;
         char* _sliderName;
         uint16_t _value;

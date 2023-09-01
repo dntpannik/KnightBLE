@@ -26,6 +26,7 @@ func KnightWithAllAblities() -> Knight {
     //Eyes
     let eyeAbility = KnightAbility(serviceId: CBUUID.init(string: "45359908-db96-4ac9-bfa9-77a853440bd2"), name: "Eyes")
     let setting = ToggleSetting(characteristicId: BluetoothIds.toggleCharacteristic, value: false, settingName: "Enabled")
+    eyeAbility.order = 1
     eyeAbility.settings[setting.characteristicId] = setting
     knight.abilities[eyeAbility.serviceId] = eyeAbility
 
@@ -33,6 +34,7 @@ func KnightWithAllAblities() -> Knight {
     let leftWeaponAbility = KnightAbility(serviceId: CBUUID.init(string: "469ab925-21f4-4c55-bed1-e34c436db5bd"), name: "Left Weapon")
     let setting1 = ToggleSetting(characteristicId: BluetoothIds.toggleCharacteristic, value: false, settingName: "Enabled")
     leftWeaponAbility.settings[setting1.characteristicId] = setting1
+    leftWeaponAbility.order = 2
     knight.abilities[leftWeaponAbility.serviceId] = leftWeaponAbility
     
     return knight

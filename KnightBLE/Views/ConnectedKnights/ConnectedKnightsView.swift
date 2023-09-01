@@ -19,27 +19,64 @@ struct ConnectedKnightsView: View {
         
         NavigationView {
             VStack {
-                LazyVGrid(columns: twoColumnGrid, alignment: .center) {
-                    ForEach(Array(modelData.knights.keys).filter {modelData.knights[$0]?.connected == true}, id: \.self) { key in
-                        GeometryReader { gr in
-                            NavigationLink(destination: KnightDetailsView(knight: modelData.knights[key] ?? UnknownKnight()), label: {
-                                VStack {
-                                    Text(modelData.knights[key]?.name ?? "Unknown")
-                                        .bold()
-                                        .underline()
-                                    Image(modelData.knights[key]?.name.replacingOccurrences(of: " ", with: "") ?? "Unknown")
-                                        .renderingMode(.original)
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(height: gr.size.width)
-                                }
-                            })
+                if (modelData.knights.values.contains { (value) -> Bool in
+                    let knight = value as Knight
+                    return knight.type == KnightType.Armiger
+                }) {
+                    Text("Armiger")
+                        .font(.title2)
+                    LazyVGrid(columns: twoColumnGrid, alignment: .center) {
+                        ForEach(Array(modelData.knights.keys).filter {modelData.knights[$0]?.connected == true && modelData.knights[$0]?.type == KnightType.Armiger}, id: \.self) { key in
+                            GeometryReader { gr in
+                                NavigationLink(destination: KnightDetailsView(knight: modelData.knights[key] ?? UnknownKnight()), label: {
+                                    VStack {
+                                        Text(modelData.knights[key]?.name ?? "Unknown")
+                                            .bold()
+                                            .underline()
+                                        Image(modelData.knights[key]?.name.replacingOccurrences(of: " ", with: "") ?? "Unknown")
+                                            .renderingMode(.original)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(height: gr.size.width)
+                                    }
+                                })
+                            }
+                            .clipped()
+                            .aspectRatio(1, contentMode: .fit)
                         }
-                        .clipped()
-                        .aspectRatio(1, contentMode: .fit)
                     }
+                    Spacer()
                 }
-                Spacer()
+                
+                if (modelData.knights.values.contains { (value) -> Bool in
+                    let knight = value as Knight
+                    return knight.type == KnightType.Questoris
+                }) {
+                    Text("Questoris")
+                        .font(.title2)
+                    
+                    LazyVGrid(columns: twoColumnGrid, alignment: .center) {
+                        ForEach(Array(modelData.knights.keys).filter {modelData.knights[$0]?.connected == true && modelData.knights[$0]?.type == KnightType.Questoris}, id: \.self) { key in
+                            GeometryReader { gr in
+                                NavigationLink(destination: KnightDetailsView(knight: modelData.knights[key] ?? UnknownKnight()), label: {
+                                    VStack {
+                                        Text(modelData.knights[key]?.name ?? "Unknown")
+                                            .bold()
+                                            .underline()
+                                        Image(modelData.knights[key]?.name.replacingOccurrences(of: " ", with: "") ?? "Unknown")
+                                            .renderingMode(.original)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(height: gr.size.width)
+                                    }
+                                })
+                            }
+                            .clipped()
+                            .aspectRatio(1, contentMode: .fit)
+                        }
+                    }
+                    Spacer()
+                }
             }
             .navigationTitle("Connected Knights")
             .navigationBarTitleDisplayMode(.inline)

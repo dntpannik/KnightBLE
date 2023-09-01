@@ -19,7 +19,7 @@ struct KnightAbilityView: View {
     
     var body: some View {
         VStack {
-            ForEach(Array(ability.settings.values), id: \.id) { setting in
+            ForEach(Array(ability.settings.values).sorted {$0.order < $1.order}, id: \.id) { setting in
                 SettingView(setting, ability.serviceId, peripheralId)}.id(UUID())
                 .padding([.leading, .trailing], 20)
         }

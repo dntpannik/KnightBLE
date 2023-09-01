@@ -43,5 +43,8 @@ class ColorSetting: AbilitySetting {
         if (descriptorId == BluetoothIds.nameDescriptor) {
             self.settingName = ParseString(value: data)
         }
+        if (descriptorId == BluetoothIds.orderDescriptor) {
+            self.order = data.uint16
+        }
     }
 }

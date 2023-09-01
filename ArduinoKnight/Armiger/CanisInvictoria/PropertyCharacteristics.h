@@ -1,0 +1,1 @@
+../../ArduinoKnight/PropertyCharacteristics.h

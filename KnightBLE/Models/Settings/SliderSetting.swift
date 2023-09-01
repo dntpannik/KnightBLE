@@ -67,22 +67,20 @@ class SliderSetting: AbilitySetting {
             self.settingName = ParseString(value: data)
             return
         }
-//        if (descriptorId == BluetoothIds.minValueDescriptor) {
-//            let reader = DataReader(data);
-//            let test : UInt16 = reader.readNext();
-//
-//            return
-//        }
-//        if (descriptorId == BluetoothIds.maxValueDescriptor) {
-//            let reader = DataReader(data);
-//            self.maxValue = reader.readNext();
-//            
-//            return
-//        }
-//        if (descriptorId == BluetoothIds.stepValueDescriptor) {
-//            let reader = DataReader(data);
-//            self.stepValue = reader.readNext();
-//            return
-//        }
+        if (descriptorId == BluetoothIds.minValueDescriptor) {
+            self.minValue = Double(data.uint16)
+            return
+        }
+        if (descriptorId == BluetoothIds.maxValueDescriptor) {
+            self.maxValue = Double(data.uint16)
+            return
+        }
+        if (descriptorId == BluetoothIds.stepValueDescriptor) {
+            self.stepValue = Double(data.uint16)
+            return
+        }
+        if (descriptorId == BluetoothIds.orderDescriptor) {
+            self.order = data.uint16
+        }
     }
 }

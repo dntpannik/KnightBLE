@@ -9,17 +9,7 @@
 #include "PropertyCharacteristics.h"
 #include "LedBoardManager.h"
 #include "AudioManager.h"
-#include "Questoris.h"
 
-//---   Device Specific   ---//
-char name[]= "Death Storm";
-
-bool VerboseDebuggingEnabled = false;
-
-int numPeripherals = QuestorisPeripheralsCount;
-Peripheral** peripherals = QuestorisPeripherals;
-
-//--------------------------//
 BLEService modelService("585ff59a-3e23-4405-ad70-1d6d87f7ae6d");
 
 
@@ -28,7 +18,7 @@ void setup() {
   Serial1.begin(9600);
   
   // while the serial stream is not open, do nothing:
-  while (!Serial) ;
+  //while (!Serial) ;
    
   Serial.println("Starting Up");
   //---   Initialize BLE   ---//

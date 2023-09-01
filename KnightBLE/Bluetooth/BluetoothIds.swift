@@ -36,7 +36,7 @@ class BluetoothIds {
     ]
     
     public static let acceptedDescriptors: [CBUUID] = [
-        nameDescriptor, minValueDescriptor, maxValueDescriptor, stepValueDescriptor
+        nameDescriptor, orderDescriptor, minValueDescriptor, maxValueDescriptor, stepValueDescriptor
     ]
 
     public static let testUUID: UUID = UUID()

@@ -10,7 +10,7 @@ typedef bool (*fn)( unsigned long );
 
 class ActionPeripheral : public Peripheral {
     public:
-        ActionPeripheral(char* peripheralName, char* actionNames, std::vector<fn> actions, char* serviceId);
+        ActionPeripheral(char* peripheralName, uint16_t order, char* actionNames, std::vector<fn> actions, char* serviceId);
         void Initialize();
         bool Update();
         void Cleanup();
@@ -18,6 +18,7 @@ class ActionPeripheral : public Peripheral {
    
     private:
         char* _name;
+        uint16_t _order;
         BLEStringCharacteristic _nameCharacteristic;
         char* _actionNames;
         std::vector<fn> _actions;

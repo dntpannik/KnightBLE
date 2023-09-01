@@ -21,12 +21,12 @@ struct ColorSettingView: View {
     
     var body: some View {
         HStack {
-            ColorPicker(setting.settingName, selection: $setting.color)
+            ColorPicker(setting.settingName, selection: $setting.color, supportsOpacity: false)
                 .onChange(of: setting.color) { oldValue, value in
                     bleManager.WriteValue(peripheralId: peripheralId,
                                           serviceId: serviceId,
                                           characteristicId: setting.characteristicId,
-                                          withValue: EncodeColor(value: setting.color))
+                                          withValue: EncodeColor(value: value))
                 }
             }
     }

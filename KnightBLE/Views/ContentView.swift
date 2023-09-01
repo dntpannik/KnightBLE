@@ -17,10 +17,10 @@ struct ContentView: View {
                   .tabItem {
                       Label("Connected", systemImage: "point.3.filled.connected.trianglepath.dotted")
                   }.padding()
-//            BulkActionsView()
-//                .tabItem {
-//                    Label("Bulk", systemImage: "person.3")
-//                }
+            BulkActionsView(modelData: modelData)
+                .tabItem {
+                    Label("Bulk", systemImage: "person.3")
+                }
             KnightScannerView(modelData: modelData)
                 .tabItem {
                     Label("Scanner", systemImage: "personalhotspot")

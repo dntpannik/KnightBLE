@@ -188,8 +188,6 @@ class BluetoothManager : NSObject {
                 return
             }
         
-            print("ServiceId: \(serviceId)")
-        
             guard let service = peripheral.services?.first(where: {$0.uuid == serviceId}) else {
                 print("Attempted to write data to a service whose id doesn't exist")
                 return
@@ -278,6 +276,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
             
             if let errorString = error {
                 print("Disconnection Error: \(errorString)")
+                _discoveredPeripherals.removeValue(forKey: peripheral.identifier)
             }
             
             if let index = _connectedPeripherals.firstIndex(where: { $0 == peripheral.identifier }) {
@@ -309,7 +308,6 @@ extension BluetoothManager: CBPeripheralDelegate {
              for characteristic in characteristics {
                  if BluetoothIds.acceptedCharacteristics.contains(where: {$0 == characteristic.uuid}) {
                      print("Chracteristic found \(characteristic.uuid)")
-                     peripheral.setNotifyValue(true, for: characteristic)
                      peripheral.readValue(for: characteristic)
                      characteristicDiscoveredCallback(peripheral, characteristic)
                      peripheral.discoverDescriptors(for: characteristic)

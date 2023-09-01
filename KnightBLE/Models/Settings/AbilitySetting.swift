@@ -11,9 +11,11 @@ import CoreBluetooth
 class AbilitySetting : ObservableObject, Identifiable {
     let id = UUID()
     var characteristicId: CBUUID
+    @Published var order: UInt16
 
     init(characteristicId: CBUUID) {
         self.characteristicId = characteristicId
+        self.order = 0
     }
     
     func UpdateValue(data: Data) {

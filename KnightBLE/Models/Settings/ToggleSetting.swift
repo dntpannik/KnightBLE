@@ -19,7 +19,7 @@ class ToggleSetting: AbilitySetting {
     }
     
     init(characteristicId: CBUUID, value: Data) {
-        self.value = ParseBool(value: value)
+        self.value = false
         self.settingName = "Enabled"
         super.init(characteristicId: characteristicId)
     }
@@ -40,7 +40,10 @@ class ToggleSetting: AbilitySetting {
     
     override func ProcessDescriptor(descriptorId: CBUUID, data: Data) {
         if (descriptorId == BluetoothIds.nameDescriptor) {
-            self.settingName =  ParseString(value: data)
+            self.settingName = ParseString(value: data)
+        }
+        if (descriptorId == BluetoothIds.orderDescriptor) {
+            self.order = data.uint16
         }
     }
 }

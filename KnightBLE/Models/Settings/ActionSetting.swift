@@ -52,5 +52,8 @@ class ActionSetting: AbilitySetting {
             }
             self.actions = actions
         }
+        if (descriptorId == BluetoothIds.orderDescriptor) {
+            self.order = data.uint16
+        }
     }
 }

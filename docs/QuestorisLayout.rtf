@@ -6,17 +6,16 @@
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \f0\fs24 \cf0 \
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
-\cf0 			SCK D13 	[ ]			[ ]	~D12 MISO		\
+			SCK D13 	[ ]			[ ]	~D12 MISO		\
 (DFPlayer)		+3.3V		[X]			[ ]	D11 MOSI\
 			AREF		[ ]			[ ]	~D10 SS		\
 			A0		[ ]			[ ]	~D9 \
 			A1		[ ]			[ ]	~D8\
 			A2		[ ]			[ ]	~D7\
-			A3		[ ]			[X]	~D6			J1 (Eye LEDs)\
-			A4		[ ]			[X]	~D5			J2 (Left Gun LEDs)\
-			A5		[ ]			[X]	~D4			J3 (Right Gun LEDs)\
-			A6		[ ]			[X]	~D3			LED CLock\
+			A3		[ ]			[ ]	~D6			\
+			A4		[ ]			[X]	~D5			Motor PWM Right\
+			A5		[ ]			[X]	~D4			Motor PWM Left\
+			A6		[ ]			[X]	~D3			LED Clock\
 			A7		[ ]			[X]	~D2			LED Data\
 (DFPlayer)		+5V		[ ]			[X]	GND			(Ground Everywhere)\
 			RESET	[ ]			[ ]	RESET\
@@ -24,21 +23,44 @@
 			VIN		[X]			[X]	TX			(DFPlayer)\
 \
 \
-(00) - Left Eye\
-(01) - Right Eye\
-(02) - Smoke 1\
+(00) - Stubber\
+(01) - Exhaust 1\
+(02) - Exhaust 2\
 \
-(03) - Smoke 2\
-(04) - Smoke 3\
-(05) - Smoke 4\
+(03) - Exhaust 3\
+(04) - Exhaust 4\
+(05) - Top Cannon 1\
 \
-(06) - Stubber\
-(07) - Right Arm 1\
-(08) - Right Arm 2\
+(06) - Eye 1\
+(07) - Eye 2\
+(08) - \
 \
-(09) - Right Arm 3\
-(10) - Left Arm 1\
-(11) - Left Arm 2\
-(12) - Left Arm 3\
+(09) - Right Arm\
+(10) -  Left Arm\
+(11) - Top Cannon 2\
+\
+Audio Jack Pins\
+(4) - System +\
+(1) - Motor -\
+(2) - LED V\
+(3) - LED Control\
+\
+Headphone Jack Wire order\
+Base - Motor -\
+Next - System +\
+Next - LED Control\
+Tip - LED V\
+\
+Wires from Base\
+(1/2) - Led Clock / Led Data\
+(3/4) - System + / System -         (+) Needs to split to both PWM pins, Left, Right, (-) to PWM\
+(5/6) - Speaker + / Speaker -\
+(7/8) - Motor - A \
+(9/10)   Motor - B\
+\
+\
+\
+Arm LED Resistor 20mA, 2-2.2v - Red 3mm (7.4V - 2.2V)/(20E-3 A) = R => R = 260 Ohm (330 Ohm)\
+\
 \
 }

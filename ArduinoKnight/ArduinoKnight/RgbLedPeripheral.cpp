@@ -4,8 +4,9 @@
 #include "PropertyCharacteristics.h"
 #include "LedBoardManager.h"
 
-RgbLedPeripheral::RgbLedPeripheral(char* peripheralName, int channel, char* _initialColor, char* serviceId) :
+RgbLedPeripheral::RgbLedPeripheral(char* peripheralName, uint16_t order, int channel, char* _initialColor, char* serviceId) :
     _name(peripheralName),
+    _order(order),
     _nameCharacteristic(NameCharacteristic, BLERead | BLENotify, 40),
     _enabled(false),
     _channel(channel),
@@ -19,10 +20,17 @@ void RgbLedPeripheral::Initialize() {
 
     BLE.setAdvertisedService(_ledService);
 
-    //Add characteristics to service
-    _ledService.addCharacteristic(_nameCharacteristic);
-    _ledService.addCharacteristic(_toggleCharacteristic);
-    _ledService.addCharacteristic(_rgbCharacteristic);
+    //Order descriptor
+    BLEDescriptor orderDescriptor(OrderDescriptor, reinterpret_cast<uint8_t*>(&_order), sizeof(uint16_t));
+    _nameCharacteristic.addDescriptor(orderDescriptor);
+
+    uint8_t toggleOrderArray[2]={ 0 & 0xff, 0 >> 8 };
+    BLEDescriptor toggleOrderDescriptor(OrderDescriptor, toggleOrderArray, 2);
+    _toggleCharacteristic.addDescriptor(toggleOrderDescriptor);
+
+    uint8_t rgbOrderArray[2]={ 1 & 0xff, 1 >> 8 };
+    BLEDescriptor rgbOrderDescriptor(OrderDescriptor, rgbOrderArray, 2);
+    _rgbCharacteristic.addDescriptor(rgbOrderDescriptor);
 
     //Initialize PropertyCharacteristics
     _nameCharacteristic.writeValue(_name);
@@ -34,6 +42,11 @@ void RgbLedPeripheral::Initialize() {
     Serial.print("Initializing RGB to: ");
     Serial.println(_initialColor);
     _rgbCharacteristic.writeValue(_initialColor);
+
+    //Add characteristics to service
+    _ledService.addCharacteristic(_nameCharacteristic);
+    _ledService.addCharacteristic(_toggleCharacteristic);
+    _ledService.addCharacteristic(_rgbCharacteristic);
 
     BLE.addService(_ledService);
  

@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+enum KnightType {
+    case Armiger
+    case Questoris
+    case Dominus
+    case Cerastus
+    case Acastus
+}

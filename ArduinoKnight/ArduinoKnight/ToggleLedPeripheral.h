@@ -6,7 +6,7 @@
 
 class ToggleLedPeripheral : public Peripheral {
   public:
-        ToggleLedPeripheral(char* peripheralName, int pin, char* serviceId);
+        ToggleLedPeripheral(char* peripheralName, uint16_t order, int pin, char* serviceId);
         void Initialize();
         bool Update();
         void Cleanup();
@@ -14,6 +14,7 @@ class ToggleLedPeripheral : public Peripheral {
    
     private:
         char* _name;
+        uint16_t _order;
         BLEStringCharacteristic _nameCharacteristic;
         int _pin;
         BLEService _ledService;

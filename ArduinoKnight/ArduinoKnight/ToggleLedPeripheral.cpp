@@ -3,8 +3,9 @@
 #include "ToggleLedPeripheral.h"
 #include "PropertyCharacteristics.h"
 
-ToggleLedPeripheral::ToggleLedPeripheral(char* peripheralName, int pin, char* serviceId) :
+ToggleLedPeripheral::ToggleLedPeripheral(char* peripheralName, uint16_t order, int pin, char* serviceId) :
     _name(peripheralName),
+    _order(order),
     _nameCharacteristic(NameCharacteristic, BLERead | BLENotify, 40),
     _pin(pin),
     _ledService(serviceId),
@@ -14,13 +15,13 @@ ToggleLedPeripheral::ToggleLedPeripheral(char* peripheralName, int pin, char* se
 void ToggleLedPeripheral::Initialize() {
     BLE.setAdvertisedService(_ledService);
 
+    //Order descriptor
+    BLEDescriptor orderDescriptor(OrderDescriptor, reinterpret_cast<uint8_t*>(&_order), sizeof(uint16_t));
+    _nameCharacteristic.addDescriptor(orderDescriptor);
+
     //Add descriptors to characteristics
      BLEDescriptor toggleDescriptor(NameDescriptor, "LED Enabled");
     _toggleCharacteristic.addDescriptor(toggleDescriptor);
-
-    //Add characteristics to service
-    _ledService.addCharacteristic(_nameCharacteristic);
-    _ledService.addCharacteristic(_toggleCharacteristic);
 
     //Initialize PropertyCharacteristics
     _nameCharacteristic.writeValue(_name);
@@ -28,6 +29,10 @@ void ToggleLedPeripheral::Initialize() {
    //Set the pin to low
     digitalWrite(this->_pin, 0);    
     this->_toggleCharacteristic.writeValue(0);
+
+    //Add characteristics to service
+    _ledService.addCharacteristic(_nameCharacteristic);
+    _ledService.addCharacteristic(_toggleCharacteristic);
 
     BLE.addService(_ledService);
  

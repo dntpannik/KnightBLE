@@ -8,11 +8,22 @@
 import SwiftUI
 
 struct BulkActionsView: View {
+    @ObservedObject var modelData: ModelData
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button(action: {
+            modelData.SoundOffBulkAction()
+            }) {
+                Text("Sound Off")
+            }
+            .padding()
+            .background(.blue)
+            .foregroundColor(.white)
+            .cornerRadius(22)
+            .buttonStyle(BorderlessButtonStyle())
     }
 }
 
 #Preview {
-    BulkActionsView()
+    BulkActionsView(modelData: ModelData(knights: KnightArray()))
 }

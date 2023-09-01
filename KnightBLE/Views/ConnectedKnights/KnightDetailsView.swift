@@ -28,14 +28,14 @@ struct KnightDetailsView: View {
                 .font(.title)
                 
                 
-                Image(knight.name.replacingOccurrences(of: " ", with: ""))
+            Image(knight.name.replacingOccurrences(of: " ", with: ""))
                     .renderingMode(.original)
                     .resizable()
                     .frame(width: 250, height: 250)
                     .padding([.leading, .trailing], 20)
                 
                 List {
-                    ForEach(Array(knight.abilities.keys), id: \.self) { key in
+                    ForEach(Array(knight.abilities.keys).sorted { knight.abilities[$0]?.order ?? 0 < knight.abilities[$1]?.order ?? 0 }, id: \.self) { key in
                         Section(header: Text(knight.abilities[key]?.name ?? "Unknown")
                                 .font(.subheadline)
                                 .foregroundColor(.blue)) {

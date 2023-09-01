@@ -2,11 +2,13 @@
 #define TogglePwmLedPeripheral_h
 
 #include <ArduinoBLE.h>
+#include <vector>
 #include "Peripheral.h"
 
 class TogglePwmLedPeripheral : public Peripheral {
     public:
-        TogglePwmLedPeripheral(char* peripheralName, int pin, int brightness, char* serviceId);
+        TogglePwmLedPeripheral(char* peripheralName, uint16_t order, int pin, int brightness, char* serviceId);
+        TogglePwmLedPeripheral(char* peripheralName, uint16_t order, std::vector<int> pins, int brightness, char* serviceId);
         void Initialize();
         bool Update();
         void Cleanup();
@@ -15,7 +17,8 @@ class TogglePwmLedPeripheral : public Peripheral {
     private:
         char* _name;
         BLEStringCharacteristic _nameCharacteristic;
-        int _pin;
+        uint16_t _order;
+        std::vector<int> _pins;
         bool _enabled;
         int _brightness;
         BLEService _ledService;

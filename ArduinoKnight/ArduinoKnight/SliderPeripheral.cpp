@@ -3,8 +3,9 @@
 #include "SliderPeripheral.h"
 #include "PropertyCharacteristics.h"
 
-SliderPeripheral::SliderPeripheral(char* peripheralName, char* sliderName, uint16_t initialValue, uint16_t minValue, uint16_t maxValue, uint16_t stepValue, sfn action, char* serviceId) :
+SliderPeripheral::SliderPeripheral(char* peripheralName, uint16_t order, char* sliderName, uint16_t initialValue, uint16_t minValue, uint16_t maxValue, uint16_t stepValue, sfn action, char* serviceId) :
     _name(peripheralName),
+    _order(order),
     _nameCharacteristic(NameCharacteristic, BLERead | BLENotify, 40),
     _sliderName(sliderName),
     _value(initialValue),
@@ -20,29 +21,29 @@ void SliderPeripheral::Initialize() {
 
     BLE.setAdvertisedService(_sliderService);
 
+    //Order descriptor
+    BLEDescriptor orderDescriptor(OrderDescriptor, reinterpret_cast<uint8_t*>(&_order), sizeof(uint16_t));
+    _nameCharacteristic.addDescriptor(orderDescriptor);
+
     //Add descriptors to characteristics
      BLEDescriptor nameDescriptor(NameDescriptor, _sliderName);
     _sliderCharacteristic.addDescriptor(nameDescriptor);
 
-    uint8_t minValueArray[2]={ _minValue & 0xff, _minValue >> 8 };
-    BLEDescriptor minValueDescriptor(MinValueDescriptor, minValueArray, 2);
+    BLEDescriptor minValueDescriptor(MinValueDescriptor, reinterpret_cast<uint8_t*>(&_minValue), sizeof(uint16_t));
     _sliderCharacteristic.addDescriptor(minValueDescriptor);
 
-    uint8_t maxValueArray[2]={ _maxValue & 0xff, _maxValue >> 8 };
-    BLEDescriptor maxValueDescriptor(MaxValueDescriptor, maxValueArray, 2);
+    BLEDescriptor maxValueDescriptor(MaxValueDescriptor, reinterpret_cast<uint8_t*>(&_maxValue), sizeof(uint16_t));
     _sliderCharacteristic.addDescriptor(maxValueDescriptor);
-
-    uint8_t stepValueArray[2]={ _stepValue & 0xff, _stepValue >> 8 };
-    BLEDescriptor stepValueDescriptor(StepValueDescriptor, stepValueArray, 2);
+    BLEDescriptor stepValueDescriptor(StepValueDescriptor, reinterpret_cast<uint8_t*>(&_stepValue), sizeof(uint16_t));
     _sliderCharacteristic.addDescriptor(stepValueDescriptor);
-
-    //Add characteristics to service
-    _sliderService.addCharacteristic(_nameCharacteristic);
-    _sliderService.addCharacteristic(_sliderCharacteristic);
 
     //Initialize PropertyCharacteristics
     _nameCharacteristic.writeValue(_name);
     _sliderCharacteristic.writeValue(_value);
+
+    //Add characteristics to service
+    _sliderService.addCharacteristic(_nameCharacteristic);
+    _sliderService.addCharacteristic(_sliderCharacteristic);
 
     BLE.addService(_sliderService);
  
