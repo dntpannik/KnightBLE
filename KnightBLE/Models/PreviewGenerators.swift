@@ -52,3 +52,34 @@ func KnightArray() -> [UUID:Knight]
     
     return knightArray
 }
+
+func LargeKnightArray() -> [UUID:Knight]
+{
+    var knightArray = [UUID:Knight]()
+    
+    let knight = KnightWithAllAblities()
+    knightArray[knight.peripheralId] = knight;
+    
+    let knight2 = KnightWithAllAblities()
+    knightArray[knight2.peripheralId] = knight2;
+    
+    let knight3 = KnightWithAllAblities()
+    knightArray[knight3.peripheralId] = knight3;
+    
+    let knight4 = KnightWithAllAblities()
+    knightArray[knight4.peripheralId] = knight4;
+    
+    let knight5 = KnightWithAllAblities()
+    knightArray[knight5.peripheralId] = knight5;
+    
+    let knight6 = KnightWithAllAblities()
+    knightArray[knight6.peripheralId] = knight6;
+    
+    let knight7 = KnightWithAllAblities()
+    knightArray[knight7.peripheralId] = knight7;
+    
+    let knight8 = KnightWithAllAblities()
+    knightArray[knight8.peripheralId] = knight8;
+    
+    return knightArray
+}

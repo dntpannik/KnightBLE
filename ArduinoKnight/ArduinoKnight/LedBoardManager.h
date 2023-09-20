@@ -81,6 +81,22 @@ class LedBoardManager{
     _ledBoard.write();
   }
 
+  // this function will write rgb values to led driver
+  void setRGB256(int rgbGroup, int redVal, int greenVal, int blueVal) {
+    int red = redVal;
+    int green = greenVal;
+    int blue = blueVal;
+    const int rChannel = 3 * rgbGroup;
+  
+    _ledBoard.setPWM(rChannel, red);
+    _ledBoard.write();
+    _ledBoard.setPWM(rChannel+1, green);
+    _ledBoard.write();
+    _ledBoard.setPWM(rChannel+2, blue);
+    //_ledBoard.setLED(channel, red, green, blue);
+    _ledBoard.write();
+  }
+
   // this function will write a color to the led driver
   void setRGB(int channel, const char* color) {
 

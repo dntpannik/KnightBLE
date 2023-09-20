@@ -68,7 +68,7 @@ class AudioManager{
 
   //Plays a track number
   void playTrack(uint8_t trackNum) {
-    _dfPlayer.play(trackNum);
+    _dfPlayer.playMp3Folder(trackNum);
   }
 };
 

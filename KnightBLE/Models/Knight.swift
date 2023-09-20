@@ -36,7 +36,7 @@ class Knight : ObservableObject, Identifiable {
         if (name == "Canis Invictoria" || name == "Corruptors Purge" || name == "Death Storm" || name == "Doom Unending" || name == "Fiends Woe" || name == "Fist of Thought" || name == "Iron Dread" || name == "Rhadinthos" ) {
             type = KnightType.Armiger
         }
-        else if (name == "Fury Unbridled") {
+        else if (name == "Fury Unbridled" || name == "Aspanis" || name == "Glory of Iron") {
             type = KnightType.Questoris
         }
     }
