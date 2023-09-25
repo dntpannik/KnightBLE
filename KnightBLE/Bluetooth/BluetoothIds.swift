@@ -16,6 +16,7 @@ class BluetoothIds {
     public static let rgbCharacteristic = CBUUID.init(string: "44c5f429-9c6d-460a-a9ab-0fd36ca26cd7")
     public static let sliderCharacteristic = CBUUID.init(string: "9a84a830-23c4-4685-b526-3e42fe867b6b")
     public static let actionCharacteristic = CBUUID.init(string: "6955ecc8-f7be-4efa-b122-ed0fef08fc28")
+    public static let toggleActionCharacteristic = CBUUID.init(string: "89032d0b-aee6-48ef-8e9d-46a56957719b")
 
     public static let nameDescriptor = CBUUID.init(string: "b936f62f-6127-4463-9abd-8f965602c737")
     public static let orderDescriptor = CBUUID.init(string: "af93f94e-248c-4076-930e-a66a55877bb2")
@@ -28,11 +29,11 @@ class BluetoothIds {
     ]
     
     public static let acceptedCharacteristics: [CBUUID] = [
-        toggleCharacteristic, nameCharacteristic, rgbCharacteristic, sliderCharacteristic, actionCharacteristic
+        toggleCharacteristic, nameCharacteristic, rgbCharacteristic, sliderCharacteristic, actionCharacteristic, toggleActionCharacteristic
     ]
     
     public static let displayCharacteristics: [CBUUID] = [
-        toggleCharacteristic, rgbCharacteristic, sliderCharacteristic, actionCharacteristic
+        toggleCharacteristic, rgbCharacteristic, sliderCharacteristic, actionCharacteristic, toggleActionCharacteristic
     ]
     
     public static let acceptedDescriptors: [CBUUID] = [

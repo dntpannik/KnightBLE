@@ -19,6 +19,10 @@
 		0E0BAC892819B16C00D35034 /* BoolExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC882819B16C00D35034 /* BoolExtensions.swift */; };
 		0E0BAC8D2819FD6200D35034 /* CancellableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC8C2819FD6200D35034 /* CancellableExtensions.swift */; };
 		0E0BAC91281A2EA400D35034 /* KnightScannerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BAC90281A2EA400D35034 /* KnightScannerRowView.swift */; };
+		0E199F462ABAC32C0059E052 /* ToggleActionSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E199F452ABAC32C0059E052 /* ToggleActionSetting.swift */; };
+		0E199F482ABAC38A0059E052 /* ToggleActionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E199F472ABAC38A0059E052 /* ToggleActionItem.swift */; };
+		0E199F4A2ABAC4170059E052 /* ToggleActionSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E199F492ABAC4170059E052 /* ToggleActionSettingView.swift */; };
+		0E199F4C2ABAC4410059E052 /* ToggleActionSettingRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E199F4B2ABAC4410059E052 /* ToggleActionSettingRowView.swift */; };
 		0E3956CD2A6DE104003B6738 /* AbilitySetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3956CC2A6DE104003B6738 /* AbilitySetting.swift */; };
 		0E3956D02A6DE1B4003B6738 /* ToggleSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3956CF2A6DE1B4003B6738 /* ToggleSetting.swift */; };
 		0E3956D42A6DEB62003B6738 /* KnightAbilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3956D32A6DEB62003B6738 /* KnightAbilityView.swift */; };
@@ -82,6 +86,10 @@
 		0E0BAC882819B16C00D35034 /* BoolExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolExtensions.swift; sourceTree = "<group>"; };
 		0E0BAC8C2819FD6200D35034 /* CancellableExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancellableExtensions.swift; sourceTree = "<group>"; };
 		0E0BAC90281A2EA400D35034 /* KnightScannerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightScannerRowView.swift; sourceTree = "<group>"; };
+		0E199F452ABAC32C0059E052 /* ToggleActionSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleActionSetting.swift; sourceTree = "<group>"; };
+		0E199F472ABAC38A0059E052 /* ToggleActionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleActionItem.swift; sourceTree = "<group>"; };
+		0E199F492ABAC4170059E052 /* ToggleActionSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleActionSettingView.swift; sourceTree = "<group>"; };
+		0E199F4B2ABAC4410059E052 /* ToggleActionSettingRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleActionSettingRowView.swift; sourceTree = "<group>"; };
 		0E3956CC2A6DE104003B6738 /* AbilitySetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilitySetting.swift; sourceTree = "<group>"; };
 		0E3956CF2A6DE1B4003B6738 /* ToggleSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleSetting.swift; sourceTree = "<group>"; };
 		0E3956D32A6DEB62003B6738 /* KnightAbilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightAbilityView.swift; sourceTree = "<group>"; };
@@ -226,6 +234,8 @@
 				0EF6A76B2A6F42A500A81EBF /* SliderSetting.swift */,
 				0EF6A7712A703D4800A81EBF /* ActionSetting.swift */,
 				0EF6A7772A7083E100A81EBF /* ActionItem.swift */,
+				0E199F452ABAC32C0059E052 /* ToggleActionSetting.swift */,
+				0E199F472ABAC38A0059E052 /* ToggleActionItem.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -238,6 +248,8 @@
 				0EF6A76F2A6F4A7E00A81EBF /* SliderSettingView.swift */,
 				0EF6A7752A704AA700A81EBF /* ActionSettingView.swift */,
 				0EF6A7792A709D8E00A81EBF /* ActionSettingRowView.swift */,
+				0E199F492ABAC4170059E052 /* ToggleActionSettingView.swift */,
+				0E199F4B2ABAC4410059E052 /* ToggleActionSettingRowView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -560,6 +572,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E199F4C2ABAC4410059E052 /* ToggleActionSettingRowView.swift in Sources */,
 				0E92875A2815FD8700026ED1 /* ContentView.swift in Sources */,
 				0E3956CD2A6DE104003B6738 /* AbilitySetting.swift in Sources */,
 				0E8A61342A946656006A86B6 /* KnightType.swift in Sources */,
@@ -568,13 +581,16 @@
 				0EEAF855282248A800D925D1 /* IntExtensions.swift in Sources */,
 				0EF6A76E2A6F44D600A81EBF /* DataExtensions.swift in Sources */,
 				0E059FF8281B9CA1003B9B81 /* Encodings.swift in Sources */,
+				0E199F4A2ABAC4170059E052 /* ToggleActionSettingView.swift in Sources */,
 				0E059FEF281A5FF9003B9B81 /* GrowingButton.swift in Sources */,
 				0E0BAC892819B16C00D35034 /* BoolExtensions.swift in Sources */,
 				0ED75FA42A6E0846004CD6B8 /* ColorSetting.swift in Sources */,
 				0EF6A77A2A709D8E00A81EBF /* ActionSettingRowView.swift in Sources */,
 				0E063472281EDCC50098114C /* DataReader.swift in Sources */,
 				0E8A61322A9465A3006A86B6 /* BulkActionsView.swift in Sources */,
+				0E199F482ABAC38A0059E052 /* ToggleActionItem.swift in Sources */,
 				0E9287862816132000026ED1 /* BluetoothIds.swift in Sources */,
+				0E199F462ABAC32C0059E052 /* ToggleActionSetting.swift in Sources */,
 				0E0BAC91281A2EA400D35034 /* KnightScannerRowView.swift in Sources */,
 				0E3956D02A6DE1B4003B6738 /* ToggleSetting.swift in Sources */,
 				0ED8ABCA2A69040D00CAE76E /* KnightImageView.swift in Sources */,

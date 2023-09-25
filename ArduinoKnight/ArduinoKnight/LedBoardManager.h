@@ -71,13 +71,8 @@ class LedBoardManager{
     int green = greenVal * 256;
     int blue = blueVal * 256;
     const int rChannel = 3 * rgbGroup;
-  
-    _ledBoard.setPWM(rChannel, red);
-    _ledBoard.write();
-    _ledBoard.setPWM(rChannel+1, green);
-    _ledBoard.write();
-    _ledBoard.setPWM(rChannel+2, blue);
-    //_ledBoard.setLED(channel, red, green, blue);
+
+    _ledBoard.setLED(rgbGroup, red, green, blue);
     _ledBoard.write();
   }
 

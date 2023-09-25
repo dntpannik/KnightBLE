@@ -2,6 +2,7 @@
 #define Cerastus_h
 
 #include <functional>
+#include <ArduinoBLE.h>
 #include "ToggleActionPeripheral.h"
 #include "ToggleLedPeripheral.h"
 #include "TogglePwmLedPeripheral.h"
@@ -78,24 +79,18 @@ static void VolumeSliderAction(unsigned long updateMillies, uint16_t sliderValue
 
 //---   Vent   ---//
 static long ventPreviousUpdateTime = 0;
-const int ventRedChannel1 = 6;
-const int ventRedChannel2 = 9;
+const int ventRedChannel1 = 2;
+const int ventRedChannel2 = 3;
 int ventUpdateDelay = 50;
-int ventMinUpdateDelay = 5;
-int ventMaxUpdateDelay = 100;
-int ventRedBaseValue = 135;
-int ventRedRandomValue = 120;
-int ventGreenBaseValue = 135;
-int ventGreenRandomValue = 120;
-int ventBlueBaseValue = 1;
+int ventMinUpdateDelay = 50;
+int ventMaxUpdateDelay = 150;
+int ventRedBaseValue = 254;
+int ventRedRandomValue = 0;
+int ventGreenBaseValue = 0;
+int ventGreenRandomValue = 80;
+int ventBlueBaseValue = 0;
 
 static void VentAction(unsigned long updateMillies) {
-  Serial.println("In Method");
-  AudioManager* audioManager = AudioManager::getInstance();
-  audioManager->playTrack(titanicFeetAudioTrack);
-
-  Serial.print("UpdateMillies");
-  Serial.println(updateMillies);
 
   //If the LEDs have updated recently then return
   if (updateMillies - ventPreviousUpdateTime < ventUpdateDelay) {
@@ -107,33 +102,22 @@ static void VentAction(unsigned long updateMillies) {
   //Genereate new LED values
   LedBoardManager* ledManager = LedBoardManager::getInstance();
 
-  int red = ventRedBaseValue + random(1, ventRedRandomValue);
+  int red = ventRedBaseValue;
   int green = ventGreenBaseValue + random(1, ventGreenRandomValue);
   int blue = ventBlueBaseValue;
 
-  Serial.print("Color: (");
-  Serial.print(red);
-  Serial.print(", ");
-  Serial.print(green);
-  Serial.print(", ");
-  Serial.print(blue);
-  Serial.println(")");
-  
-  ledManager->setRGB256(ventRedChannel1, red, green, blue);
-  ledManager->setRGB256(ventRedChannel2, red, green, blue);
+  ledManager->setRGB(ventRedChannel1, red, green, blue);
+  ledManager->setRGB(ventRedChannel2, red, green, blue);
 
   //Generate new update delay
   ventUpdateDelay = random(ventMinUpdateDelay, ventMaxUpdateDelay);        
-
-  Serial.print("ventUpdateDelay: ");
-  Serial.println(ventUpdateDelay);
 }
 
 static void VentDisableAction(unsigned long updateMillies) {
   LedBoardManager* ledManager = LedBoardManager::getInstance();
 
-  ledManager->setRGB256(ventRedChannel1, 0, 0, 0);
-  ledManager->setRGB256(ventRedChannel2, 0, 0, 0);
+  ledManager->setRGB(ventRedChannel1, 0, 0, 0);
+  ledManager->setRGB(ventRedChannel2, 0, 0, 0);
 }
 
 char* ToggleActionNames = "Vents";
@@ -145,7 +129,7 @@ static std::vector<togFn> ToggleDisableActions = {
   VentDisableAction
 };
 
-char* ActionNames = "Horn|Ricochet||Titanic Feet|Explosion";
+char* ActionNames = "Horn|Ricochet|Titanic Feet|Explosion";
 
 static std::vector<fn> Actions = { 
   PlayHorn,

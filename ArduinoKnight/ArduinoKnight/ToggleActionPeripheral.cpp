@@ -14,7 +14,7 @@ ToggleActionPeripheral::ToggleActionPeripheral(char* peripheralName, uint16_t or
     _disableActions(disableActions),
     _actionService(serviceId),
     _activeActions(actions.size(), false),
-    _actionTriggerCharacteristic(ActionCharacteristic, BLERead | BLEWrite | BLENotify, 16) {
+    _actionTriggerCharacteristic(ToggleActionCharacteristic, BLERead | BLEWrite | BLENotify, 16) {
 }
 
 void ToggleActionPeripheral::Initialize() {
@@ -57,28 +57,17 @@ void ToggleActionPeripheral::Initialize() {
 
         //Flip the active status
         _activeActions[actionValue] = !_activeActions[actionValue];
-
-        Serial.print("actionValue: ");
-        Serial.println(actionValue);
-
-        Serial.print("Value: ");
-        Serial.println(_activeActions[actionValue]);
       
         //If not active then run the disable method
         if (_activeActions[actionValue] == false) {
-          Serial.println("Disabling");
-          //_disableActions[actionValue](millis());
+          _disableActions[actionValue](millis());
         }
     }
 
     //Update all active actions
     for (int i = 0; i < _activeActions.size(); i++) {
       if (_activeActions[i] == true) {
-        Serial.print("Here: ");
-        Serial.println(i);
-        
         _actions[i](millis());
-        updated = true;
       }
     }
 
@@ -87,6 +76,9 @@ void ToggleActionPeripheral::Initialize() {
 }
 
 void ToggleActionPeripheral::Cleanup() {
+    for (int i = 0; i < _activeActions.size(); i++) {
+      _disableActions[i](0);
+    }
 }
 
 void ToggleActionPeripheral::DebugOut() {
