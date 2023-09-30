@@ -39,5 +39,8 @@ class Knight : ObservableObject, Identifiable {
         else if (name == "Fury Unbridled" || name == "Aspanis" || name == "Glory of Iron") {
             type = KnightType.Questoris
         }
+        else if (name == "Unbound Scion") {
+            type = KnightType.Cerastus
+        }
     }
 }

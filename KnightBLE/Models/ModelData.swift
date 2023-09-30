@@ -31,11 +31,37 @@ extension ModelData {
     func SoundOffBulkAction() {
         //Questoris: (0.8s to 4s)
         //Armiger: (0.8s to 4s)
+      
+        //---   Cerastus   ---//
+        let cerastusKnightKeys = knights.keys.filter { knights[$0]?.type == KnightType.Cerastus && knights[$0]?.connected == true }
+        
+        var cumulativeDelay = 0
+        for key in cerastusKnightKeys {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(cumulativeDelay)) { // Change `2.0` to the desired number of seconds.
+                guard let knight = self.knights[key] else {
+                    return
+                }
+                
+                for ability in knight.abilities.values {
+                    if ability.settings.keys.contains(BluetoothIds.actionCharacteristic) {
+                        bleManager.WriteValue(
+                            peripheralId: knight.peripheralId,
+                            serviceId: ability.serviceId,
+                            characteristicId: BluetoothIds.actionCharacteristic,
+                            withValue: EncodeUInt16(value: 0))
+                        break
+                    }
+                }
+            
+            }
+            
+            cumulativeDelay += Int.random(in: 1...2)
+        }
         
         //---   Questoris   ---//
         let questorisKnightKeys = knights.keys.filter { knights[$0]?.type == KnightType.Questoris && knights[$0]?.connected == true }
         
-        var cumulativeDelay = 0
+        cumulativeDelay = 0
         for key in questorisKnightKeys {
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(cumulativeDelay)) { // Change `2.0` to the desired number of seconds.
                 guard let knight = self.knights[key] else {
