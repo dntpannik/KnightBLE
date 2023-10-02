@@ -121,6 +121,9 @@ static void VentAction(unsigned long updateMillies) {
   
   int ledValue = ventBaseValue + random(1, ventRandomValue);
 
+  //Serial.print("Vent: ");
+  //Serial.println(ledValue);
+
   ledManager->setValue(ventPin1, ledValue);
   ledManager->setValue(ventPin2, ledValue);
 
@@ -144,8 +147,8 @@ const int flamePin4 = 9;
 int flameUpdateDelay = 50;
 int flameMinUpdateDelay = 50;
 int flameMaxUpdateDelay = 150;
-int flameBaseValue = 220;
-int flameRandomValue = 30;
+int flameBaseValue = 200;
+int flameRandomValue = 55;
 
 static void FlameAction(unsigned long updateMillies) {
 
@@ -160,6 +163,9 @@ static void FlameAction(unsigned long updateMillies) {
   LedBoardManager* ledManager = LedBoardManager::getInstance();
   
   int ledValue = flameBaseValue + random(1, flameRandomValue);
+
+  //Serial.print("Flame: ");
+  //Serial.println(ledValue);
 
   ledManager->setValue(flamePin1, ledValue);
   ledManager->setValue(flamePin2, ledValue);

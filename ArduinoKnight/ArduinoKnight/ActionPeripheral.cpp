@@ -5,6 +5,8 @@
 #include "ActionPeripheral.h"
 #include "PropertyCharacteristics.h"
 
+using namespace std::placeholders;
+
 ActionPeripheral::ActionPeripheral(char* peripheralName, uint16_t order, char* actionNames, std::vector<fn> actions, char* serviceId) :
     _name(peripheralName),
     _order(order),
@@ -14,6 +16,16 @@ ActionPeripheral::ActionPeripheral(char* peripheralName, uint16_t order, char* a
     _actionService(serviceId),
     _activeActions(actions.size(), false),
     _actionTriggerCharacteristic(ActionCharacteristic, BLERead | BLEWrite | BLENotify, 16) {
+}
+
+void ActionPeripheral::ActionTriggerCharacteristicWritten(BLEDevice central, BLECharacteristic characteristic) {
+  Serial.print("actionTriggerCharacteristic event, written: ");
+
+  uint16_t actionValue;
+  //_actionTriggerCharacteristic.readValue(actionValue);
+
+  //Mark action as active
+  //_activeActions[actionValue] = true;
 }
     
 void ActionPeripheral::Initialize() {
@@ -33,6 +45,10 @@ void ActionPeripheral::Initialize() {
     //Add characteristics to service
     _actionService.addCharacteristic(_nameCharacteristic);
     _actionService.addCharacteristic(_actionTriggerCharacteristic);
+
+    // assign event handlers for characteristic
+    auto eventHandler = std::bind(&ActionPeripheral::ActionTriggerCharacteristicWritten, this); 
+    _actionTriggerCharacteristic.setEventHandler(BLEWritten, eventHandler);
     
     BLE.addService(_actionService);
  
@@ -42,16 +58,6 @@ void ActionPeripheral::Initialize() {
 
 bool ActionPeripheral::Update() {
     bool updated = false;  
-
-    if (_actionTriggerCharacteristic.written()) {
-        updated = true;  
-
-        uint16_t actionValue;
-        _actionTriggerCharacteristic.readValue(actionValue);
-
-        //Mark action as active
-        _activeActions[actionValue] = true;
-    }
 
     //Update all active actions and update active status
     for (int i = 0; i < _activeActions.size(); i++) {

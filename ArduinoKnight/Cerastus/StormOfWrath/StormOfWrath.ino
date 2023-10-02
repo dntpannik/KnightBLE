@@ -1,8 +1,16 @@
 #include "CerastusAcheron.h"
+#include "ArduinoKnight.h"
 
-char name[]= "Storm of Wrath";
+char* name = "Storm of Wrath";
+bool verboseDebuggingEnabled = false;
 
-bool VerboseDebuggingEnabled = false;
+int peripheralCount = CerastusPeripheralsCount;
+Peripheral** peripheralArray = CerastusPeripherals;
 
-int numPeripherals = CerastusPeripheralsCount;
-Peripheral** peripherals = CerastusPeripherals;
+void setup() {
+  RunSetup(name, verboseDebuggingEnabled, peripheralCount, peripheralArray);
+}
+
+void loop() {
+  RunLoop();
+}

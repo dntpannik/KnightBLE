@@ -15,8 +15,11 @@ class ActionPeripheral : public Peripheral {
         bool Update();
         void Cleanup();
         void DebugOut();
+        void ActionTriggerCharacteristicWritten(BLEDevice central, BLECharacteristic characteristic);
    
     private:
+        
+    
         char* _name;
         uint16_t _order;
         BLEStringCharacteristic _nameCharacteristic;
