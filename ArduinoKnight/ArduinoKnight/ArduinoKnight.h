@@ -75,6 +75,7 @@ void RunSetup(char* name, bool verboseEnabled, int peripheralCount, Peripheral**
   }
 
   BLE.setConnectionInterval(0x000C, 0x000C);
+  BLE.setSupervisionTimeout(3200);
 
   //---   Intialize LED Board   ---//
   LedBoardManager* manager = LedBoardManager::getInstance();
@@ -83,7 +84,11 @@ void RunSetup(char* name, bool verboseEnabled, int peripheralCount, Peripheral**
   //---   Initialize Audio   ---//
   AudioManager* audioManager = AudioManager::getInstance();
   audioManager->Initialize();
-  
+
+  //---   Add Pulse Characteristic   ---//
+  BLEByteCharacteristic pulseCharacteristic(PulseCharacteristic, BLERead | BLEWrite);
+  modelService.addCharacteristic(pulseCharacteristic);
+
   //---   Initialize Peripherals   ---//
   // put your setup code here, to run once:
   for (int i = 0; i < numPeripherals; i++) {
@@ -117,7 +122,7 @@ void RunLoop() {
     resetWDT();
   }
 
-  if (millis() - prvTime >= 500) {
+  if (millis() - prvTime >= 1000) {
     prvTime = millis();
     if (BLE.connected()) {
       connectionActive = true;

@@ -209,17 +209,23 @@ static std::vector<fn> Actions = {
 };
 
 static std::vector<int> EyeChannels = { 0, 1, 2 };
+static std::vector<int> FlamePins = { 6, 7, 8, 9};
+static std::vector<int> VentPins = {10, 11};
 
 TogglePwmLedPeripheral eyeLeds("Eyes", 1, EyeChannels, 254, "6641ed28-d551-430b-9222-407194f31bee");
-SliderPeripheral volumeSlider("Volume", 3,  "", 50, 0, 100, 5, VolumeSliderAction, "b4daa255-bb66-4628-af14-ccb3600ddfd2");
-ToggleActionPeripheral toggleActions("Toggles", 4, ToggleActionNames, ToggleActions, ToggleDisableActions, "a6b0ba67-ba48-481a-a288-ba40b48dc4b3");
+TogglePwmLedPeripheral ventLeds("Vents", 2, VentPins, 254, "f0d54526-51c2-4796-a476-ccc6d5651ca5");
+TogglePwmLedPeripheral flameLeds("Flames", 3, FlamePins, 254, "5b83977a-d2b6-496a-b164-edf0949973a0");
+SliderPeripheral volumeSlider("Volume", 4,  "", 50, 0, 100, 5, VolumeSliderAction, "b4daa255-bb66-4628-af14-ccb3600ddfd2");
+//ToggleActionPeripheral toggleActions("Toggles", 4, ToggleActionNames, ToggleActions, ToggleDisableActions, "a6b0ba67-ba48-481a-a288-ba40b48dc4b3");
 ActionPeripheral actions("Actions", 5, ActionNames, Actions, "d47a3f8d-e29d-4964-a7f8-b870e99ca792");
 
-static const int CerastusPeripheralsCount = 4;
+static const int CerastusPeripheralsCount = 5;
 static Peripheral* CerastusPeripherals[CerastusPeripheralsCount] = {
   &eyeLeds,
+  &ventLeds,
+  &flameLeds,
   &volumeSlider,
-  &toggleActions,
+  //&toggleActions,
   &actions
 };
 

@@ -15,19 +15,38 @@ final class ModelData : ObservableObject {
     @Published var state: CBManagerState = .unknown
     
     private lazy var _cancellables: Set<AnyCancellable> = .init()
-    
+    private var timer: Timer = Timer()
     init() {
         bleManager.Start()
         InitializeHandlers()
+        InitializePulseTimer()
     }
     
     init(knights: [UUID: Knight]) {
         self.knights = knights
     }
+    
+    deinit {
+        self.timer.invalidate()
+    }
+    
+    private func InitializePulseTimer() {
+        self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
+            self.Pulse()
+        })
+    }
+    
+    private func Pulse(){
+        for knight in knights.values {
+            if (knight.connected) {
+                bleManager.WriteValue(peripheralId: knight.peripheralId, serviceId: BluetoothIds.modelService, characteristicId: BluetoothIds.pulseCharacteristic, withValue: EncodeBool(value: false))
+            }
+        }
+    }
 }
 
 extension ModelData {
-
+    
     func SoundOffBulkAction() {
         //Questoris: (0.8s to 4s)
         //Armiger: (0.8s to 4s)

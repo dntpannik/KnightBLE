@@ -3,6 +3,8 @@
 
 #include "Arduino.h"
 
+static const char *PulseCharacteristic = "ceebd2e5-af02-4623-88a1-82603ed74be2";
+
 static const char *NameCharacteristic = "5b7a52b5-af5b-4451-921b-4cf039193c58";
 
 static const char *ToggleCharacteristic = "9929eb1f-c8c6-42d3-99a2-61d1d6e157bb";

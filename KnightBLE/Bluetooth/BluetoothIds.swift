@@ -11,6 +11,7 @@ import CoreBluetooth
 class BluetoothIds {
     public static let modelService = CBUUID.init(string: "585ff59a-3e23-4405-ad70-1d6d87f7ae6d")
     
+    public static let pulseCharacteristic = CBUUID.init(string: "ceebd2e5-af02-4623-88a1-82603ed74be2")
     public static let nameCharacteristic = CBUUID.init(string: "5b7a52b5-af5b-4451-921b-4cf039193c58")
     public static let toggleCharacteristic = CBUUID.init(string: "9929eb1f-c8c6-42d3-99a2-61d1d6e157bb")
     public static let rgbCharacteristic = CBUUID.init(string: "44c5f429-9c6d-460a-a9ab-0fd36ca26cd7")
@@ -29,7 +30,7 @@ class BluetoothIds {
     ]
     
     public static let acceptedCharacteristics: [CBUUID] = [
-        toggleCharacteristic, nameCharacteristic, rgbCharacteristic, sliderCharacteristic, actionCharacteristic, toggleActionCharacteristic
+        pulseCharacteristic, toggleCharacteristic, nameCharacteristic, rgbCharacteristic, sliderCharacteristic, actionCharacteristic, toggleActionCharacteristic
     ]
     
     public static let displayCharacteristics: [CBUUID] = [
