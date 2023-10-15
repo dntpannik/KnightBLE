@@ -20,8 +20,9 @@ func Setting(_ characteristic: CBCharacteristic, _ data: Data) -> AbilitySetting
     case BluetoothIds.actionCharacteristic:
         return ActionSetting(characteristicId: characteristic.uuid)
     case BluetoothIds.toggleActionCharacteristic:
-        print("Here")
         return ToggleActionSetting(characteristicId: characteristic.uuid)
+    case BluetoothIds.randomActionCharacteristic:
+        return RandomActionSetting(characteristicId: characteristic.uuid)
     default:
         print("Unable to convert characteristic into an ability setting")
         return nil
@@ -40,6 +41,8 @@ func SettingView(_ setting: AbilitySetting, _ serviceId: CBUUID, _ peripheralId:
         return AnyView(ActionSettingView(peripheralId: peripheralId, serviceId: serviceId,  setting: setting as! ActionSetting))
     case BluetoothIds.toggleActionCharacteristic:
         return AnyView(ToggleActionSettingView(peripheralId: peripheralId, serviceId: serviceId, setting: setting as! ToggleActionSetting))
+    case BluetoothIds.randomActionCharacteristic:
+        return AnyView(RandomActionSettingView(peripheralId: peripheralId, serviceId: serviceId, setting: setting as! RandomActionSetting))
     default:
         print("Unable to convert characteristic into an ability setting view")
         return AnyView(EmptyView())

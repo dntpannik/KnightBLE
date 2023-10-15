@@ -37,11 +37,6 @@ final class ModelData : ObservableObject {
     }
     
     private func Pulse(){
-        for knight in knights.values {
-            if (knight.connected) {
-                bleManager.WriteValue(peripheralId: knight.peripheralId, serviceId: BluetoothIds.modelService, characteristicId: BluetoothIds.pulseCharacteristic, withValue: EncodeBool(value: false))
-            }
-        }
     }
 }
 

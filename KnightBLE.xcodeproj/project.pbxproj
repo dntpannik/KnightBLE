@@ -38,6 +38,10 @@
 		0E9287732815FD8800026ED1 /* KnightBLEUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9287722815FD8800026ED1 /* KnightBLEUITests.swift */; };
 		0E9287752815FD8800026ED1 /* KnightBLEUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9287742815FD8800026ED1 /* KnightBLEUITestsLaunchTests.swift */; };
 		0E9287862816132000026ED1 /* BluetoothIds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9287852816132000026ED1 /* BluetoothIds.swift */; };
+		0EA1259F2ADBBB8F009D4DE7 /* RandomActionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA1259E2ADBBB8F009D4DE7 /* RandomActionItem.swift */; };
+		0EA125A12ADBC137009D4DE7 /* RandomActionSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA125A02ADBC137009D4DE7 /* RandomActionSetting.swift */; };
+		0EA125A32ADBC43D009D4DE7 /* RandomActionSettingRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA125A22ADBC43D009D4DE7 /* RandomActionSettingRowView.swift */; };
+		0EA125A52ADBC4CB009D4DE7 /* RandomActionSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA125A42ADBC4CA009D4DE7 /* RandomActionSettingView.swift */; };
 		0ED75FA42A6E0846004CD6B8 /* ColorSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED75FA32A6E0846004CD6B8 /* ColorSetting.swift */; };
 		0ED75FA62A6E090B004CD6B8 /* ColorSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED75FA52A6E090B004CD6B8 /* ColorSettingView.swift */; };
 		0ED75FA82A6E0BF4004CD6B8 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED75FA72A6E0BF4004CD6B8 /* ColorExtensions.swift */; };
@@ -125,6 +129,10 @@
 		0E9287722815FD8800026ED1 /* KnightBLEUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightBLEUITests.swift; sourceTree = "<group>"; };
 		0E9287742815FD8800026ED1 /* KnightBLEUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnightBLEUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		0E9287852816132000026ED1 /* BluetoothIds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothIds.swift; sourceTree = "<group>"; };
+		0EA1259E2ADBBB8F009D4DE7 /* RandomActionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomActionItem.swift; sourceTree = "<group>"; };
+		0EA125A02ADBC137009D4DE7 /* RandomActionSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomActionSetting.swift; sourceTree = "<group>"; };
+		0EA125A22ADBC43D009D4DE7 /* RandomActionSettingRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomActionSettingRowView.swift; sourceTree = "<group>"; };
+		0EA125A42ADBC4CA009D4DE7 /* RandomActionSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomActionSettingView.swift; sourceTree = "<group>"; };
 		0ED75FA32A6E0846004CD6B8 /* ColorSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSetting.swift; sourceTree = "<group>"; };
 		0ED75FA52A6E090B004CD6B8 /* ColorSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSettingView.swift; sourceTree = "<group>"; };
 		0ED75FA72A6E0BF4004CD6B8 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
@@ -236,6 +244,8 @@
 				0EF6A7772A7083E100A81EBF /* ActionItem.swift */,
 				0E199F452ABAC32C0059E052 /* ToggleActionSetting.swift */,
 				0E199F472ABAC38A0059E052 /* ToggleActionItem.swift */,
+				0EA1259E2ADBBB8F009D4DE7 /* RandomActionItem.swift */,
+				0EA125A02ADBC137009D4DE7 /* RandomActionSetting.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -250,6 +260,8 @@
 				0EF6A7792A709D8E00A81EBF /* ActionSettingRowView.swift */,
 				0E199F492ABAC4170059E052 /* ToggleActionSettingView.swift */,
 				0E199F4B2ABAC4410059E052 /* ToggleActionSettingRowView.swift */,
+				0EA125A22ADBC43D009D4DE7 /* RandomActionSettingRowView.swift */,
+				0EA125A42ADBC4CA009D4DE7 /* RandomActionSettingView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -583,7 +595,9 @@
 				0E059FF8281B9CA1003B9B81 /* Encodings.swift in Sources */,
 				0E199F4A2ABAC4170059E052 /* ToggleActionSettingView.swift in Sources */,
 				0E059FEF281A5FF9003B9B81 /* GrowingButton.swift in Sources */,
+				0EA1259F2ADBBB8F009D4DE7 /* RandomActionItem.swift in Sources */,
 				0E0BAC892819B16C00D35034 /* BoolExtensions.swift in Sources */,
+				0EA125A12ADBC137009D4DE7 /* RandomActionSetting.swift in Sources */,
 				0ED75FA42A6E0846004CD6B8 /* ColorSetting.swift in Sources */,
 				0EF6A77A2A709D8E00A81EBF /* ActionSettingRowView.swift in Sources */,
 				0E063472281EDCC50098114C /* DataReader.swift in Sources */,
@@ -598,6 +612,8 @@
 				0EF6A76C2A6F42A600A81EBF /* SliderSetting.swift in Sources */,
 				0EF6A7702A6F4A7E00A81EBF /* SliderSettingView.swift in Sources */,
 				0E0BAC6528177C8F00D35034 /* Knight.swift in Sources */,
+				0EA125A52ADBC4CB009D4DE7 /* RandomActionSettingView.swift in Sources */,
+				0EA125A32ADBC43D009D4DE7 /* RandomActionSettingRowView.swift in Sources */,
 				0E0BAC732817B84A00D35034 /* BluetoothManager.swift in Sources */,
 				0ED75FA62A6E090B004CD6B8 /* ColorSettingView.swift in Sources */,
 				0E0BAC6928177F0F00D35034 /* KnightScannerView.swift in Sources */,

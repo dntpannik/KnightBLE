@@ -44,15 +44,15 @@ void blePeripheralDisconnectHandler(BLEDevice central) {
 
 void enableWDT() {
   //Configure WDT on nRF52840.
-  NRF_WDT->CONFIG         = 0x01;             // Configure WDT to run when CPU is asleep
-  NRF_WDT->CRV            = 2 * 32768;        // Set timeout for 2 seconds
-  NRF_WDT->RREN           = 0x01;             // Enable the RR[0] reload register
-  NRF_WDT->TASKS_START    = 1;                // Start WDT    
+  //NRF_WDT->CONFIG         = 0x01;             // Configure WDT to run when CPU is asleep
+  //NRF_WDT->CRV            = 2 * 32768;        // Set timeout for 2 seconds
+  //NRF_WDT->RREN           = 0x01;             // Enable the RR[0] reload register
+  //NRF_WDT->TASKS_START    = 1;                // Start WDT    
 }
 
 void resetWDT() {
   // Reload the WDTs RR[0] reload register
-  NRF_WDT->RR[0] = WDT_RR_RR_Reload; 
+  //NRF_WDT->RR[0] = WDT_RR_RR_Reload; 
 }
 
 void RunSetup(char* name, bool verboseEnabled, int peripheralCount, Peripheral** peripheralArray) {
@@ -110,7 +110,7 @@ void RunSetup(char* name, bool verboseEnabled, int peripheralCount, Peripheral**
   BLE.advertise();
   Serial.println("BLE Peripheral Engaged");
 
-  enableWDT();
+  //enableWDT();
 }
 
 void RunLoop() {
@@ -122,30 +122,30 @@ void RunLoop() {
     resetWDT();
   }
 
-  if (millis() - prvTime >= 1000) {
+  if (millis() - prvTime >= 10) {
     prvTime = millis();
     if (BLE.connected()) {
       connectionActive = true;
       
       //If the RSSI is sufficient weak then reset WDT timer
       int rssiValue = BLE.rssi();
-      Serial.print("RSSI: ");
-      Serial.println(rssiValue);
+      //Serial.print("RSSI: ");
+      //Serial.println(rssiValue);
 
       if (rssiValue == rssiPrevious) {
         rssiRepeatCounter += 1;
-        Serial.print("RSSI Repeat: ");
-        Serial.println(rssiRepeatCounter);
+        //Serial.print("RSSI Repeat: ");
+        //Serial.println(rssiRepeatCounter);
       } else {
         rssiPrevious = rssiValue;
         rssiRepeatCounter = 0;
       }
       
-      if (rssiRepeatCounter < MaxRSSIRepeat) {
-        resetWDT();
-      } else {
-        Serial.println("RSSI Repeat Triggered - Don't Reset Timer");
-      }
+      //if (rssiRepeatCounter < MaxRSSIRepeat) {
+      //  resetWDT();
+      //} else {
+      //  Serial.println("RSSI Repeat Triggered - Don't Reset Timer");
+      //}
     
       for (int i = 0; i < numPeripherals; i++) {
         peripherals[i]->Update();

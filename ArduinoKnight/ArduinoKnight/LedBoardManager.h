@@ -1,11 +1,12 @@
 #ifndef LedBoardManager_h
 #define LedBoardManager_h
 
+#include <Arduino.h>
 #include <Adafruit_TLC59711.h>
 
 #define NUM_TLC59711  1
-#define dataPin       D2
-#define clockPin      D3
+#define dataPin       2
+#define clockPin      3
 
 class LedBoardManager{
   private:
