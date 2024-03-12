@@ -19,22 +19,14 @@ struct ActionSettingView: View {
         self.setting = setting
     }
     
-    private let twoColumnGrid = [
-        GridItem(.flexible(minimum: 100)),
-        GridItem(.flexible(minimum: 100))
-    ]
-    
     var body: some View {
-        LazyVGrid(columns: twoColumnGrid, alignment: .center) {
-            ForEach($setting.actions, id: \.id) { $action in
-                ActionSettingRowView(peripheralId: peripheralId,
-                                     serviceId: serviceId,
-                                     setting: setting,
-                                     actionItem: action)
-            }
-            .id(UUID())
+        ForEach($setting.actions, id: \.id) { $action in
+            ActionSettingRowView(peripheralId: peripheralId,
+                                 serviceId: serviceId,
+                                 setting: setting,
+                                 actionItem: action)
         }
-        
+        .id(UUID())
     }
 }
 

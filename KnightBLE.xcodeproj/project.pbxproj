@@ -42,6 +42,7 @@
 		0EA125A12ADBC137009D4DE7 /* RandomActionSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA125A02ADBC137009D4DE7 /* RandomActionSetting.swift */; };
 		0EA125A32ADBC43D009D4DE7 /* RandomActionSettingRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA125A22ADBC43D009D4DE7 /* RandomActionSettingRowView.swift */; };
 		0EA125A52ADBC4CB009D4DE7 /* RandomActionSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA125A42ADBC4CA009D4DE7 /* RandomActionSettingView.swift */; };
+		0EA125A82ADF9C29009D4DE7 /* DominusValiant Layout.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 0EA125A72ADF9C29009D4DE7 /* DominusValiant Layout.rtf */; };
 		0ED75FA42A6E0846004CD6B8 /* ColorSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED75FA32A6E0846004CD6B8 /* ColorSetting.swift */; };
 		0ED75FA62A6E090B004CD6B8 /* ColorSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED75FA52A6E090B004CD6B8 /* ColorSettingView.swift */; };
 		0ED75FA82A6E0BF4004CD6B8 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED75FA72A6E0BF4004CD6B8 /* ColorExtensions.swift */; };
@@ -133,6 +134,7 @@
 		0EA125A02ADBC137009D4DE7 /* RandomActionSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomActionSetting.swift; sourceTree = "<group>"; };
 		0EA125A22ADBC43D009D4DE7 /* RandomActionSettingRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomActionSettingRowView.swift; sourceTree = "<group>"; };
 		0EA125A42ADBC4CA009D4DE7 /* RandomActionSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomActionSettingView.swift; sourceTree = "<group>"; };
+		0EA125A72ADF9C29009D4DE7 /* DominusValiant Layout.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "DominusValiant Layout.rtf"; sourceTree = "<group>"; };
 		0ED75FA32A6E0846004CD6B8 /* ColorSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSetting.swift; sourceTree = "<group>"; };
 		0ED75FA52A6E090B004CD6B8 /* ColorSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSettingView.swift; sourceTree = "<group>"; };
 		0ED75FA72A6E0BF4004CD6B8 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 		0E8D3F32281D094F003FBB45 /* docs */ = {
 			isa = PBXGroup;
 			children = (
+				0EA125A62ADF9BFE009D4DE7 /* Dominus */,
 				0E8D3F33281D0970003FBB45 /* Nano33Ble Pin Usage.rtf */,
 				0EF3818F2A75E97300DF018A /* QuestorisLayout.rtf */,
 			);
@@ -446,6 +449,14 @@
 				0E8A61332A946656006A86B6 /* KnightType.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		0EA125A62ADF9BFE009D4DE7 /* Dominus */ = {
+			isa = PBXGroup;
+			children = (
+				0EA125A72ADF9C29009D4DE7 /* DominusValiant Layout.rtf */,
+			);
+			path = Dominus;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -560,6 +571,7 @@
 			files = (
 				0E92875F2815FD8800026ED1 /* Preview Assets.xcassets in Resources */,
 				0E92875C2815FD8800026ED1 /* Assets.xcassets in Resources */,
+				0EA125A82ADF9C29009D4DE7 /* DominusValiant Layout.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

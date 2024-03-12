@@ -33,14 +33,20 @@ class Knight : ObservableObject, Identifiable {
     }
     
     func setKnightType() {
-        if (name == "Canis Invictoria" || name == "Corruptors Purge" || name == "Death Storm" || name == "Doom Unending" || name == "Fiends Woe" || name == "Fist of Thought" || name == "Iron Dread" || name == "Rhadinthos" ) {
+        if (name == "Canis Invictoria" || name == "Corruptors Purge" || name == "Deaths Storm" || name == "Doom Unending" || name == "Fiends Woe" || name == "Fist of Thought" || name == "Iron Dread" || name == "Rhadinthos" ) {
             type = KnightType.Armiger
         }
         else if (name == "Fury Unbridled" || name == "Aspanis" || name == "Glory of Iron") {
             type = KnightType.Questoris
         }
+        else if (name == "Throne Breaker") {
+            type = KnightType.Dominus
+        }
         else if (name == "Unbound Scion" || name == "Storm of Wrath" || name == "Hammer of Terra") {
             type = KnightType.Cerastus
+        }
+        else if (name == "Bulwark Incarnate") {
+            type = KnightType.Acastus
         }
     }
 }

@@ -2,7 +2,7 @@
 #include <Adafruit_TLC59711.h>
 #include <DFRobotDFPlayerMini.h>
 
-char* modelName = "Storm of Wrath";
+char* modelName = "Corruptors Purge";
 
 
 BLEService modelService("585ff59a-3e23-4405-ad70-1d6d87f7ae6d");
@@ -26,36 +26,6 @@ static const char *OrderDescriptor = "af93f94e-248c-4076-930e-a66a55877bb2";
 static const char *MinValueDescriptor = "0e20fe55-86f5-400f-a95b-8d194416731b";
 static const char *MaxValueDescriptor = "89db4977-95c5-42f8-8990-ede5ef227c6d";
 static const char *StepValueDescriptor = "ef7548a1-9942-4f00-a0cf-cf744b3d15da";
-
-
-//----------------------//
-//---   LED Board .  ---//
-//----------------------//
-
-//---   Definitions .  ---//
-#define NUM_TLC59711  1
-#define dataPin       2
-#define clockPin      3
-Adafruit_TLC59711 LedManager = Adafruit_TLC59711(NUM_TLC59711, clockPin, dataPin);
-
-//---   Methods .  ---//
-void setLedValue (int ledPin,int pwmVal) {
-  int pwm = pwmVal * 257;
-  int chan = ledPin;
-
-  LedManager.setPWM(chan, pwm);
-  LedManager.write();
-}
-
-void setRGB(int rgbGroup, int redVal, int greenVal, int blueVal) {
-  int red = redVal * 256;
-  int green = greenVal * 256;
-  int blue = blueVal * 256;
-  const int rChannel = 3 * rgbGroup;
-
-  LedManager.setLED(rgbGroup, red, green, blue);
-  LedManager.write();
-}
 
 //------------------------//
 //---   Audio Board    ---//
@@ -84,7 +54,7 @@ void playTrack(uint8_t trackNum) {
 char* eyePeripheralName = "Eyes";
 uint16_t eyePeripheralOrder = 1;
 bool eyePeripheralEnabled = false;
-//Channels, 0, 1, 2
+int eyePin = 6;
 
 BLEStringCharacteristic eyePeripheralNameCharacteristic(NameCharacteristic, BLERead | BLENotify, 40);
 BLEByteCharacteristic eyePeripheralToggleCharacteristic(ToggleCharacteristic, BLERead | BLEWrite | BLENotify);
@@ -100,10 +70,8 @@ static void InitializeEyePeripheral() {
   //Initialize PropertyCharacteristics
   eyePeripheralNameCharacteristic.writeValue(eyePeripheralName);
 
-  setLedValue(0, 0);
-  setLedValue(1, 0);
-  setLedValue(2, 0);
-
+  pinMode(eyePin, OUTPUT);
+  digitalWrite(eyePin, 0);
   eyePeripheralToggleCharacteristic.writeValue(0);
 
   //Add characteristics to service
@@ -130,9 +98,7 @@ static void UpdateEyePeripheral(unsigned long updateMillis) {
         Serial.println(eyePeripheralName);
         eyePeripheralEnabled = true;
 
-        setLedValue(0, 254);
-        setLedValue(1, 254);
-        setLedValue(2, 254);
+        digitalWrite(eyePin, 1);
     
         break;
       }
@@ -142,9 +108,7 @@ static void UpdateEyePeripheral(unsigned long updateMillis) {
         Serial.println(eyePeripheralName);
         eyePeripheralEnabled = false;
 
-        setLedValue(0, 0);
-        setLedValue(1, 0);
-        setLedValue(2, 0);
+        digitalWrite(eyePin, 0);
                 
         break;
       }
@@ -154,170 +118,8 @@ static void UpdateEyePeripheral(unsigned long updateMillis) {
 
 //---   Cleanup .  ---//
 static void CleanupEyePeripheral(unsigned long updateMillis) {
-  setLedValue(0, 0);
-  setLedValue(1, 0);
-  setLedValue(2, 0);
+  digitalWrite(eyePin, 0);
   eyePeripheralEnabled = false;
-}
-
-//-------------------//
-//---   Toggles   ---//
-//-------------------//
-char* togglePeripheralName = "Actions";
-uint16_t togglePeripheralOrder = 5;
-char* togglePeripheralActionNames = "Flames|Vents";
-
-bool flamesToggleActive = false;
-bool ventToggleActive = false;
-
-BLEStringCharacteristic togglePeripheralNameCharacteristic(NameCharacteristic, BLERead | BLENotify, 40);
-BLECharacteristic togglePeripheralTriggerCharacteristic(ToggleActionCharacteristic, BLERead | BLEWrite | BLENotify, 16);
-BLEService togglePeripheralService("a6b0ba67-ba48-481a-a288-ba40b48dc4b3");
-
-//---   Initialize   ---//
-static void InitializeTogglePeripheral() {
-  BLE.setAdvertisedService(togglePeripheralService);
-
-    //Disable
-    CleanupTogglePeripheral(0);
-
-    //Order descriptor
-    BLEDescriptor orderDescriptor(OrderDescriptor, reinterpret_cast<uint8_t*>(&togglePeripheralOrder), sizeof(uint16_t));
-    togglePeripheralNameCharacteristic.addDescriptor(orderDescriptor);
-
-    //Add descriptors to characteristics
-     BLEDescriptor nameDescriptor(NameDescriptor, togglePeripheralActionNames);
-    togglePeripheralTriggerCharacteristic.addDescriptor(nameDescriptor);
-
-    //Initialize PropertyCharacteristics
-    togglePeripheralNameCharacteristic.writeValue(togglePeripheralName);
-
-    //Add characteristics to service
-    togglePeripheralService.addCharacteristic(togglePeripheralNameCharacteristic);
-    togglePeripheralService.addCharacteristic(togglePeripheralTriggerCharacteristic);
-    
-    BLE.addService(togglePeripheralService);
- 
-    Serial.print(togglePeripheralName);
-    Serial.println(" initialized");
-  
-}
-
-//---   Update   ---//
-static void UpdateTogglePeripheral(unsigned long updateMillis) {
-  if (togglePeripheralTriggerCharacteristic.written()) {
-
-    uint16_t actionValue;
-    togglePeripheralTriggerCharacteristic.readValue(actionValue);
-
-    //Flip the active status
-    switch(actionValue) {
-      case 0:
-        flamesToggleActive = !flamesToggleActive;
-        break;
-      case 1: 
-        ventToggleActive = !ventToggleActive;
-        break;
-    }
-
-    //If not active then run the disable method
-    if (flamesToggleActive == false) {
-      DisableFlamesToggle(updateMillis);
-    }
-    if (ventToggleActive == false) {
-      DisableVentToggle(updateMillis);
-    }
-  }
-
-  //Update all active actions
-  if (flamesToggleActive == true) {
-    UpdateFlamesToggle(updateMillis);
-  }
-  if (ventToggleActive == true) {
-    UpdateVentToggle(updateMillis);
-  }
-}
-
-//---   Cleanup   ---//
-static void CleanupTogglePeripheral(unsigned long updateMillis) {
-  DisableFlamesToggle(updateMillis);
-  DisableVentToggle(updateMillis);
-}
-
-//---   Flames    ---//
-static long flamePreviousUpdateTime = 0;
-const int flameChannel1 = 6;
-const int flameChannel2 = 7;
-const int flameChannel3 = 8;
-const int flameChannel4 = 9;
-int flameUpdateDelay = 50;
-int flameMinUpdateDelay = 50;
-int flameMaxUpdateDelay = 150;
-int flameBaseValue = 200;
-int flameRandomValue = 55;
-
-static void UpdateFlamesToggle(unsigned long updateMillies) {
-
-  //If the LEDs have updated recently then return
-  if (updateMillies - flamePreviousUpdateTime < flameUpdateDelay) {
-    return;
-  }
-
-  flamePreviousUpdateTime = updateMillies;
-  
-  //Genereate new LED values
-  int ledValue = flameBaseValue + random(1, flameRandomValue);
-
-  //Serial.print("Flame: ");
-  //Serial.println(ledValue);
-
-  setLedValue(flameChannel1, ledValue);
-  setLedValue(flameChannel2, ledValue);
-  setLedValue(flameChannel3, ledValue);
-  setLedValue(flameChannel4, ledValue);
-
-  //Generate new update delay
-  flameUpdateDelay = random(flameMinUpdateDelay, flameMaxUpdateDelay);        
-}
-
-static void DisableFlamesToggle(unsigned long updateMillis) {
-  setLedValue(flameChannel1, 0);
-  setLedValue(flameChannel2, 0);
-  setLedValue(flameChannel3, 0);
-  setLedValue(flameChannel4, 0);
-}
-
-//---   Vents   ---//
-static long ventPreviousUpdateTime = 0;
-const int ventChannel1 = 10;
-const int ventChannel2 = 11;
-int ventUpdateDelay = 50;
-int ventMinUpdateDelay = 50;
-int ventMaxUpdateDelay = 150;
-int ventBaseValue = 150;
-int ventRandomValue = 80;
-
-static void UpdateVentToggle(unsigned long updateMillis) {
-  //If the LEDs have updated recently then return
-  if (updateMillis - ventPreviousUpdateTime < ventUpdateDelay) {
-    return;
-  }
-
-  ventPreviousUpdateTime = updateMillis;
-  
-  //Genereate new LED values
-  int ledValue = ventBaseValue + random(1, ventRandomValue);
-  
-  setLedValue(ventChannel1, ledValue);
-  setLedValue(ventChannel2, ledValue);
-
-  //Generate new update delay
-  ventUpdateDelay = random(ventMinUpdateDelay, ventMaxUpdateDelay);   
-}
-
-static void DisableVentToggle(unsigned long updateMillis) {
-  setLedValue(ventChannel1, 0);
-  setLedValue(ventChannel2, 0);
 }
 
 //--------------------//
@@ -325,12 +127,13 @@ static void DisableVentToggle(unsigned long updateMillis) {
 //--------------------//
 char* ActionPeripheralName = "Actions";
 uint16_t ActionPeripheralOrder = 6;
-char* ActionPeripheralActionNames = "Horn|Flamer|Chain Sword|Titanic Feet|Ricochet|Explosion";
+char* ActionPeripheralActionNames = "Horn|Auto Cannons|Chain Sword|Thermal Spear|Bolter|Ricochet|Explosion";
 
 bool hornActionActive = false;
-bool flamerActionActive = false;
+bool bolterActionActive = false;
+bool autoCannonsActionActive = false;
 bool chainSwordActionActive = false;
-bool titanicFeetActionActive = false;
+bool thermalSpearActionActive = false;
 bool ricochetActionActive = false;
 bool explosionActionActive = false;
 
@@ -379,20 +182,23 @@ static void UpdateActionPeripheral(unsigned long updateMillis) {
         hornActionActive = true;
         break;
       case 1:
-        flamerActionActive = true;
+        autoCannonsActionActive = true;
         break;
       case 2:
         chainSwordActionActive = true;
         break;
       case 3:
-        titanicFeetActionActive = true;
-        break;
+        thermalSpearActionActive = true;
+        break;  
       case 4:
-        ricochetActionActive = true;
+        bolterActionActive = true;
         break;
       case 5:
+        ricochetActionActive = true;
+        break;
+      case 6:
         explosionActionActive = true;
-        break;    
+        break;  
     }
   }
 
@@ -401,19 +207,23 @@ static void UpdateActionPeripheral(unsigned long updateMillis) {
     hornActionActive = PerformHornAction(updateMillis);
   }
 
-  if (flamerActionActive == true) {
-    flamerActionActive = PerformFlamerAction(updateMillis);
+  if (bolterActionActive == true) {
+    bolterActionActive = PerformBolterAction(updateMillis);
+  }
+
+  if (autoCannonsActionActive == true) {
+    autoCannonsActionActive = PerformAutoCannonAction(updateMillis);
   }
 
   if (chainSwordActionActive == true) {
     chainSwordActionActive = PerformChainSwordAction(updateMillis);
   }
 
-  if (titanicFeetActionActive == true) {
-    titanicFeetActionActive = PerformTitanicFeetAction(updateMillis);
+  if (thermalSpearActionActive == true) {
+    thermalSpearActionActive = PerformThermalSpearAction(updateMillis);
   }
 
-  if (ricochetActionActive == true) {
+    if (ricochetActionActive == true) {
     ricochetActionActive = PerformRicochetAction(updateMillis);
   }
 
@@ -436,32 +246,41 @@ static bool PerformHornAction(unsigned long updateMillis) {
   return false;
 }
 
-//---   Flamer    ---//
-const uint8_t flamerAudioTrack = 2;
-static bool PerformFlamerAction(unsigned long updateMillis) {
-    playTrack(flamerAudioTrack);
+//---   AutoCannon   ---//
+const uint8_t autoCannonAudioTrack = 2;
+static bool PerformAutoCannonAction(unsigned long updateMillis) {
+  playTrack(autoCannonAudioTrack);
 
   return false;
 }
+
 
 //---   Chain Sword   ---//
 const uint8_t chainSwordAudioTrack = 3;
 static bool PerformChainSwordAction(unsigned long updateMillis) {
-    playTrack(chainSwordAudioTrack);
+  playTrack(chainSwordAudioTrack);
 
   return false;
 }
 
-//---   Titanic Feet   ---//
-const uint8_t titanicFeetAudioTrack = 4;
+//---   Thermal Spear   ---//
+const uint8_t thermalSpearAudioTrack = 4;
+static bool PerformThermalSpearAction(unsigned long updateMillis) {
+  playTrack(thermalSpearAudioTrack);
 
-static bool PerformTitanicFeetAction(unsigned long updateMillis) {
-  playTrack(titanicFeetAudioTrack);
+  return false;
+}
+
+//---   Bolter   ---//
+const uint8_t bolterAudioTrack = 5;
+static bool PerformBolterAction(unsigned long updateMillis) {
+  playTrack(bolterAudioTrack);
+
   return false;
 }
 
 //---   Ricochet   ---//
-const uint8_t ricochetAudioTrack = 5;
+const uint8_t ricochetAudioTrack = 6;
 static bool PerformRicochetAction(unsigned long updateMillis) {
   playTrack(ricochetAudioTrack);
 
@@ -469,7 +288,7 @@ static bool PerformRicochetAction(unsigned long updateMillis) {
 }
 
 //---   Explosion   ---//
-const uint8_t explosionAudioTrack = 6;
+const uint8_t explosionAudioTrack = 7;
 static bool PerformExplosionAction(unsigned long updateMillis) {
   playTrack(explosionAudioTrack);
 
@@ -490,8 +309,8 @@ void blePeripheralDisconnectHandler(BLEDevice central) {
 
     unsigned long updateMillis = millis();
     CleanupEyePeripheral(updateMillis);
-    CleanupTogglePeripheral(updateMillis);
     CleanupActionPeripheral(updateMillis);
+    CleanupRandomActionPeripheral(updateMillis);
 }
 
 
@@ -519,10 +338,6 @@ void setup() {
   BLE.setEventHandler(BLEConnected, blePeripheralConnectHandler);
   BLE.setEventHandler(BLEDisconnected, blePeripheralDisconnectHandler);
 
-  //---   Intialize LED Board   ---//
-  LedManager.begin();
-  LedManager.write();
-
   //---   Initialize Audio .  ---//
   if (!AudioManager.begin(Serial1)) {
     Serial.println(F("Unable to begin:"));
@@ -534,7 +349,6 @@ void setup() {
 
   //---   Initilalize Peripherals    ---//
   InitializeEyePeripheral();
-  InitializeTogglePeripheral();
   InitializeActionPeripheral();
   InitializeRandomActionPeripheral();
 
@@ -563,7 +377,6 @@ void loop() {
     prvTime = millis();
     if (BLE.connected()) {
       UpdateEyePeripheral(updateMillis);
-      UpdateTogglePeripheral(updateMillis);
       UpdateActionPeripheral(updateMillis);
       UpdateRandomActionPeripheral(updateMillis);
     }
@@ -577,16 +390,17 @@ char* randomActionPeripheralName = "Random Action Mode";
 uint32_t randomActionTimerMinValueMs = 2*60000;
 uint32_t randomActionTimerMaxValueMs = 4*60000;
 uint16_t randomActionPeripheralOrder = 7;
-char* randomActionOptionNames = "Horn|Flame Thrower|Chain Sword|Titanic Feet|Ricochet";
+char* randomActionOptionNames = "Horn|Auto Cannons|Chain Sword|Thermal Spear|Bolter|Ricochet";
 
 bool randomActionsEnabled = false;
 
-int randomActionNumRandomActions = 5;
-bool hornActionEnabled = true;
-bool flameThrowerActionEnabled = true;
-bool chainSwordActionEnabled = true;
-bool titanicFeetActionEnabled = true;
-bool ricochetActionEnabled = true;
+int randomActionNumRandomActions = 6;
+bool hornRandomActionEnabled = true;
+bool autoCannonsRandomActionEnabled = true;
+bool chainSwordRandomActionEnabled = true;
+bool thermalSpearRandomActionEnabled = true;
+bool bolterRandomActionEnabled = true;
+bool ricochetRandomActionEnabled = true;
 
 int randomActionNextActionTimeMS = 0;
 int activeRandomActionIndex = -1;
@@ -660,19 +474,22 @@ static void UpdateRandomActionPeripheral(unsigned long updateMillis) {
     //Flip active status
     switch(actionValue) {
       case 0:
-        hornActionEnabled = !hornActionEnabled;
+        hornRandomActionEnabled = !hornRandomActionEnabled;
         break;
       case 1:
-        flameThrowerActionEnabled = !flameThrowerActionEnabled;
+        autoCannonsRandomActionEnabled = !autoCannonsRandomActionEnabled;
         break;
       case 2:
-        chainSwordActionEnabled = !chainSwordActionEnabled;
+        chainSwordRandomActionEnabled = !chainSwordRandomActionEnabled;
         break;
       case 3:
-        titanicFeetActionEnabled = !titanicFeetActionEnabled;
+        thermalSpearRandomActionEnabled = !thermalSpearRandomActionEnabled;
         break;
       case 4:
-        ricochetActionEnabled = !ricochetActionEnabled;
+        bolterRandomActionEnabled = !bolterRandomActionEnabled;
+        break;
+      case 5:
+        ricochetRandomActionEnabled = !ricochetRandomActionEnabled;
         break;
     }
   }
@@ -680,36 +497,41 @@ static void UpdateRandomActionPeripheral(unsigned long updateMillis) {
   //If there is not ctive random index and enough time has elapsed then find a new index
   if (activeRandomActionIndex == -1 && updateMillis > randomActionNextActionTimeMS && randomActionsEnabled) {
     int numActiveActions = -1;
-    if (hornActionEnabled == true) { numActiveActions += 1; }
-    if (flameThrowerActionEnabled == true) { numActiveActions += 1; }
-    if (chainSwordActionEnabled == true) { numActiveActions += 1; }
-    if (titanicFeetActionEnabled == true) { numActiveActions += 1; }
-    if (ricochetActionEnabled == true) { numActiveActions += 1; }
+    if (hornRandomActionEnabled == true) { numActiveActions += 1; }
+    if (autoCannonsRandomActionEnabled == true) { numActiveActions += 1; }
+    if (chainSwordRandomActionEnabled == true) { numActiveActions += 1; }
+    if (thermalSpearRandomActionEnabled == true) { numActiveActions += 1; }
+    if (bolterRandomActionEnabled == true) { numActiveActions += 1; }
+    if (ricochetRandomActionEnabled == true) { numActiveActions += 1; }
 
     //Find the action index
     if (numActiveActions > -1) {
       int index = random(0, numActiveActions);
 
-      if (hornActionEnabled == true) {
+      if (hornRandomActionEnabled == true) {
         if (index == 0) { activeRandomActionIndex = 0; }
         index -= 1;
       }
-      if (flameThrowerActionEnabled == true) {
+      if (autoCannonsRandomActionEnabled == true) {
         if (index == 0) { activeRandomActionIndex = 1; }
         index -= 1;
       }
-      if (chainSwordActionEnabled == true) {
-        if (index == 0) { activeRandomActionIndex = 2; }
-        index -= 1;
-      }
-      if (titanicFeetActionEnabled == true) {
+      if (chainSwordRandomActionEnabled == true) {
         if (index == 0) { activeRandomActionIndex = 3; }
         index -= 1;
       }
-      if (ricochetActionEnabled == true) {
+      if (thermalSpearRandomActionEnabled == true) {
         if (index == 0) { activeRandomActionIndex = 4; }
         index -= 1;
-      }   
+      }  
+      if (bolterRandomActionEnabled == true) {
+        if (index == 0) { activeRandomActionIndex = 4; }
+        index -= 1;
+      }  
+      if (ricochetRandomActionEnabled == true) {
+        if (index == 0) { activeRandomActionIndex = 4; }
+        index -= 1;
+      }  
     }
 
     Serial.print("activeRandomActionIndex: ");
@@ -722,15 +544,18 @@ static void UpdateRandomActionPeripheral(unsigned long updateMillis) {
       actionActive = PerformHornAction(updateMillis);
       break;
     case 1:
-      actionActive = PerformFlamerAction(updateMillis);
+      actionActive = PerformAutoCannonAction(updateMillis);
       break;
     case 2:
       actionActive = PerformChainSwordAction(updateMillis);
       break;
     case 3:
-      actionActive = PerformTitanicFeetAction(updateMillis);
-      break;
+      actionActive = PerformThermalSpearAction(updateMillis);
+      break; 
     case 4:
+      actionActive = PerformBolterAction(updateMillis);
+      break;  
+    case 5:
       actionActive = PerformRicochetAction(updateMillis);
       break;   
   }
