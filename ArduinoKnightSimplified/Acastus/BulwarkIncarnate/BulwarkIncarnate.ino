@@ -530,10 +530,10 @@ const uint8_t leftArmServoChannel = 1;
 
 const uint8_t leftArmServoPin = 6;
 const uint8_t rightArmServoPin = 5;
-const uint8_t magmaLascannonSlowServoMSPerStep = 0; //How many MS between servo increments for slow movement
-const uint8_t magmaLascannonFastServoMSPerStep = 0;
-const uint16_t magmaLascannonSlowServoStep = 8; //How far servo should move in a single increment
-const uint16_t magmaLascannonFastServoStep = 10;
+const uint8_t magmaLascannonSlowServoMSPerStep = 3; //How many MS between servo increments for slow movement
+const uint8_t magmaLascannonFastServoMSPerStep = 1;
+const uint16_t magmaLascannonSlowServoStep = 4; //How far servo should move in a single increment
+const uint16_t magmaLascannonFastServoStep = 8;
 
 //LEDs
 const uint8_t rightTopGunLedPin = 6;
@@ -554,6 +554,7 @@ const uint16_t magmaLascannonInitialFirePositionDelayMS = 2000; //Delay between 
 //Gun Firing
 const uint16_t magmaLascannonAudioDelayMS = 350; //Delay between when the audio starts and the LED enables
 const uint16_t magmaLascannonLedOnTimeMS = 250;
+const uint16_t magmaLascannonRecoilStartDelayMS = 100; //Delay between when the LED is enabled and the recoil starts
 const uint16_t rightMagmaLascannonRecoilPosition = map(rightArmServoOffsetFrom90 + 115, 0, 180, SERVOMIN, SERVOMAX); //Position of maximum recoil
 const uint16_t leftMagmaLascannonRecoilPosition = map(leftArmServoOffsetFrom90 + 70, 0, 180, SERVOMIN, SERVOMAX);
 const uint16_t magmaLascannonRecoilDelayMS = 250; //Delay between when the gun reaches its recoil position and when it returns to firing position
@@ -587,6 +588,7 @@ bool magmaLascannonFinalRestingReached; //Indicates whether the final resting po
 bool magmaLascannonGunAudioStarted;
 bool magmaLascannonGunAudioDelayReached;
 bool magmaLascannonGunLedEnabled;
+bool magmaLascannonGunRecoilStartDelayReached;
 bool magmaLascannonGunLedDisabled;
 bool magmaLascannonGunRecoilReached;
 bool magmaLascannonGunRecoilDelayReached;
@@ -602,6 +604,7 @@ static void ResetMagmaLascannonGunFlags() {
   magmaLascannonGunAudioStarted = false;
   magmaLascannonGunAudioDelayReached = false;
   magmaLascannonGunLedEnabled = false;
+  magmaLascannonGunRecoilStartDelayReached = false;
   magmaLascannonGunLedDisabled = false;
   magmaLascannonGunRecoilReached = false;
   magmaLascannonGunRecoilDelayReached = false;
@@ -827,7 +830,8 @@ static bool MagmaLascannonFireGun(uint8_t servoChannel, uint8_t ledPin, uint16_t
   //  a) Gun fire Audio / Enable LED
   //  b) Delay for audio to start
   //  c) Enable LED 
-  //  d) Disable after short duration
+  //  d1) Disable after short duration
+  //  d2) Wait short duration for gun raise
   //  e) Gun rises quickly to +30 degrees from horizontal
   //  f) Short Pause
   //  g) Gun moves to 0 degrees slowly
@@ -847,7 +851,7 @@ static bool MagmaLascannonFireGun(uint8_t servoChannel, uint8_t ledPin, uint16_t
   if (magmaLascannonGunAudioDelayReached == false) {
     magmaLascannonGunAudioDelayReached = MagmaLascannonHasTimeElapsed(updateMillis, magmaLascannonTimerStartMS, magmaLascannonAudioDelayMS);
     if (magmaLascannonGunAudioDelayReached) {
-      Serial.println(" B: Wait to turn on LED");
+      Serial.println("  B: Wait to turn on LED");
     }
     
     return false;
@@ -860,18 +864,29 @@ static bool MagmaLascannonFireGun(uint8_t servoChannel, uint8_t ledPin, uint16_t
     magmaLascannonTimerStartMS = updateMillis; //Start timer
     magmaLascannonGunLedEnabled = true;
   }
-    
-  //D - Turn off LED
-  if (magmaLascannonGunLedDisabled == false) {
-    magmaLascannonGunLedDisabled = MagmaLascannonHasTimeElapsed(updateMillis, magmaLascannonTimerStartMS, magmaLascannonLedOnTimeMS);
-    if (magmaLascannonGunLedDisabled) {
-      Serial.println("  D: Turn off LED");
-      setLedValue(ledPin, 0);
 
+  //D1 - Wait to start recoil
+  if (magmaLascannonGunRecoilStartDelayReached == false) {
+    magmaLascannonGunRecoilStartDelayReached = MagmaLascannonHasTimeElapsed(updateMillis, magmaLascannonTimerStartMS, magmaLascannonRecoilStartDelayMS);
+    if (magmaLascannonGunRecoilStartDelayReached) {
+      Serial.println("  D1: Start recoil");
+      
       //Update delta for recoil
       *currentServoDelta = recoilServoPosition - *currentServoPosition;
     }
+  }
+    
+  //D2 - Turn off LED
+  if (magmaLascannonGunLedDisabled == false) {
+    magmaLascannonGunLedDisabled = MagmaLascannonHasTimeElapsed(updateMillis, magmaLascannonTimerStartMS, magmaLascannonLedOnTimeMS);
+    if (magmaLascannonGunLedDisabled) {
+      Serial.println("  D2: Turn off LED");
+      setLedValue(ledPin, 0);
+    }
+  }
 
+  //If too early to start recoil just return
+  if (magmaLascannonGunRecoilStartDelayReached == false) {
     return false;
   }
 
