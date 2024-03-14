@@ -2,6 +2,8 @@
 #include <Adafruit_TLC59711.h>
 #include <DFRobotDFPlayerMini.h>
 #include <Servo.h>
+#include <Wire.h>
+#include <Adafruit_PWMServoDriver.h>
 
 char* modelName = "Bulwark Incarnate";
 
@@ -28,9 +30,59 @@ static const char *MinValueDescriptor = "0e20fe55-86f5-400f-a95b-8d194416731b";
 static const char *MaxValueDescriptor = "89db4977-95c5-42f8-8990-ede5ef227c6d";
 static const char *StepValueDescriptor = "ef7548a1-9942-4f00-a0cf-cf744b3d15da";
 
+//-----------------------//
+//---   Servo Board   ---//
+//-----------------------//
+#define SERVOMIN  15 // This is the 'minimum' pulse length count (out of 4096)
+#define SERVOMAX  600 // This is the 'maximum' pulse length count (out of 4096)
+#define SERVO_FREQ 50 // Analog servos run at ~50 Hz updates
+
+// called this way, it uses the default address 0x40
+Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
+
+static bool SetServo(uint8_t channel, int* currentPosition, int* delta, uint16_t servoStep) {
+    if (abs(*delta) > 0) {
+      int direction = (*delta > 0) - (*delta < 0);
+
+      Serial.print("move servo: ");
+      Serial.print(channel);
+      Serial.print(" (Cur: ");
+      Serial.print(*currentPosition);
+      Serial.print(", D: ");
+      Serial.print(*delta);
+      Serial.print(", Dir: ");
+      Serial.print(direction);
+
+      //If current delta is less than the servo step then just set position to delta
+      if (abs(*delta) < servoStep) {
+        (*currentPosition) += *delta;
+        (*delta) = 0;
+      } else {
+        //Increment the position by the servo step
+        (*currentPosition) += servoStep * direction; //Update position
+        (*delta) -= servoStep * direction; //Update delta
+      }
+
+      pwm.setPWM(channel, 0, *currentPosition); //Move servo
+
+      Serial.print(", New Pos: ");
+      Serial.print(*currentPosition);
+      Serial.print(", New D: ");
+      Serial.print(*delta);
+      Serial.println(")");
+
+      return abs(*delta) <= 0; //Movement not complete if delta isn't 0
+    } else {
+      return true; //Movement complete
+    }
+}
+
+static void DisableServo(uint8_t channel) {
+  pwm.setPWM(channel, 0, 4096);
+}
 
 //----------------------//
-//---   LED Board .  ---//
+//---   LED Board    ---//
 //----------------------//
 
 //---   Definitions .  ---//
@@ -473,16 +525,15 @@ static void CleanupMissleBayAction() {
 const uint8_t magmaLascannonAudioTrack = 5;
 
 //Servos
+const uint8_t rightArmServoChannel = 2;
+const uint8_t leftArmServoChannel = 1;
+
 const uint8_t leftArmServoPin = 6;
 const uint8_t rightArmServoPin = 5;
-const uint8_t magmaLascannonSlowServoMSPerStep = 15; //How many MS between servo increments for slow movement
-const uint8_t magmaLascannonFastServoMSPerStep = 1;
-const uint16_t magmaLascannonSlowServoStep = 15; //How far servo should move in a single increment
-const uint16_t magmaLascannonFastServoStep = 30;
-const uint16_t servoMinMS = 1000;
-const uint16_t servoMaxMS = 2000;
-Servo rightArmServo;
-Servo leftArmServo;
+const uint8_t magmaLascannonSlowServoMSPerStep = 0; //How many MS between servo increments for slow movement
+const uint8_t magmaLascannonFastServoMSPerStep = 0;
+const uint16_t magmaLascannonSlowServoStep = 8; //How far servo should move in a single increment
+const uint16_t magmaLascannonFastServoStep = 10;
 
 //LEDs
 const uint8_t rightTopGunLedPin = 6;
@@ -491,20 +542,20 @@ const uint8_t leftTopGunLedPin = 10;
 const uint8_t leftBottomGunLedPin = 11;
 
 //Warmup
-const uint16_t rightArmServoOffsetFrom90 = 0;
-const int16_t leftArmServoOffsetFrom90 = -30;
-const uint16_t rightArmServoRestPosition = map(rightArmServoOffsetFrom90 + 80, 0, 180, servoMinMS, servoMaxMS); //Position where the action begins
-const uint16_t leftArmServoRestPosition = map(leftArmServoOffsetFrom90 + 110, 0, 180, servoMinMS, servoMaxMS);
+const int16_t rightArmServoOffsetFrom90 = 10;
+const int16_t leftArmServoOffsetFrom90 = -15;
+const uint16_t rightArmServoRestPosition = map(rightArmServoOffsetFrom90 + 80, 0, 180, SERVOMIN, SERVOMAX); //Position where the action begins
+const uint16_t leftArmServoRestPosition = map(leftArmServoOffsetFrom90 + 100, 0, 180, SERVOMIN, SERVOMAX);
 const uint16_t magmaLascannonInitialRestingPositionDelayMS = 1000; //Delay between when the servos reach resting position and move to firing position
-const uint16_t rightArmServoFirePosition = map(rightArmServoOffsetFrom90 + 90, 0, 180, servoMinMS, servoMaxMS); //Position where firing occures
-const uint16_t leftArmServoFirePosition = map(leftArmServoOffsetFrom90 + 90, 0, 180, servoMinMS, servoMaxMS);
+const uint16_t rightArmServoFirePosition = map(rightArmServoOffsetFrom90 + 90, 0, 180, SERVOMIN, SERVOMAX); //Position where firing occures
+const uint16_t leftArmServoFirePosition = map(leftArmServoOffsetFrom90 + 90, 0, 180, SERVOMIN, SERVOMAX);
 const uint16_t magmaLascannonInitialFirePositionDelayMS = 2000; //Delay between when the guns reach initial firing position and first fire
 
 //Gun Firing
 const uint16_t magmaLascannonAudioDelayMS = 350; //Delay between when the audio starts and the LED enables
 const uint16_t magmaLascannonLedOnTimeMS = 250;
-const uint16_t rightMagmaLascannonRecoilPosition = map(rightArmServoOffsetFrom90 + 120, 0, 180, servoMinMS, servoMaxMS); //Position of maximum recoil
-const uint16_t leftMagmaLascannonRecoilPosition = map(leftArmServoOffsetFrom90 + 60, 0, 180, servoMinMS, servoMaxMS);
+const uint16_t rightMagmaLascannonRecoilPosition = map(rightArmServoOffsetFrom90 + 115, 0, 180, SERVOMIN, SERVOMAX); //Position of maximum recoil
+const uint16_t leftMagmaLascannonRecoilPosition = map(leftArmServoOffsetFrom90 + 70, 0, 180, SERVOMIN, SERVOMAX);
 const uint16_t magmaLascannonRecoilDelayMS = 250; //Delay between when the gun reaches its recoil position and when it returns to firing position
 const uint16_t magmaLascannonDelayBetweenGuns = 500; //Delay between when one gun finishes its firing sequence and the next gun starts
 
@@ -558,43 +609,6 @@ static void ResetMagmaLascannonGunFlags() {
   magmaLascannonGunFinishDelayReached = false;
 }
 
-//Returns true if movement completed
-static bool MoveServo(Servo servo, int* currentPosition, int* delta, uint16_t servoStep) {
-    if (abs(*delta) > 0) {
-      int direction = (*delta > 0) - (*delta < 0);
-
-      Serial.print("move servo: (Cur: ");
-      Serial.print(*currentPosition);
-      Serial.print(", D: ");
-      Serial.print(*delta);
-      Serial.print(", Dir: ");
-      Serial.print(direction);
-
-      //If current delta is less than the servo step then just set position to delta
-      if (abs(*delta) < servoStep) {
-        (*currentPosition) += *delta;
-        (*delta) = 0;
-      } else {
-        //Increment the position by the servo step
-        (*currentPosition) += servoStep * direction; //Update position
-        (*delta) -= servoStep * direction; //Update delta
-      }
-
-      servo.writeMicroseconds(*currentPosition); //Move servo
-
-      Serial.print(", New Pos: ");
-      Serial.print(*currentPosition);
-      Serial.print(", New D: ");
-      Serial.print(*delta);
-      Serial.println(")");
-
-      return abs(*delta) <= 0; //Movement not complete if delta isn't 0
-    } else {
-      return true; //Movement complete
-    }
-
-}
-
 static bool PerformMagmaLascannonAction(unsigned long updateMillis) {
 
   //Initial Arm Actions:
@@ -617,23 +631,32 @@ static bool PerformMagmaLascannonAction(unsigned long updateMillis) {
     magmaLascannonPreviousServoUpdateTimeMS = updateMillis;
 
     //Initialize sevo
-    rightArmServo.attach(rightArmServoPin, servoMinMS, servoMaxMS);
-    magmaLascannonRightServoCurrentPosition = rightArmServo.readMicroseconds();
+    magmaLascannonRightServoCurrentPosition = rightArmServoRestPosition;
     magmaLascannonRightServoCurrentMoveDelta = rightArmServoRestPosition - magmaLascannonRightServoCurrentPosition;
+    pwm.setPWM(rightArmServoChannel, 0, rightArmServoRestPosition);
+    DisableServo(rightArmServoChannel);
 
-    leftArmServo.attach(leftArmServoPin, servoMinMS, servoMaxMS);
-    magmaLascannonLeftServoCurrentPosition = leftArmServo.readMicroseconds();
+    magmaLascannonLeftServoCurrentPosition = leftArmServoRestPosition;
     magmaLascannonLeftServoCurrentMoveDelta = leftArmServoRestPosition - magmaLascannonLeftServoCurrentPosition;
+    pwm.setPWM(leftArmServoChannel, 0, leftArmServoRestPosition);
+    DisableServo(leftArmServoChannel);
 
     Serial.print("Current: ");
-    Serial.print(magmaLascannonRightServoCurrentPosition);
+    Serial.print(magmaLascannonLeftServoCurrentPosition);
     Serial.print(" Goal: ");
-    Serial.print(rightArmServoRestPosition);
+    Serial.print(leftArmServoRestPosition);
     Serial.print(" Delta: ");
-    Serial.println(magmaLascannonRightServoCurrentMoveDelta);
+    Serial.println(magmaLascannonLeftServoCurrentMoveDelta);
+
+    Serial.print("Resting Position: ");
+    Serial.println(leftArmServoRestPosition);
+    Serial.print("Firing Position: ");
+    Serial.println(leftArmServoFirePosition);
+    Serial.print("Recoil Position: ");
+    Serial.println(leftMagmaLascannonRecoilPosition);
 
     //Reset flags
-    magmaLascannonInitialRestingReached = false;
+    magmaLascannonInitialRestingReached = true;
     magmaLascannonInitialRestingDelayReached = false;
     magmaLascannonInitialFiringPositionReached = false;
     magmaLascannonInitialFiringDelayReached = false;
@@ -653,8 +676,8 @@ static bool PerformMagmaLascannonAction(unsigned long updateMillis) {
       return true;
 
     //Move servos
-    bool rightComplete = MoveServo(rightArmServo, &magmaLascannonRightServoCurrentPosition, &magmaLascannonRightServoCurrentMoveDelta, magmaLascannonSlowServoStep);
-    bool leftComplete = MoveServo(leftArmServo, &magmaLascannonLeftServoCurrentPosition, &magmaLascannonLeftServoCurrentMoveDelta, magmaLascannonSlowServoStep);
+    bool rightComplete = SetServo(rightArmServoChannel, &magmaLascannonRightServoCurrentPosition, &magmaLascannonRightServoCurrentMoveDelta, magmaLascannonSlowServoStep);
+    bool leftComplete = SetServo(leftArmServoChannel, &magmaLascannonLeftServoCurrentPosition, &magmaLascannonLeftServoCurrentMoveDelta, magmaLascannonSlowServoStep);
 
     magmaLascannonInitialRestingReached = rightComplete && leftComplete; //Initial resting position reached if both right/left servos are in position
 
@@ -663,8 +686,8 @@ static bool PerformMagmaLascannonAction(unsigned long updateMillis) {
         Serial.println("Finished move to resting position");
         magmaLascannonTimerStartMS = updateMillis;
 
-        rightArmServo.detach();
-        leftArmServo.detach();
+        DisableServo(rightArmServoChannel);
+        DisableServo(leftArmServoChannel);
     }
 
     return true;
@@ -679,9 +702,6 @@ static bool PerformMagmaLascannonAction(unsigned long updateMillis) {
         Serial.println("Finished delay between resting position and start of move to firing position");
         magmaLascannonRightServoCurrentMoveDelta = rightArmServoFirePosition - magmaLascannonRightServoCurrentPosition;
         magmaLascannonLeftServoCurrentMoveDelta = leftArmServoFirePosition - magmaLascannonLeftServoCurrentPosition;
-
-        rightArmServo.attach(rightArmServoPin, servoMinMS, servoMaxMS);
-        leftArmServo.attach(leftArmServoPin, servoMinMS, servoMaxMS);
     }
     return true;
   }
@@ -692,8 +712,8 @@ static bool PerformMagmaLascannonAction(unsigned long updateMillis) {
     if (ShouldUpdateMagmaLascannonServo(updateMillis, magmaLascannonSlowServoMSPerStep) == false) 
       return true;
 
-      bool rightComplete = MoveServo(rightArmServo, &magmaLascannonRightServoCurrentPosition, &magmaLascannonRightServoCurrentMoveDelta, magmaLascannonSlowServoStep);
-      bool leftComplete = MoveServo(leftArmServo, &magmaLascannonLeftServoCurrentPosition, &magmaLascannonLeftServoCurrentMoveDelta, magmaLascannonSlowServoStep);
+      bool rightComplete = SetServo(rightArmServoChannel, &magmaLascannonRightServoCurrentPosition, &magmaLascannonRightServoCurrentMoveDelta, magmaLascannonSlowServoStep);
+      bool leftComplete = SetServo(leftArmServoChannel, &magmaLascannonLeftServoCurrentPosition, &magmaLascannonLeftServoCurrentMoveDelta, magmaLascannonSlowServoStep);
 
       magmaLascannonInitialFiringPositionReached = rightComplete && leftComplete; //Firing position reached if both right/left servos are in position
 
@@ -702,8 +722,8 @@ static bool PerformMagmaLascannonAction(unsigned long updateMillis) {
         Serial.println("Finished move to firing position");
         magmaLascannonTimerStartMS = updateMillis;
 
-        rightArmServo.detach();
-        leftArmServo.detach();
+        DisableServo(rightArmServoChannel);
+        DisableServo(leftArmServoChannel);
       }
 
       return true;
@@ -719,8 +739,6 @@ static bool PerformMagmaLascannonAction(unsigned long updateMillis) {
 
       ResetMagmaLascannonGunFlags();
       Serial.println("---   Firing top right gun  ---");
-
-      rightArmServo.attach(rightArmServoPin, servoMinMS, servoMaxMS);
     }
 
     return true;
@@ -728,13 +746,11 @@ static bool PerformMagmaLascannonAction(unsigned long updateMillis) {
 
   //5) Fire Top Right Gun
   if (magmaLascannonTopRightGunFired == false) {
-    magmaLascannonTopRightGunFired = MagmaLascannonFireGun(rightArmServo, rightTopGunLedPin, rightArmServoFirePosition, rightMagmaLascannonRecoilPosition, &magmaLascannonRightServoCurrentPosition, &magmaLascannonRightServoCurrentMoveDelta, updateMillis);
+    magmaLascannonTopRightGunFired = MagmaLascannonFireGun(rightArmServoChannel, rightTopGunLedPin, rightArmServoFirePosition, rightMagmaLascannonRecoilPosition, &magmaLascannonRightServoCurrentPosition, &magmaLascannonRightServoCurrentMoveDelta, updateMillis);
 
     if (magmaLascannonTopRightGunFired) {
       ResetMagmaLascannonGunFlags();
       Serial.println("---   Firing top left gun  ---");
-      rightArmServo.detach();
-      leftArmServo.attach(leftArmServoPin, servoMinMS, servoMaxMS);
     }
 
     return true;
@@ -742,13 +758,11 @@ static bool PerformMagmaLascannonAction(unsigned long updateMillis) {
 
   //6) Fire Top Left Gun
   if (magmaLascannonTopLeftGunFired == false) {
-    magmaLascannonTopLeftGunFired = MagmaLascannonFireGun(leftArmServo, leftTopGunLedPin, leftArmServoFirePosition, leftMagmaLascannonRecoilPosition, &magmaLascannonLeftServoCurrentPosition, &magmaLascannonLeftServoCurrentMoveDelta, updateMillis);
+    magmaLascannonTopLeftGunFired = MagmaLascannonFireGun(leftArmServoChannel, leftTopGunLedPin, leftArmServoFirePosition, leftMagmaLascannonRecoilPosition, &magmaLascannonLeftServoCurrentPosition, &magmaLascannonLeftServoCurrentMoveDelta, updateMillis);
 
     if (magmaLascannonTopLeftGunFired) {
       ResetMagmaLascannonGunFlags();
       Serial.println("---   Firing bottom right gun  ---");
-      rightArmServo.attach(rightArmServoPin, servoMinMS, servoMaxMS);
-      leftArmServo.detach();
     }
 
     return true;
@@ -756,13 +770,11 @@ static bool PerformMagmaLascannonAction(unsigned long updateMillis) {
 
   //7) Fire Bottom Right Gun
   if (magmaLascannonBottomRightGunFired == false) {
-    magmaLascannonBottomRightGunFired = MagmaLascannonFireGun(rightArmServo, rightBottomGunLedPin, rightArmServoFirePosition, rightMagmaLascannonRecoilPosition, &magmaLascannonRightServoCurrentPosition, &magmaLascannonRightServoCurrentMoveDelta, updateMillis);
+    magmaLascannonBottomRightGunFired = MagmaLascannonFireGun(rightArmServoChannel, rightBottomGunLedPin, rightArmServoFirePosition, rightMagmaLascannonRecoilPosition, &magmaLascannonRightServoCurrentPosition, &magmaLascannonRightServoCurrentMoveDelta, updateMillis);
 
     if (magmaLascannonBottomRightGunFired) {
       ResetMagmaLascannonGunFlags();
       Serial.println("---   Firing bottom left gun  ---");
-      rightArmServo.detach();
-      leftArmServo.attach(leftArmServoPin, servoMinMS, servoMaxMS);
     }
 
     return true;
@@ -770,17 +782,14 @@ static bool PerformMagmaLascannonAction(unsigned long updateMillis) {
 
   //8) Fire Bottom Left Gun
   if (magmaLascannonBottomLeftGunFired == false) {
-    magmaLascannonBottomLeftGunFired = MagmaLascannonFireGun(leftArmServo, leftBottomGunLedPin, leftArmServoFirePosition, leftMagmaLascannonRecoilPosition, &magmaLascannonLeftServoCurrentPosition, &magmaLascannonLeftServoCurrentMoveDelta, updateMillis);
-
+    magmaLascannonBottomLeftGunFired = MagmaLascannonFireGun(leftArmServoChannel, leftBottomGunLedPin, leftArmServoFirePosition, leftMagmaLascannonRecoilPosition, &magmaLascannonLeftServoCurrentPosition, &magmaLascannonLeftServoCurrentMoveDelta, updateMillis);
+ 
     if (magmaLascannonBottomLeftGunFired) {
       ResetMagmaLascannonGunFlags();
 
       //Set deltas to resting position
       magmaLascannonRightServoCurrentMoveDelta = rightArmServoRestPosition - magmaLascannonRightServoCurrentPosition;
       magmaLascannonLeftServoCurrentMoveDelta = leftArmServoRestPosition - magmaLascannonLeftServoCurrentPosition;
-
-      rightArmServo.attach(rightArmServoPin, servoMinMS, servoMaxMS);
-      leftArmServo.attach(leftArmServoPin, servoMinMS, servoMaxMS);
     }
 
     return true;
@@ -792,16 +801,16 @@ static bool PerformMagmaLascannonAction(unsigned long updateMillis) {
     if (ShouldUpdateMagmaLascannonServo(updateMillis, magmaLascannonSlowServoMSPerStep) == false) 
       return true;
 
-      bool rightComplete = MoveServo(rightArmServo, &magmaLascannonRightServoCurrentPosition, &magmaLascannonRightServoCurrentMoveDelta, magmaLascannonSlowServoStep);
-      bool leftComplete = MoveServo(leftArmServo, &magmaLascannonLeftServoCurrentPosition, &magmaLascannonLeftServoCurrentMoveDelta, magmaLascannonSlowServoStep);
+      bool rightComplete = SetServo(rightArmServoChannel, &magmaLascannonRightServoCurrentPosition, &magmaLascannonRightServoCurrentMoveDelta, magmaLascannonSlowServoStep);
+      bool leftComplete = SetServo(leftArmServoChannel, &magmaLascannonLeftServoCurrentPosition, &magmaLascannonLeftServoCurrentMoveDelta, magmaLascannonSlowServoStep);
 
       magmaLascannonFinalRestingReached = rightComplete && leftComplete; //Firing position reached if both right/left servos are in position
 
       //If position reached then start then action is complete
       if (magmaLascannonFinalRestingReached) {
         Serial.println("Finished move to firing resting position");
-        rightArmServo.detach();
-        leftArmServo.detach();
+        DisableServo(rightArmServoChannel);
+        DisableServo(leftArmServoChannel);
         magmaLascannonActive = false;
 
         return false;
@@ -813,7 +822,7 @@ static bool PerformMagmaLascannonAction(unsigned long updateMillis) {
   return false; //Should never be hit
 }
 
-static bool MagmaLascannonFireGun(Servo servo, uint8_t ledPin, uint16_t firingServoPosition, uint16_t recoilServoPosition, int* currentServoPosition, int* currentServoDelta, unsigned long updateMillis) {
+static bool MagmaLascannonFireGun(uint8_t servoChannel, uint8_t ledPin, uint16_t firingServoPosition, uint16_t recoilServoPosition, int* currentServoPosition, int* currentServoDelta, unsigned long updateMillis) {
   // Following sequence for top left, top right, bottom left, bottom right
   //  a) Gun fire Audio / Enable LED
   //  b) Delay for audio to start
@@ -872,12 +881,13 @@ static bool MagmaLascannonFireGun(Servo servo, uint8_t ledPin, uint16_t firingSe
   if (ShouldUpdateMagmaLascannonServo(updateMillis, magmaLascannonFastServoMSPerStep) == false) 
     return false;
 
-    magmaLascannonGunRecoilReached = MoveServo(servo, currentServoPosition, currentServoDelta, magmaLascannonFastServoStep); //Passing a pointer so dont need the to use &, is already an address
+    magmaLascannonGunRecoilReached = SetServo(servoChannel, currentServoPosition, currentServoDelta, magmaLascannonFastServoStep); //Passing a pointer so dont need the to use &, is already an address
 
     //If position reached then start the delay timer for first firing
     if (magmaLascannonGunRecoilReached) {
       Serial.println("  E: Finished move to recoil position");
       magmaLascannonTimerStartMS = updateMillis; //Start timer
+      DisableServo(rightArmServoChannel);
     }
 
     return false;
@@ -903,12 +913,12 @@ static bool MagmaLascannonFireGun(Servo servo, uint8_t ledPin, uint16_t firingSe
     if (ShouldUpdateMagmaLascannonServo(updateMillis, magmaLascannonSlowServoMSPerStep) == false) 
       return false;
 
-    magmaLascannonGunReturnToFiringPositionReached = MoveServo(servo, currentServoPosition, currentServoDelta, magmaLascannonSlowServoStep); //Passing a pointer so dont need the to use &, is already an address
+    magmaLascannonGunReturnToFiringPositionReached = SetServo(servoChannel, currentServoPosition, currentServoDelta, magmaLascannonSlowServoStep); //Passing a pointer so dont need the to use &, is already an address
 
     //If position reached then start the delay timer for completion of gun action
     if (magmaLascannonGunReturnToFiringPositionReached) {
       Serial.println("  G: Finished move to recoil position");
-      servo.detach();
+      DisableServo(servoChannel);
       magmaLascannonTimerStartMS = updateMillis; //Start timer
     }
 
@@ -950,8 +960,8 @@ static void CleanupMagmaLascannonAction() {
   magmaLascannonPreviousServoUpdateTimeMS = 0;
   magmaLascannonRightServoCurrentPosition = 0;
 
-  rightArmServo.detach();
-  leftArmServo.detach();
+  DisableServo(rightArmServoChannel);
+  DisableServo(leftArmServoChannel);
 }
 
 
@@ -1205,6 +1215,11 @@ void setup() {
 
   BLE.setEventHandler(BLEConnected, blePeripheralConnectHandler);
   BLE.setEventHandler(BLEDisconnected, blePeripheralDisconnectHandler);
+
+  //---   Initialize Servo Board   ---//
+  pwm.begin();
+  pwm.setOscillatorFrequency(27000000);
+  pwm.setPWMFreq(SERVO_FREQ);  // Analog servos run at ~50 Hz updates
 
   //---   Intialize LED Board   ---//
   LedManager.begin();
